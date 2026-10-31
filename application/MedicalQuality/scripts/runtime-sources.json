@@ -1,0 +1,20 @@
+{
+  "robot": {
+    "version": "v1.9.11",
+    "url": "https://github.com/ontodev/robot/releases/download/v1.9.11/robot.jar",
+    "sha256": "53cd275c8e4c0dad1fc2c1c34174876795cd7d6b6926e1444adcbb0cb3c7ab26",
+    "bytes": 82708624
+  },
+  "java": {
+    "version": "21.0.12+101.0.LTS",
+    "url": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12.1%2B1/OpenJDK21U-jre_aarch64_mac_hotspot_21.0.12.1_1.tar.gz",
+    "sha256": "dec50fc6f9fcd4fe3ae8cabf5a5fa68f6afc48841f7698e468e9aa5d54beed84",
+    "bytes": 48144965
+  },
+  "llama": {
+    "version": "b11588",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11588/llama-b11588-bin-macos-arm64.tar.gz",
+    "sha256": "95039180209cb8b9a2fadedd03e061c5131fed17e1eb423b3dcf8c7848d12b9d",
+    "bytes": 12112245
+  }
+}

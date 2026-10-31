@@ -1,0 +1,4 @@
+interface:
+  display_name: "客戶痛點與功能看板"
+  short_description: "填充已確認的淺色三列需求看板模板，關聯痛點、功能與效果，默認包含閱讀調節"
+  default_prompt: "使用 $review-project-requirements，基於我指定的文檔梳理客戶痛點、對應功能與預期效果，填充技能內已確認的淺色三列模板並保留閱讀調節；在 docs/02_requirement-playground/ 生成數據與 index.html，已有認可入口則原位更新。按實際需求調整行數和內容，不另起視覺設計。"

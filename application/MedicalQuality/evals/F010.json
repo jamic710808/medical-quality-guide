@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "scope": "F010",
+  "sources": [
+    "docs/PRD.md",
+    "docs/specs/product-spec.md",
+    "docs/specs/F010-reusable-delivery-assets/spec.md"
+  ],
+  "cases": [
+    {
+      "id": "EV-F010-001",
+      "title": "導出固定資產與依賴基線",
+      "source_ac": [
+        "AC-F010-001"
+      ],
+      "given": "規則、本體/映射、權限模板、流程和評測各有新舊版本，生成中來源可能更新。",
+      "when": "選擇並固定交付清單。",
+      "expected": [
+        "逐資產固定 ID/版本/摘要/依賴/來源，使用同一聲明基線；來源更新不混入舊導出，必要依賴及不一致明確報告。",
+        "應保留：manifest、依賴/版本及變化拒絕記錄；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F010-implementation-acceptance"
+    },
+    {
+      "id": "EV-F010-002",
+      "title": "授權、許可和來源角色限制導出",
+      "source_ac": [
+        "AC-F010-002"
+      ],
+      "given": "資產含受限詞表、原始患者資料、參考答案、憑據/真實身份映射和可共享模板，接收用途不同。",
+      "when": "生成導出範圍。",
+      "expected": [
+        "只含當前獲准且許可允許的內容，敏感原件/憑據/答案不默認加入；不能分發的依賴保留說明/允許引用，導出審計可追溯，不繞過評測隔離。",
+        "應保留：包含/排除與理由、目標用途、許可/授權引用；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F010-implementation-acceptance"
+    },
+    {
+      "id": "EV-F010-003",
+      "title": "候選和醫院定製狀態不被升級",
+      "source_ac": [
+        "AC-F010-003"
+      ],
+      "given": "有批准、未驗證、失敗及醫院特定資產，F009 未放行某用途。",
+      "when": "導出結構化包和說明。",
+      "expected": [
+        "保留各自審核/驗證/准入狀態及適用機構/病種/版本；通用、醫療域、醫院定製可辨，接收方不能把導出噹噹地生產批准。",
+        "應保留：資產狀態、限制和未放行記錄；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F010-implementation-acceptance"
+    },
+    {
+      "id": "EV-F010-004",
+      "title": "生成與重試不發佈半成品",
+      "source_ac": [
+        "AC-F010-004"
+      ],
+      "given": "多文件生成期間中斷、同操作重試或相同冪等鍵不同請求體。",
+      "when": "生成併發佈下載結果。",
+      "expected": [
+        "只讓同基線完整提交結果可見，失敗保留最小原因/範圍；同操作不重複產生有效交付記錄，同鍵衝突拒絕，審計失敗不給完整成功。",
+        "應保留：臨時/已發佈狀態、摘要/操作ID和對賬結果；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F010-implementation-acceptance"
+    },
+    {
+      "id": "EV-F010-005",
+      "title": "接收檢查發現篡改、缺依賴與不兼容",
+      "source_ac": [
+        "AC-F010-005"
+      ],
+      "given": "合法固定包及文件缺失、摘要錯誤、Schema 不兼容、許可/依賴不足的變體。",
+      "when": "執行接收方可復現的完整性/兼容核對。",
+      "expected": [
+        "合法範圍可定位來源/版本/說明；錯誤或缺依賴給出明確限制，不默默丟字段或自動激活語義/規則；核對成功也不代表醫學效果通過。",
+        "應保留：逐資產核對結果、可復現條件與拒絕原因；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F010-implementation-acceptance"
+    },
+    {
+      "id": "EV-F010-006",
+      "title": "下載與撤權遵守當前範圍",
+      "source_ac": [
+        "AC-F010-006"
+      ],
+      "given": "有權用戶生成包後權限撤銷，另有無權者拿到 export_id 或過期下載引用。",
+      "when": "請求下載/恢復傳輸或再次查看資產。",
+      "expected": [
+        "當前授權/用途/期限仍有效才讀取，ID/舊鏈接不作為永久許可；不暴露服務器路徑或其他病例信息，保留導出/下載歷史而不宣稱自動收回外部副本。",
+        "應保留：實際下載範圍、拒絕與訪問審計；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F010-implementation-acceptance"
+    },
+    {
+      "id": "EV-F010-007",
+      "title": "資產查看與交接說明可操作",
+      "source_ac": [
+        "AC-F010-007"
+      ],
+      "given": "授權接手者查看長清單、多個狀態/依賴和醫院定製說明。",
+      "when": "篩選資產、查看限制、請求生成/下載並返回。",
+      "expected": [
+        "清單/計數/詳情同源，來源/狀態/版本/不含項可讀；階段真實、禁用原因明確；有中文重現/依賴/許可說明，不把模型或部署秘密放進產品界面。",
+        "應保留：可讀說明、兩視口、實際結果/返回狀態；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F010-implementation-acceptance"
+    },
+    {
+      "id": "EV-F010-008",
+      "title": "與准入/生產者交付同一事實",
+      "source_ac": [
+        "AC-F010-008"
+      ],
+      "given": "F001/F004/F005/F007/F008 資產及 F009 當前決定具備，並有重複/過期交接事件。",
+      "when": "從真實生產者組成交付並檢查歷史/當前基線。",
+      "expected": [
+        "各項都對應真實來源與同一聲明版本，重複事件不造新批准；限制/撤權傳遞到當前下載，歷史原件/意見/簽字不被刪除或改寫。",
+        "應保留：完整版本/責任鏈、當前限制與接手核對；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F010-implementation-acceptance"
+    }
+  ],
+  "checks": [
+    {
+      "id": "F010-implementation-acceptance",
+      "method": "manual",
+      "inputs": [
+        "backend/medical_quality/delivery.py",
+        "backend/medical_quality/app.py",
+        "frontend/src/App.tsx",
+        "frontend/src/pages/CasePage.tsx",
+        "frontend/src/pages/OperationsPages.tsx",
+        "backend/tests/test_evaluation_delivery.py",
+        "frontend/e2e",
+        "docs/verification/F010-implementation.md",
+        "backend/uv.lock",
+        "frontend/package-lock.json"
+      ],
+      "procedure": "按 docs/verification/F010-implementation.md 的逐用例臺賬核對實際斷言與範圍；工程命令/報告複用 development-report.md 的同輸入結果。對 not_run 項按原 given/when 補足獨立場景；對 blocked 項只在真實資料/身份/責任前置到位後執行，不能用重複工程測試充當專業驗收。",
+      "evidence": "docs/verification/F010-implementation.md 與 docs/verification/development-report.md；原生收據在 artifacts/verification/，綁定本身不代表全部通過。"
+    }
+  ]
+}

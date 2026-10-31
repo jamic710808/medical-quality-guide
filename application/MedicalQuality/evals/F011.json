@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "scope": "F011",
+  "sources": [
+    "docs/PRD.md",
+    "docs/specs/product-spec.md",
+    "docs/specs/F011-knowledge-graph-workbench/spec.md"
+  ],
+  "cases": [
+    {
+      "id": "EV-F011-001",
+      "title": "完整原生圖譜能力進入產品",
+      "source_ac": [
+        "AC-F011-001"
+      ],
+      "given": "固定上游版本和相同的無敏感類型圖，含屬性、subclass、有向關係及數據綁定。",
+      "when": "在產品知識圖譜中完成 OP-01～14 適用能力的逐項操作。",
+      "expected": [
+        "原生渲染、搜索、檢查器、路徑、統計/圖例、主題、設計器及格式能力可用；差異有明確醫療適配記錄，不能僅復刻外觀、採用簡版嵌入或用圖片/卡片替代。域外動作按醫療邊界隔離。",
+        "應保留：固定提交、源碼與許可清單、OP 逐項差異及操作記錄；原生工程對照、合成適配與真實業務證據分別標識。"
+      ],
+      "check_ref": "F011-implementation-acceptance"
+    },
+    {
+      "id": "EV-F011-002",
+      "title": "三種視圖保持類型、實例和判斷層次",
+      "source_ac": [
+        "AC-F011-002"
+      ],
+      "given": "已批准概念、一個病例的來源斷言、規則版本、模型候選、專家意見及缺證據關係。",
+      "when": "切換本體、病例證據、規則影響並選擇節點/邊。",
+      "expected": [
+        "每種對象保留真實身份、方向、語境、判斷層次和來源；缺口明確，未知基數不變為默認一對多，病例實例不變成 OWL 類，圖連通不成為醫學事實或專業確認。",
+        "應保留：節點/邊附錄、未知/衝突和版本響應；原生工程對照、合成適配與真實業務證據分別標識。"
+      ],
+      "check_ref": "F011-implementation-acceptance"
+    },
+    {
+      "id": "EV-F011-003",
+      "title": "圖節點回查固定原文與規則",
+      "source_ac": [
+        "AC-F011-003"
+      ],
+      "given": "同一問題關聯入院與出院兩個版本段落、PDF 頁級定位及規則條款，其中一個定位失效。",
+      "when": "從問題圖選擇證據並打開原文/規則詳情。",
+      "expected": [
+        "可用引用回到對應源版本和真實位置，頁級定位不冒充字符級；失效項說明缺口，不靜默指向最新內容；並列顯示來源事實、規則/模型與專業意見。",
+        "應保留：固定證據引用和逐項定位結果；原生工程對照、合成適配與真實業務證據分別標識。"
+      ],
+      "check_ref": "F011-implementation-acceptance"
+    },
+    {
+      "id": "EV-F011-004",
+      "title": "有向路徑、搜索與範圍表達一致",
+      "source_ac": [
+        "AC-F011-004"
+      ],
+      "given": "中文名、批准別名、同名不同概念、單向邊、孤立節點和部分加載子圖。",
+      "when": "搜索、選擇起終點、查找路徑並聚焦/退出鄰域。",
+      "expected": [
+        "對象不因同名合併，原生有向路徑及高亮一致；無路徑/同端點明確反饋，部分範圍可見；路徑只是已有關係導航，查詢無命中不捏造病例統計或診斷答案。",
+        "應保留：方向、端點、覆蓋範圍和無命中結果；原生工程對照、合成適配與真實業務證據分別標識。"
+      ],
+      "check_ref": "F011-implementation-acceptance"
+    },
+    {
+      "id": "EV-F011-005",
+      "title": "原生設計器修改候選並承接審核",
+      "source_ac": [
+        "AC-F011-005"
+      ],
+      "given": "知識維護者從已批准 S1 建立候選，另一人已保存更新版本。",
+      "when": "編輯實體/屬性/關係、撤銷重做、驗證、預覽、保存和提交審核，另嘗試提交過期修改。",
+      "expected": [
+        "原生編輯/預覽完整可用，中文名稱可讀；保存形成可追溯候選，過期修改拒絕並保留核對入口；原生驗證/應用預覽不發佈正式本體、不寫病歷或改變簽字。提交進入 F004 同一審核流程。",
+        "應保留：撤銷/重做記錄、候選版本、衝突拒絕及審核引用；原生工程對照、合成適配與真實業務證據分別標識。"
+      ],
+      "check_ref": "F011-implementation-acceptance"
+    },
+    {
+      "id": "EV-F011-006",
+      "title": "導入導出不吞併本體語義",
+      "source_ac": [
+        "AC-F011-006"
+      ],
+      "given": "原生 JSON、支持的 RDF/XML、含中文/外部 IRI/複雜公理的正式 Turtle/SHACL 包，以及語義缺失輸入。",
+      "when": "導入、查看圖/RDF、導出子集或完整包後重讀。",
+      "expected": [
+        "原生支持子集可核對往返；Turtle 經正式適配而不冒稱原生支持，未表達部分有損失清單和原文引用，不靜默覆蓋正式包；實例圖不能導出成 OWL 類。中文顯示名與 Fabric 專項校驗分離。",
+        "應保留：原件摘要、支持清單、loss_report、輸出類型與原始 IRI；原生工程對照、合成適配與真實業務證據分別標識。"
+      ],
+      "check_ref": "F011-implementation-acceptance"
+    },
+    {
+      "id": "EV-F011-007",
+      "title": "圖譜所有入口遵守當前對象授權",
+      "source_ac": [
+        "AC-F011-007"
+      ],
+      "given": "兩責任組病例和只能看術語的維護身份；部分授權在瀏覽中到期。",
+      "when": "搜索、鄰居展開、路徑、詳情、深鏈接、導出及切換身份。",
+      "expected": [
+        "服務器只返回當前可讀對象、關係和計數，所有派生動作再次校驗；撤權清理應用緩存/舊圖並限制後續讀取，拒絕可審計，不能全圖下發後隱藏或由圖入口繞過原文權限。",
+        "應保留：響應/拒絕、緩存清理和最小化審計；原生工程對照、合成適配與真實業務證據分別標識。"
+      ],
+      "check_ref": "F011-implementation-acceptance"
+    },
+    {
+      "id": "EV-F011-008",
+      "title": "域內分享、導出與來源許可",
+      "source_ac": [
+        "AC-F011-008"
+      ],
+      "given": "病例實例圖、可導出本體、受限詞表和上游 URL 載荷/GitHub 提交功能。",
+      "when": "複製鏈接、下載 PNG/JSON/RDF/正式包或提交候選。",
+      "expected": [
+        "業務鏈接無病例載荷且再次鑑權；導出按用途/許可審計，圖像與投影不冒充完整正式本體；醫療環境不向公共站/倉庫提交內容，源碼版權/依賴通知保留。",
+        "應保留：批准/拒絕導出記錄、鏈接載荷核對、外部請求和許可清單；原生工程對照、合成適配與真實業務證據分別標識。"
+      ],
+      "check_ref": "F011-implementation-acceptance"
+    },
+    {
+      "id": "EV-F011-009",
+      "title": "版本變化不會混合圖、來源和歷史判斷",
+      "source_ac": [
+        "AC-F011-009"
+      ],
+      "given": "S1 被舊運行引用，S2 新發布、文書另有新版本，瀏覽器還持有舊圖請求。",
+      "when": "查看歷史、切換當前、響應亂序到達或舊投影已不可用。",
+      "expected": [
+        "圖/詳情/來源使用同一固定版本集合，丟棄不匹配舊響應；歷史不漂移、不繼承新簽字；失效說明原因且保留允許的原文/人工路徑。",
+        "應保留：版本組合、過期響應捨棄與歷史回查；原生工程對照、合成適配與真實業務證據分別標識。"
+      ],
+      "check_ref": "F011-implementation-acceptance"
+    },
+    {
+      "id": "EV-F011-010",
+      "title": "大圖原生策略與可到達性",
+      "source_ac": [
+        "AC-F011-010"
+      ],
+      "given": "999/1000/1001 個元素邊界及更多對象的中文圖，含長標籤和多重邊。",
+      "when": "加載、佈局、搜索第 100 項後的對象、打開詳情、切換主題並連續切換圖。",
+      "expected": [
+        "保留原生規模佈局與限制提示，授權對象可檢索到，部分加載與未知總數不偽稱全量；交互和內存表現按凍結設備預算記錄，不能以刪掉核心交互獲得性能通過。",
+        "應保留：佈局模式、可到達記錄、p50/p95 與內存結果及環境；原生工程對照、合成適配與真實業務證據分別標識。"
+      ],
+      "check_ref": "F011-implementation-acceptance"
+    },
+    {
+      "id": "EV-F011-011",
+      "title": "簡潔平臺中的連續工作與無障礙",
+      "source_ac": [
+        "AC-F011-011"
+      ],
+      "given": "1280×800 和 1440×1000 下，從非第一頁病例列表或規則詳情進入圖，含長中文名和衝突風險。",
+      "when": "查看原生畫布/Inspector/並列證據，用鍵盤和快捷鍵選擇對象，減少動態效果後操作並返回。",
+      "expected": [
+        "主畫布、名稱、風險文字和動作可讀可達；Apple 式簡潔外殼不刪信息；焦點和來源對象/頁籤/篩選/頁碼恢復，圖譜動作不改變業務狀態，主題/高亮兼容。",
+        "應保留：實際操作軌跡、關鍵屏幕與焦點/返回結果；原生工程對照、合成適配與真實業務證據分別標識。"
+      ],
+      "check_ref": "F011-implementation-acceptance"
+    },
+    {
+      "id": "EV-F011-012",
+      "title": "失敗恢復保持證據與原工作路徑",
+      "source_ac": [
+        "AC-F011-012"
+      ],
+      "given": "原生圖渲染失敗、接口暫不可用、真正無結果、部分證據缺失和未保存候選。",
+      "when": "重試、退出圖、選擇結構化列表或返回原文/任務。",
+      "expected": [
+        "失敗/空/部分/無權限明確分開；不閃現其他病例，保存狀態真實，合法原文/人工工作可繼續；降級列表不算原生圖譜驗收通過，恢復仍綁定原範圍與版本。",
+        "應保留：狀態、恢復入口、未保存輸入保護和原工作續接；原生工程對照、合成適配與真實業務證據分別標識。"
+      ],
+      "check_ref": "F011-implementation-acceptance"
+    },
+    {
+      "id": "EV-F011-013",
+      "title": "導入內容不能觸發外部讀取或腳本",
+      "source_ac": [
+        "AC-F011-006",
+        "AC-F011-007",
+        "AC-F011-008"
+      ],
+      "given": "RDF/XML 含外部實體、HTML/腳本標籤、惡意 URL、超大嵌套或重複 ID；JSON 含非預期字段；運行於禁止公共外發的醫療環境。",
+      "when": "導入、預覽標籤/來源、點擊外鏈或請求導出。",
+      "expected": [
+        "解析和預覽不執行腳本、不加載外部實體/任意 URL；無權限來源不能經圖詳情訪問。",
+        "危險/不支持/超限輸入明確拒絕且原生正常輸入路徑仍可用；審計不復制病歷全文。"
+      ],
+      "check_ref": "F011-implementation-acceptance"
+    },
+    {
+      "id": "EV-F011-014",
+      "title": "中文醫學名稱與未知基數不被 Fabric 默認值覆蓋",
+      "source_ac": [
+        "AC-F011-002",
+        "AC-F011-005",
+        "AC-F011-006"
+      ],
+      "given": "兩個同名但 IRI 不同的概念、中文長名稱、未聲明基數關係，以及不滿足 Fabric IQ 名稱規則但合法的本項目概念。",
+      "when": "顯示、編輯候選、運行專項格式驗證並導出/重導。",
+      "expected": [
+        "中文業務名可識別、原 IRI/對象身份不變；Fabric 格式不兼容按專項結果報告，不宣佈醫學本體非法或自動改成英文語義。",
+        "未知基數保持未知，不能沿上游默認一對多寫成正式約束；實例與類分型在導出後不丟失，不支持的轉換拒絕。"
+      ],
+      "check_ref": "F011-implementation-acceptance"
+    }
+  ],
+  "checks": [
+    {
+      "id": "F011-implementation-acceptance",
+      "method": "manual",
+      "inputs": [
+        "backend/medical_quality/knowledge_graph.py",
+        "backend/medical_quality/ontology.py",
+        "backend/medical_quality/governance.py",
+        "frontend/src/pages/GraphPage.tsx",
+        "frontend/src/vendor/ontology-playground",
+        "frontend/src/features/knowledge-graph",
+        "backend/tests/test_workflow_graph.py",
+        "backend/tests/test_governance.py",
+        "backend/tests/test_recovery_permissions.py",
+        "frontend/e2e",
+        "docs/verification/F011-implementation.md",
+        "backend/uv.lock",
+        "frontend/package-lock.json",
+        "frontend/src/ui.tsx",
+        "backend/medical_quality/replay.py"
+      ],
+      "procedure": "按 docs/verification/F011-implementation.md 的逐用例臺賬核對實際斷言與範圍；工程命令/報告複用 development-report.md 的同輸入結果。對 not_run 項按原 given/when 補足獨立場景；對 blocked 項只在真實資料/身份/責任前置到位後執行，不能用重複工程測試充當專業驗收。",
+      "evidence": "docs/verification/F011-implementation.md 與 docs/verification/development-report.md；原生收據在 artifacts/verification/，綁定本身不代表全部通過。"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "讀取會話上下文"
+  short_description: "回查其他 Codex 會話的溝通、決定與執行記錄，並帶來源接續當前任務"
+  default_prompt: "使用 $read-session-context 讀取指定 Codex 會話，梳理用戶溝通、決定變化、實際執行和待辦，並保留原文來源。"

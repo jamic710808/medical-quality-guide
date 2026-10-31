@@ -1,0 +1,16 @@
+@prefix mq: <urn:mq:ontology:> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+mq:AssertionShape a sh:NodeShape ;
+  sh:targetClass mq:ClinicalAssertion ;
+  sh:property [ sh:path mq:subjectRole ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("patient" "family" "other" "unknown") ] ;
+  sh:property [ sh:path mq:polarity ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("affirmed" "negated" "uncertain" "hypothetical" "unknown") ] ;
+  sh:property [ sh:path mq:temporality ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("current" "historical" "planned" "unknown") ] ;
+  sh:property [ sh:path mq:hasEvidence ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path mq:documentVersion ; sh:minCount 1 ; sh:datatype xsd:string ] .
+
+mq:EvidenceShape a sh:NodeShape ;
+  sh:targetClass mq:EvidenceReference ;
+  sh:property [ sh:path mq:sourceVersion ; sh:minCount 1 ; sh:datatype xsd:string ] ;
+  sh:property [ sh:path mq:locator ; sh:minCount 1 ; sh:datatype xsd:string ] .

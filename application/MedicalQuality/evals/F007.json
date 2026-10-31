@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "scope": "F007",
+  "sources": [
+    "docs/PRD.md",
+    "docs/specs/product-spec.md",
+    "docs/specs/F007-remediation-accountability/spec.md"
+  ],
+  "cases": [
+    {
+      "id": "EV-F007-001",
+      "title": "質控確認與誤報駁回",
+      "source_ac": [
+        "AC-F007-001"
+      ],
+      "given": "同一固定版本的問題待質控複核，獲授權人員可確認派發或以原文/規則依據駁回。",
+      "when": "提交確認意見和責任醫生，或提交駁回理由。",
+      "expected": [
+        "確認產生明確醫生待辦；駁回保留原問題和理由並以問題不成立結案，不虛構整改、再核驗或簽字已完成；責任記錄與變更可回查。",
+        "保留 確認/駁回前後狀態、待辦和審計引用，並區分合成/測試身份與真實責任操作；未執行不報告通過。"
+      ],
+      "check_ref": "F007-implementation-acceptance"
+    },
+    {
+      "id": "EV-F007-002",
+      "title": "醫生整改保存新版本",
+      "source_ac": [
+        "AC-F007-002"
+      ],
+      "given": "醫生被派處理當前問題和文書版本，另有無權限或持舊版本的提交。",
+      "when": "提交整改內容及說明。",
+      "expected": [
+        "獲准且版本匹配的提交形成有父版本與責任人的新文書和待核驗狀態；原件/舊意見不覆蓋，不寫回 HIS；越權/過期提交明確拒絕或衝突。",
+        "保留 父子版本、原件不變與拒絕記錄，並區分合成/測試身份與真實責任操作；未執行不報告通過。"
+      ],
+      "check_ref": "F007-implementation-acceptance"
+    },
+    {
+      "id": "EV-F007-003",
+      "title": "申訴、裁決與爭議升級",
+      "source_ac": [
+        "AC-F007-003"
+      ],
+      "given": "醫生提交帶依據的異議，獲指派專家處理，可能維持問題、撤銷或升級高風險爭議。",
+      "when": "保存申訴和專家決定。",
+      "expected": [
+        "原判、意見、身份和依據保留；結果進入要求整改、問題不成立或明確下一責任主體的升級狀態，未決高風險爭議不能關閉/簽字；模型不能裁決。",
+        "保留 原判/裁決關係、責任節點與阻斷，並區分合成/測試身份與真實責任操作；未執行不報告通過。"
+      ],
+      "check_ref": "F007-implementation-acceptance"
+    },
+    {
+      "id": "EV-F007-004",
+      "title": "再次核驗與人工確認分開",
+      "source_ac": [
+        "AC-F007-004"
+      ],
+      "given": "整改形成新文書，F006 可能返回條件通過、未通過、無法判斷或部分失敗。",
+      "when": "請求受影響範圍重核並由質控人員複核。",
+      "expected": [
+        "固定新輸入/結果版本；未滿足時退回補充或阻斷，機器執行結束不等於人工確認，只有確認且範圍內無阻斷才進入待簽字。",
+        "保留 F006 運行引用、退回/阻斷與確認記錄，並區分合成/測試身份與真實責任操作；未執行不報告通過。"
+      ],
+      "check_ref": "F007-implementation-acceptance"
+    },
+    {
+      "id": "EV-F007-005",
+      "title": "雙崗位簽字綁定當前範圍",
+      "source_ac": [
+        "AC-F007-005"
+      ],
+      "given": "當前範圍已具必要複核與有效依據，簽署需要責任醫生和質控複核人，另有缺前置或代簽請求。",
+      "when": "各實際崗位分別發起自己的簽署。",
+      "expected": [
+        "核查真實身份、職責、範圍與版本；單方仍待另一方，禁止代簽和有阻斷時簽字；雙崗完成只說明當前範圍，不等同整份病歷合格。",
+        "保留 獨立崗位/版本記錄及拒絕結果，並區分合成/測試身份與真實責任操作；未執行不報告通過。"
+      ],
+      "check_ref": "F007-implementation-acceptance"
+    },
+    {
+      "id": "EV-F007-006",
+      "title": "新文書或適用依據變化不繼承舊簽字",
+      "source_ac": [
+        "AC-F007-006"
+      ],
+      "given": "舊範圍已簽字，出現新文書或改變判斷適用性的依據版本。",
+      "when": "繼續處理當前版本。",
+      "expected": [
+        "建立新核驗鏈並重新檢查受影響範圍，舊簽字和原文留在舊版本；當前範圍不能借用舊通過/簽字狀態，不能靜默改寫舊依據。",
+        "保留 新舊鏈路、簽字綁定與當前受限狀態，並區分合成/測試身份與真實責任操作；未執行不報告通過。"
+      ],
+      "check_ref": "F007-implementation-acceptance"
+    },
+    {
+      "id": "EV-F007-007",
+      "title": "改派、期限與逾期保持責任",
+      "source_ac": [
+        "AC-F007-007"
+      ],
+      "given": "任務已有責任醫生、複核人、處理節點和截止時間。",
+      "when": "獲權人員改派、延期、退回或任務逾期。",
+      "expected": [
+        "理由、前後責任與期限可回查，當前崗位能定位待辦；逾期只提醒或升級，通知不等於處理，不默認同意、代簽或結案。",
+        "保留 改派/延期記錄、逾期反饋和工作臺狀態，並區分合成/測試身份與真實責任操作；未執行不報告通過。"
+      ],
+      "check_ref": "F007-implementation-acceptance"
+    },
+    {
+      "id": "EV-F007-008",
+      "title": "重複提交與過期操作一致",
+      "source_ac": [
+        "AC-F007-008"
+      ],
+      "given": "同一決定重複到達，兩個操作者持有不同任務版本，業務寫入後響應可能丟失。",
+      "when": "重試或提交舊版本動作。",
+      "expected": [
+        "同一有效操作只有一個可識別業務結果和對應責任記錄，舊版本提示重新核對而不覆蓋新意見；未知提交結果先按操作身份核對，不能盲目重做簽字。",
+        "保留 決定 ID、任務版本、審計與結果去重，並區分合成/測試身份與真實責任操作；未執行不報告通過。"
+      ],
+      "check_ref": "F007-implementation-acceptance"
+    },
+    {
+      "id": "EV-F007-009",
+      "title": "人工等待可跨進程恢復",
+      "source_ac": [
+        "AC-F007-009"
+      ],
+      "given": "任務等待真人輸入時服務重啟，或業務決定已提交但執行恢復尚未完成；另有取消執行、亂序回覆和舊圖版本。",
+      "when": "重新進入或恢復處理。",
+      "expected": [
+        "以已保存業務狀態識別當前責任和版本，只有有效決定推進；重放不重複寫入，舊/亂序回覆拒絕或隔離，取消執行不刪除待辦/簽字，不兼容狀態受控停止而不假成功。",
+        "保留 業務決定與執行遊標對照、拒絕及去重結果，並區分合成/測試身份與真實責任操作；未執行不報告通過。"
+      ],
+      "check_ref": "F007-implementation-acceptance"
+    },
+    {
+      "id": "EV-F007-010",
+      "title": "崗位旅程與返回狀態一致",
+      "source_ac": [
+        "AC-F007-010"
+      ],
+      "given": "各崗位從授權列表進入長內容任務，在 1280×800 和 1440×1000 視口處理後返回，記錄可能退出原篩選。",
+      "when": "查看證據、執行允許動作並返回工作臺。",
+      "expected": [
+        "主要內容與動作可讀可達，風險/禁用原因有文字；列表、詳情、計數與責任節點反映同一已保存狀態，保留有效瀏覽上下文，不用會話假狀態顯示成功。",
+        "保留 雙視口、前後狀態與返回上下文操作記錄，並區分合成/測試身份與真實責任操作；未執行不報告通過。"
+      ],
+      "check_ref": "F007-implementation-acceptance"
+    },
+    {
+      "id": "EV-F007-011",
+      "title": "工具許可、業務授權與責任證據分離",
+      "source_ac": [
+        "AC-F007-011"
+      ],
+      "given": "運行時工具批准/模型建議到達，但業務主體無權限或記錄已過期；另有審計寫入失敗和越域工具配置。",
+      "when": "請求複核、裁決、改文書或簽署。",
+      "expected": [
+        "不憑 Agent 角色、工具批准或 resume 值授權業務動作；關鍵責任記錄缺失不給完整成功，越域拒絕；原件不回寫、模型不能代人簽字，普通錯誤日誌不保留不必要病歷全文。",
+        "保留 真實主體、拒絕/回滾與未外發探針，並區分合成/測試身份與真實責任操作；未執行不報告通過。"
+      ],
+      "check_ref": "F007-implementation-acceptance"
+    },
+    {
+      "id": "EV-F007-012",
+      "title": "等待期間語義失效不漂移責任",
+      "source_ac": [
+        "AC-F007-006",
+        "AC-F007-008",
+        "AC-F007-009",
+        "AC-F007-011"
+      ],
+      "given": "任務等待實際質控/醫生決定且已有歷史簽署範圍，本體/規則資格或授權在暫停期間改變。",
+      "when": "收到裸工具批准、重複/舊版本決定並恢復。",
+      "expected": [
+        "只消費應用已保存真實 BusinessDecision，當前前置失效時限制/重新核驗，原生本體發佈不代簽。",
+        "歷史意見/簽字固定舊文書/語義；圖重放不抹掉事實，當前新範圍不能繼承舊完成。"
+      ],
+      "check_ref": "F007-implementation-acceptance"
+    }
+  ],
+  "checks": [
+    {
+      "id": "F007-implementation-acceptance",
+      "method": "manual",
+      "inputs": [
+        "backend/medical_quality/remediation.py",
+        "backend/medical_quality/quality.py",
+        "frontend/src/App.tsx",
+        "frontend/src/pages/CasePage.tsx",
+        "frontend/src/pages/OperationsPages.tsx",
+        "backend/tests/test_workflow_graph.py",
+        "backend/tests/test_access.py",
+        "frontend/e2e",
+        "docs/verification/F007-implementation.md",
+        "backend/uv.lock",
+        "frontend/package-lock.json"
+      ],
+      "procedure": "按 docs/verification/F007-implementation.md 的逐用例臺賬核對實際斷言與範圍；工程命令/報告複用 development-report.md 的同輸入結果。對 not_run 項按原 given/when 補足獨立場景；對 blocked 項只在真實資料/身份/責任前置到位後執行，不能用重複工程測試充當專業驗收。",
+      "evidence": "docs/verification/F007-implementation.md 與 docs/verification/development-report.md；原生收據在 artifacts/verification/，綁定本身不代表全部通過。"
+    }
+  ]
+}

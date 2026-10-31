@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "scope": "F003",
+  "sources": [
+    "docs/PRD.md",
+    "docs/specs/product-spec.md",
+    "docs/specs/F003-structured-evidence/spec.md"
+  ],
+  "cases": [
+    {
+      "id": "EV-F003-001",
+      "title": "有效範圍讀取，失效授權和變化來源被阻斷",
+      "source_ac": [
+        "AC-F003-001"
+      ],
+      "given": "構造來源 S1/version-v1、僅讀取第 1～2 條的請求；另兩請求分別授權過期、原內容已變為 v2。均為不含真實患者的合同夾具。",
+      "when": "分別調用解析入口，並通過讀取探針觀察訪問範圍。",
+      "expected": [
+        "首個請求只讀取 v1 的聲明範圍並保留授權引用。",
+        "過期授權與版本不符請求明確 blocked，未生成可用證據且未讀取禁止範圍。",
+        "三個請求均未改寫來源字節。"
+      ],
+      "check_ref": "F003-implementation-acceptance"
+    },
+    {
+      "id": "EV-F003-002",
+      "title": "結構化值與邏輯記錄不變",
+      "source_ac": [
+        "AC-F003-002"
+      ],
+      "given": "SQLite 含 TEXT 編號 00123、未聲明外鍵及無主鍵表；CSV 含引號內換行和空字符串；JSONL.GZ 含嵌套數組、缺失字段、null、長標識和精確小數。",
+      "when": "按固定範圍分別讀取結構與記錄，對照獨立定義的預期值和位置。",
+      "expected": [
+        "編號、精度、空白/null/缺失、數組順序按原表達保留；規範化值與原值分開。",
+        "CSV 使用邏輯記錄而非物理行，JSON 保留 Pointer 和解壓邏輯記錄。",
+        "結構與記錄分別輸出，無鍵只聲明快照內身份；未聲明外鍵仍為未知。"
+      ],
+      "check_ref": "F003-implementation-acceptance"
+    },
+    {
+      "id": "EV-F003-003",
+      "title": "Markdown 結構和受限原生能力可見",
+      "source_ac": [
+        "AC-F003-003"
+      ],
+      "given": "合成 Markdown 含嵌套列表、代碼塊中的井號和表格；eCitation XML 含缺少 COMPARISON 的報告段；XLSX 含三張表、合併格、公式及空緩存。",
+      "when": "執行已聲明支持的讀取分支，並查看實際覆蓋和不支持部分。",
+      "expected": [
+        "Markdown 標題/代碼/列表不相互混淆，行範圍回指源文。",
+        "已啟用 XML 保留標籤、段序和缺段；已啟用 XLSX 保留工作表/單元格及公式與緩存區別。",
+        "未支持結構保留附件或明確缺口，不宣稱全篇/全工作簿完整解析。"
+      ],
+      "check_ref": "F003-implementation-acceptance"
+    },
+    {
+      "id": "EV-F003-004",
+      "title": "PDF 聲明頁覆蓋、表格與位置可核對",
+      "source_ac": [
+        "AC-F003-004"
+      ],
+      "given": "經授權的 6 頁規範 PDF；另有標為合成的掃描頁、混合頁與跨頁表格夾具，逐頁預期條款和表格關係由源頁獨立記錄。",
+      "when": "按已選本地路線解析聲明頁範圍，並逐頁對照重要條款、順序、表格和框位置。",
+      "expected": [
+        "文本與掃描路線均產生可檢查結果；能力缺失時記錄受影響範圍而非成功。",
+        "已通過範圍的條款順序與表格關係成立，原生表格結構可回查。",
+        "頁號、框單位/原點/尺寸明確；未覆蓋或未定位頁不冒充整篇成功。"
+      ],
+      "check_ref": "F003-implementation-acceptance"
+    },
+    {
+      "id": "EV-F003-005",
+      "title": "資產元數據不冒充解碼或診斷",
+      "source_ac": [
+        "AC-F003-005"
+      ],
+      "given": "一張可解碼 PNG、一條帶來源的圖文關聯、一個完整 WFDB 頭/信號對，以及缺 DAT 或部分通道頭的受限樣本。",
+      "when": "執行附件/元數據讀取並捕獲是否調用 OCR 或診斷。",
+      "expected": [
+        "原資產字節不變，關聯帶來源；PNG 的實際元數據與解碼檢查範圍可見。",
+        "WFDB 保留頭/信號、實際通道/單位/採樣範圍；缺配對或不完整頭明確受限。",
+        "未讀取信號值時 values_decoded=false；沒有胸片 OCR 或醫學診斷調用。"
+      ],
+      "check_ref": "F003-implementation-acceptance"
+    },
+    {
+      "id": "EV-F003-006",
+      "title": "共同對象和不同來源身份不混並",
+      "source_ac": [
+        "AC-F003-006"
+      ],
+      "given": "同一來源 v1 重複解析、同文不同 doc_id 的兩條任務、來源 v2、六種內容分型及一個大表 payload 引用。",
+      "when": "構造證據對象並按共同合同枚舉，再比較對象身份。",
+      "expected": [
+        "所有項帶 source/version、kind、locator、content/native refs、provenance 與 quality。",
+        "同一有效輸出身份穩定；不同源記錄、版本和片段不因文本相同被合併。",
+        "大內容使用可解釋的引用；格式專有結構不丟失。"
+      ],
+      "check_ref": "F003-implementation-acceptance"
+    },
+    {
+      "id": "EV-F003-007",
+      "title": "定位回放檢出錯位和過期引用",
+      "source_ac": [
+        "AC-F003-007"
+      ],
+      "given": "固定源中的 SQL 字段、CSV 邏輯記錄、JSON 路徑、Markdown 行、PDF 頁/框及已啟用的單元格/資產定位；另有錯誤偏移、僅頁級定位、來源內容變化。",
+      "when": "通過統一回查入口重放定位並對照獨立源值。",
+      "expected": [
+        "有效定位返回同版本、能支持該證據的原文/原值。",
+        "僅頁級定位明確粒度，不承諾片段級精確性。",
+        "錯誤和過期引用返回缺口及受影響身份，不編造新偏移或假成功。"
+      ],
+      "check_ref": "F003-implementation-acceptance"
+    },
+    {
+      "id": "EV-F003-008",
+      "title": "混合批次覆蓋保留空與未知",
+      "source_ac": [
+        "AC-F003-008"
+      ],
+      "given": "同一聲明批次含 5 個單元：2 個可用、1 個損壞、1 個無法定位、1 個未支持；另有聲明零範圍和總數不可得兩種請求。",
+      "when": "彙總批次與對象結果，讀取下游允許消費範圍。",
+      "expected": [
+        "混合批次聲明分母為 5，各單元都有處理結果，損壞/缺定位/未支持不被刪掉。",
+        "只有明確可用範圍可消費，批次不能顯示完整成功或病歷合格。",
+        "零範圍顯示零；總數不可得顯示未知，不顯示 0 或虛構完成百分比。"
+      ],
+      "check_ref": "F003-implementation-acceptance"
+    },
+    {
+      "id": "EV-F003-009",
+      "title": "中斷恢復與版本變化不破壞既有結果",
+      "source_ac": [
+        "AC-F003-009"
+      ],
+      "given": "一個運行已提交首分片，在第二分片寫入與提交之間注入中斷；另有同請求重試，以及來源或配置版本變化的請求。",
+      "when": "恢復運行，重複發起未變請求，再發起變更請求。",
+      "expected": [
+        "未提交臨時分片不被下游讀取；恢復複用未變的已提交分片。",
+        "重複請求不增加同一有效輸出，保留嘗試與失敗記錄。",
+        "變化請求形成可識別新版本，舊結果不原地改寫或套用到新來源。"
+      ],
+      "check_ref": "F003-implementation-acceptance"
+    },
+    {
+      "id": "EV-F003-010",
+      "title": "建模集合不讀取參照答案",
+      "source_ac": [
+        "AC-F003-010"
+      ],
+      "given": "來源清單含 business_evidence、schema_reference、rule_reference、terminology、reference_label、validation、heldout；後三類正文帶拒絕讀取探針。",
+      "when": "選擇知識建設用途生成交接清單和證據。",
+      "expected": [
+        "reference_label/validation/heldout 正文讀取次數為零且不進入建模集合。",
+        "業務原文與規則/術語分別保留來源性質、用途和版本。",
+        "不會產生由解析過程冒充的患者身份合併、已生效規則或專家確認。"
+      ],
+      "check_ref": "F003-implementation-acceptance"
+    },
+    {
+      "id": "EV-F003-011",
+      "title": "消費者理解範圍與合同版本",
+      "source_ac": [
+        "AC-F003-011"
+      ],
+      "given": "一個固定運行含可用證據、部分覆蓋、原生資產、結構字典及失敗清單；另有消費者不認識的 Schema 版本。",
+      "when": "由最小 F004/F005 消費者替身讀取 handoff，並嘗試回查允許的證據。",
+      "expected": [
+        "結構、業務證據、規則/術語、角色與允許範圍分別可取，引用回到對應版本。",
+        "部分/失敗/受限項不因交接進入完整可用集合。",
+        "未知版本停止消費並報不兼容；不會自動構建病例關係或本體。",
+        "報告明確這是合同替身驗證，不是實際病例工作臺或規則審批通過。"
+      ],
+      "check_ref": "F003-implementation-acceptance"
+    },
+    {
+      "id": "EV-F003-012",
+      "title": "本地失敗不導致越域或全文日誌",
+      "source_ac": [
+        "AC-F003-012"
+      ],
+      "given": "本地解析器報錯，配置指向未授權端點，錯誤上下文含合成敏感正文標記；具備網絡調用與日誌捕獲探針。",
+      "when": "觸發失敗及回退請求。",
+      "expected": [
+        "未授權端點收到的提交次數為零；沒有自動改走雲端處理。",
+        "錯誤輸出保留必要身份、範圍與原因，不含夾具敏感全文。",
+        "受影響範圍明確失敗/阻斷，可用部分的狀態不被錯誤升級。"
+      ],
+      "check_ref": "F003-implementation-acceptance"
+    },
+    {
+      "id": "EV-F003-013",
+      "title": "掃描頁真實 OCR 與關鍵字符/結構可查",
+      "source_ac": [
+        "AC-F003-004",
+        "AC-F003-007",
+        "AC-F003-008",
+        "AC-F003-012"
+      ],
+      "given": "無文字層的合成中文掃描頁含編號、<0.05、否定詞和帶合併表頭的表格；另有混合文字層、旋轉頁與損壞頁，明確全部輸入範圍。",
+      "when": "按已定主線在域內實際 OCR，映射原頁並處理失敗/允許備選。",
+      "expected": [
+        "保存實際引擎/模型/字典/配置與每頁狀態，不能以數字 PDF 原生提字替代掃描驗證。",
+        "關鍵字符/表頭/單位/跨度與原圖核對，旋轉縮放回映射正確；模糊或錯誤部分受限，不用 LLM 猜補。",
+        "主線不足才對受影響輸入驗證域內備選，不自動在線回退；未讀/損壞/超限保留分母。"
+      ],
+      "check_ref": "F003-implementation-acceptance"
+    },
+    {
+      "id": "EV-F003-014",
+      "title": "清洗保留標識、比較符與原文映射",
+      "source_ac": [
+        "AC-F003-002",
+        "AC-F003-006",
+        "AC-F003-007"
+      ],
+      "given": "合成記錄含 0007、空白/null/0、<0.05，文字包含換行/Unicode 變化且原文定位可核對。",
+      "when": "形成 EvidenceItem、規範化視圖與變換記錄。",
+      "expected": [
+        "原編號/字面值不改，缺失類型不合並；比較符未變為精確觀測，規範化有明示依據/版本。",
+        "清洗後的字符範圍通過實際映射回原文，無法精確映射則標粒度/限制，不借 Schema 通過冒充來源正確。"
+      ],
+      "check_ref": "F003-implementation-acceptance"
+    }
+  ],
+  "checks": [
+    {
+      "id": "F003-implementation-acceptance",
+      "method": "manual",
+      "inputs": [
+        "backend/medical_quality/evidence.py",
+        "backend/medical_quality/replay.py",
+        "backend/medical_quality/worker.py",
+        "frontend/src/App.tsx",
+        "frontend/src/pages/CasePage.tsx",
+        "frontend/src/pages/OperationsPages.tsx",
+        "backend/tests/test_data_semantics.py",
+        "backend/tests/test_replay.py",
+        "backend/tests/test_recovery_permissions.py",
+        "frontend/e2e",
+        "docs/verification/F003-implementation.md",
+        "backend/uv.lock",
+        "frontend/package-lock.json",
+        "backend/tests/test_pdf_replay.py",
+        "backend/tests/test_pdf_failures.py",
+        "scripts/verify_pdf_pipeline.py",
+        "backend/medical_quality/app.py",
+        "frontend/src/ui.tsx"
+      ],
+      "procedure": "按 docs/verification/F003-implementation.md 的逐用例臺賬核對實際斷言與範圍；工程命令/報告複用 development-report.md 的同輸入結果。對 not_run 項按原 given/when 補足獨立場景；對 blocked 項只在真實資料/身份/責任前置到位後執行，不能用重複工程測試充當專業驗收。",
+      "evidence": "docs/verification/F003-implementation.md 與 docs/verification/development-report.md；原生收據在 artifacts/verification/，綁定本身不代表全部通過。"
+    }
+  ]
+}

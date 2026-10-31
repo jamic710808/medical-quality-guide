@@ -1,0 +1,88 @@
+{
+  "imported_on": "2026-10-08",
+  "scope": "Skill instructions and supporting resources only; no parser packages, model weights, or runtime services installed.",
+  "skills": [
+    {
+      "name": "docling",
+      "repository": "https://github.com/docling-project/docling",
+      "commit": "638c43a54d4de7e8c0f4423917b5cb994669953d",
+      "source_path": "docling/.agents/skills/docling",
+      "source_url": "https://github.com/docling-project/docling/tree/638c43a54d4de7e8c0f4423917b5cb994669953d/docling/.agents/skills/docling",
+      "files_sha256": {
+        "SKILL.md": "d5e0b1c0c108850621c33dab1fa3da83bcefc52351e93028752f6df973f90998",
+        "references/cli.md": "39b5c4024c0fa2e70fe20bf51276c7a6b19c4fa426b49255eb363be8d21d1ede",
+        "references/extraction.md": "174cc38d544a68aecd934e1706d1d4ef7df011fbc936aa0dc6f43d25dc6dafb5",
+        "references/python-sdk.md": "6ca5b1d6fc0758c2ae137b105e34c5d78f7d623c3dbea26dfe65458e11f827f0",
+        "references/rag.md": "0036ad0e2b28b338ba23f8af508f8cefb06df12f3ef81ab620cdede51290569f",
+        "references/service-client.md": "6e9ab15bea5ea25fa42fc99f47b7a0599882e711db32123271d4453c73821241",
+        "references/slim-packaging.md": "25201405686287cca8a4244956ed91ee8d44dbb11fe914d549592e58593ad8e3"
+      },
+      "additional_license": {
+        "local_path": "UPSTREAM-LICENSE",
+        "source_path": "LICENSE",
+        "sha256": "edb765d1e3e60d0c7a7d5fba5f2bb2c3c29f7465cecb5c22cf1185c884954e4c"
+      }
+    },
+    {
+      "name": "mineru",
+      "repository": "https://github.com/opendatalab/MinerU",
+      "commit": "ed50cc15bc2c9bfb00520dadfe61979866e62236",
+      "source_path": "skills/mineru",
+      "source_url": "https://github.com/opendatalab/MinerU/tree/ed50cc15bc2c9bfb00520dadfe61979866e62236/skills/mineru",
+      "files_sha256": {
+        "SKILL.md": "dec330a3549d232fed44db2b0c9bc0b64505a11d2526008ddf044b3f94681d96"
+      },
+      "additional_license": {
+        "local_path": "UPSTREAM-LICENSE",
+        "source_path": "LICENSE.md",
+        "sha256": "2d9aeb5d15159329a20dd804f251c64860ba954fbd26ec02f802220e6d71cf5c"
+      },
+      "additional_references": [
+        {
+          "local_path": "docs/next/page-ranges.md",
+          "source_path": "docs/next/page-ranges.md",
+          "source_url": "https://raw.githubusercontent.com/opendatalab/MinerU/ed50cc15bc2c9bfb00520dadfe61979866e62236/docs/next/page-ranges.md",
+          "sha256": "d6280d96ee84b3837ae56376d8c106b435136a18fec4467594d04875024319ce",
+          "reason": "Official SKILL.md links to a repository-root document outside its skill folder."
+        }
+      ]
+    },
+    {
+      "name": "paddleocr-doc-parsing",
+      "repository": "https://github.com/PaddlePaddle/PaddleOCR",
+      "commit": "dab3fe35379033fdcb2d0e9572fac0b36c9a9ebf",
+      "source_path": "skills/paddleocr-doc-parsing",
+      "source_url": "https://github.com/PaddlePaddle/PaddleOCR/tree/dab3fe35379033fdcb2d0e9572fac0b36c9a9ebf/skills/paddleocr-doc-parsing",
+      "files_sha256": {
+        "SKILL.md": "16f943b1e47f317e8c73ae33bacd63cbc872190baac6a86a868bcbac9b8815c0"
+      },
+      "additional_license": {
+        "local_path": "UPSTREAM-LICENSE",
+        "source_path": "LICENSE",
+        "sha256": "3840c5c0c61c294264d2dd77b8777be6ddd90121ef4e0e64abcd22edea581d6e"
+      }
+    },
+    {
+      "name": "langextract-usage",
+      "repository": "https://github.com/google/langextract",
+      "commit": "24298305d6998061fadd01080def4288c653d243",
+      "source_path": "skills/langextract-usage",
+      "source_url": "https://github.com/google/langextract/tree/24298305d6998061fadd01080def4288c653d243/skills/langextract-usage",
+      "files_sha256": {
+        "README.md": "daed6cca515323a4aeaa4eb97023bfc68c851e784202aaf2ebc3dfa452667358",
+        "SKILL.md": "d0bcbf0189a43b55ba6490a78df4828acefe7400a80a2a10166b19307bf9dacd",
+        "examples/basic_extraction.py": "67217ed49270b3f2ec2cfe9dfa5469e52728b6c60b09f7fa27932926fc259de9",
+        "examples/multiple_documents.py": "914d59edd05ec1b72ade56103d30a50523c8b5c611d8f21d7f2e2b9b5ca48d80",
+        "examples/relationship_extraction.py": "fe8aa22bfbcda8f4f5ce67018c05dd851db15b7f99b85683f81d8643596930d6",
+        "references/prompt-validation.md": "5309a79c3a1a93ec8854ad5f8876614eef51a3700d268686aebab675fe15b9a5",
+        "references/providers.md": "e6e7737c7f4dfe3b9d4f81424a871033457bbded2237fd49b9d5eec0ad9b9747",
+        "references/resolver-params.md": "f916c63aa7f9c58df73ca9b86cd08d81cc5c416c4f8650f7392e8a2d94e1f258"
+      },
+      "additional_license": {
+        "local_path": "UPSTREAM-LICENSE",
+        "source_path": "LICENSE",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      }
+    }
+  ]
+}

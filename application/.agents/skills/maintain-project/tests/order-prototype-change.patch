@@ -1,0 +1,222 @@
+--- a/docs/03_prototype-design/design.md
++++ b/docs/03_prototype-design/design.md
+@@ -2,13 +2,15 @@
+ 
+ ## 本輪目標、依據與交付位置
+ 
+-2026-09-28，本次根據用戶更新後的 `build-frontend-prototype` 重新設計並實現。用戶反饋前版像功能羅列、缺少系統設計；本輪將整體業務關係落實為可持續使用的訂單列表、對象工作區和崗位隊列。兩處 skills 內容已一致，繼續使用最新方法；用戶自行驗看，不運行 Playwright 或其他瀏覽器自動化。
++2026-09-28，本次根據用戶更新後的 `build-frontend-prototype` 重新設計並實現。用戶反饋前版像功能羅列、缺少系統設計；本輪將整體業務關係落實為可持續使用的訂單列表、對象工作區和崗位隊列。兩處 skills 內容已一致，繼續使用最新方法；該次交付由用戶自行驗看，當時未運行 Playwright 或其他瀏覽器自動化。
+ 
+-本輪讓銷售、計劃和相關崗位討論三個問題：當前訂單到底還差什麼；系統整理的原因和可選辦法是否有用；一個處理結果能否回到訂單，更新卡點和下一步工作。五項核心功能均在同一套訂單上下文中呈現，不做五個獨立演示，也不搭建完整審批後臺。
++本次隔離維護測試（變更 ID：`order-owner-filter-forward-test`）由 Agent 根據用戶“基於此原型驗證新需求與文檔同步”的授權構造：訂單列表增加“跟進崗位”篩選，按列表當前顯示值匹配，並與原有條件組合；允許運行項目局部 Playwright/Chromium。該請求只適用於隔離副本，不代表客戶的新業務批准，不更新需求原件或01/02業務材料。
++
++原型讓銷售、計劃和相關崗位討論三個問題：當前訂單到底還差什麼；系統整理的原因和可選辦法是否有用；一個處理結果能否回到訂單，更新卡點和下一步工作。五項核心功能均在同一套訂單上下文中呈現，不做五個獨立演示，也不搭建完整審批後臺。
+ 
+ 依據：[REQ-001-02/03/05/07](../01_normalize-project-requirements/客戶需求/訂單履約協同_客戶需求.md)、[AGR-001-01/02/04/05/07/08/09](../01_normalize-project-requirements/業務約定/林遠_履約業務約定.md)、COM-002-07-01/02、COM-003-07-01/02、COM-006-07-01/02、COM-007-06-01/02，以及[現有需求看板](../02_requirement-playground/index.html)。這是已提供的業務方向；下面頁面組織、模擬結果與交互仍是擬議方案，不代表甲方確認。
+ 
+-工作區：`<HISTORICAL_TEST_WORKSPACE>`；唯一源碼位於 `docs/04_frontend-prototype/`，設計與驗看記錄位於本目錄。舊 `OrderFulfillmentPrototype/` 及 `docs/prototype/` 已按本輪授權移除；Raw、01、02、TeachingWorkbench 保留。舊源碼只包含腳手架初始提交及本輪前一版生成內容，無遠端或其他 worktree；一併移除舊依賴和構建產物，不建立平行備份。
++原交付工作區：`<HISTORICAL_TEST_WORKSPACE>`；本次維護只改隔離副本。唯一源碼位於 `docs/04_frontend-prototype/`，設計與驗看記錄位於本目錄。舊 `OrderFulfillmentPrototype/` 及 `docs/prototype/` 已按本輪授權移除；Raw、01、02、TeachingWorkbench 保留。舊源碼只包含腳手架初始提交及本輪前一版生成內容，無遠端或其他 worktree；一併移除舊依賴和構建產物，不建立平行備份。
+ 
+ ## 整體系統設計
+ 
+@@ -83,7 +85,7 @@
+ ```text
+ 全局導航       主工作區
+ 訂單           標題 / 關注分類
+-協同跟進       搜索 + 履約口徑篩選 + 排序
++協同跟進       搜索 + 履約口徑 + 跟進崗位篩選 + 排序
+                訂單表格（局部滾動，固定表頭）
+                範圍 / 總數 / 頁碼
+ 
+@@ -101,16 +103,18 @@
+ 
+ | 頁面 | 職責與空間取捨 | 瀏覽與返回 | 處理結果的承接 |
+ | --- | --- | --- | --- |
+-| 訂單列表 | 無大段介紹和單案例推薦卡；大部分視口留給可掃描表格。客戶與訂單號、有效約定、數量、卡點和跟進崗位同一行 | 訂單/客戶/產品搜索，關注狀態和履約口徑篩選；默認需協調優先、再按約定時間；可按交期或客戶排序；篩選重置頁碼，範圍按真實結果計算 | 列表從同一訂單狀態派生；交接後顯示缺料解除，部分驗收後顯示20/30；打開後返回保留篩選、排序、頁碼和表格位置 |
++| 訂單列表 | 無大段介紹和單案例推薦卡；大部分視口留給可掃描表格。客戶與訂單號、有效約定、數量、卡點和跟進崗位同一行 | 訂單/客戶/產品搜索，關注狀態、履約口徑和跟進崗位篩選共同作用；默認需協調優先、再按約定時間；可按交期或客戶排序；篩選重置頁碼，範圍按真實結果計算 | 列表從同一訂單狀態派生；交接後顯示缺料解除，部分驗收後顯示20/30；打開後返回保留篩選、排序、頁碼和表格位置 |
+ | 訂單工作區 | 頂部固定訂單身份與數量，四個頁籤共用同一對象；默認左側行進展與核查表、右側當前事項與答覆要點。證據通過右側抽屜查看，避免鋪滿主工作區 | 頁簽寫入URL；回到訂單列表恢復位置；從協同隊列進入時有返回原隊列入口 | 下一步指向準確事項；已計劃、待外部結果和未發起分開表達。全量按約履約仍可有簽收跟進 |
+ | 方案比較 | 主區全寬比較表；三種辦法成為三列，覆蓋量、時間、費用、條件、他單影響成為行，執行入口在同一行 | 比較區局部滾動，列標題固定；資料按需展開，方案狀態隨共享事實變化 | 跨倉方案提交計劃確認後生成事項；採購核實與銷售溝通可並行。回覆更新對應方案範圍；實際交接後轉入生產事項 |
+ | 協同隊列 | 左側記錄區保留隊列，右側直接辦理選中事項；來源、待核對結果和相應操作在一起，無統一“確認並記錄”中間彈窗 | 崗位、未完成/已處理篩選及搜索、分頁真實作用；URL可定位指定事項，訪問時恢復其所在有效隊列；訂單鏈接帶返回來源 | 計劃確認→倉儲接手→交接核對在同一事項更新；生產、採購餘量、資料補充等後續工作有負責人和等待結果。完成一項後允許留看結果，也可繼續選擇其他事項 |
++
++訂單“跟進崗位”選項從當前訂單行展示的崗位派生，按完整顯示值匹配（例如“生產 / 質量”作為一個選項），不按初始負責崗位或協同事項崗位推斷。默認“全部崗位”；業務狀態變化後重新派生選項和匹配結果，已選崗位沒有訂單時仍保留選項並顯示空結果。該條件單獨存入 sessionStorage，詳情返回及刷新恢復；變更條件回到第1頁並清零列表滾動位置。空結果的“清除篩選”清空搜索、關注分類、履約口徑與跟進崗位，繼續保留原排序和協同頁條件；“重置演示”仍恢復初始數據，並清空兩頁全部篩選、排序、頁碼與瀏覽位置。協同頁繼續按事項的辦理崗位篩選，兩個崗位條件互不覆蓋。
+ 
+ 桌面目標1440×900，併兼顧常見1280×800。190px全局導航；內容標題與篩選常駐；主表格、頁籤內容、事項隊列及辦理區按職責局部滾動，不給每張小卡片設滾動條。窄屏改為自然頁面滾動、上下排列，不承諾本輪移動端驗看。
+ 
+ 使用深墨藍導航、淺灰工作背景和白色記錄區，正文深色14px，輔助文字12px，標題26px；琥珀表示待核實、綠色只表示相應條件已解除。採用緊湊表格、分隔線和有限強調，減少大面積裝飾留白。高頻篩選與頁籤無動畫；原生dialog用於溝通輸入、複查和重置，證據採用可關閉側面dialog，支持Escape和焦點恢復。沒有查看外部產品參考，本輪依據已提供業務資料與技能方法設計。
+ 
+-驗看標準：18條訂單真實分頁並可打開；返回保留工作位置；三方案可橫向對照；每個明確下一步有匹配事項或責任清楚的等待狀態；調撥、採購回覆和驗收結果同時更新關聯判斷與來源。交互和空間效果交由用戶實際驗看。
++驗看標準：18條訂單真實分頁並可打開；返回保留工作位置；三方案可橫向對照；每個明確下一步有匹配事項或責任清楚的等待狀態；調撥、採購回覆和驗收結果同時更新關聯判斷與來源。歷史未驗看的路徑繼續留待用戶體驗；本次新增篩選及直接受影響路徑按驗看記錄執行瀏覽器測試。
+ 
+ ## 模擬方式與待討論假設
+ 
+@@ -127,4 +131,4 @@
+ 
+ ## 交付與確認狀態
+ 
+-[原型源碼與啟動說明](../04_frontend-prototype/README.md)。本輪按用戶要求交付後自行快速驗看，不運行瀏覽器自動化。靜態語法、文件引用和服務啟動檢查見 [verification.md](verification.md)。尚無甲方驗收或業務批准記錄；收到具體反饋後迭代同一工程。
++[原型源碼與啟動說明](../04_frontend-prototype/README.md)。原交付按當時用戶要求自行快速驗看，未運行瀏覽器自動化；本次隔離維護按本輪授權執行瀏覽器驗證。原技術檢查與本輪具體結果見 [verification.md](verification.md)。尚無甲方驗收或業務批准記錄；收到具體反饋後迭代同一工程。
+--- a/docs/03_prototype-design/verification.md
++++ b/docs/03_prototype-design/verification.md
+@@ -1,4 +1,6 @@
+-# 本輪交付檢查
++# 原型交付與維護檢查
++
++## 原交付記錄（以下狀態僅適用於該次交付）
+ 
+ 2026-09-28。用戶指出前版像功能羅列，隨後要求同步其更新的skills，再按最新方法重新設計並生成新版。已更新同一份設計與原型，不另建並行版本。用戶明確自行快速驗看，因此未運行Playwright、瀏覽器或視覺自動化。
+ 
+@@ -35,3 +37,48 @@
+ | 溝通變化 | 補錄變化標記相關判斷待複查；複查後恢復推進、歷史保留 | 輸入、暫停、恢復和直接受影響頁面的一致性 |
+ 
+ 目標桌面1440×900，兼顧1280×800；本輪未檢查實際尺寸效果、點擊、瀏覽器歷史恢復、焦點或窄屏。技術檢查通過只說明語法和可服務的資源正常，不代表頁面可用性已觀察通過，也沒有甲方確認記錄。
++
++
++## 隔離維護測試：訂單跟進崗位篩選
++
++變更 ID：`order-owner-filter-forward-test`，2026-09-28。用戶授權基於此原型驗證需求變更與文檔同步；具體“跟進崗位篩選”由 Agent 構造為測試場景，只修改隔離副本，不代表用戶正式提出該產品需求，也不代表客戶的新業務批准。上方原交付的未驗證狀態按當時條件保留；以下是本輪新增證據，不自動覆蓋其他歷史待驗看項。
++
++需求與文件對應：
++
++| 本輪要求 | 實現與當前文檔 | 驗證方法 |
++| --- | --- | --- |
++| 按列表當前跟進崗位篩選並組合原有條件 | `assets/app.js` 增加獨立 `orderOwner`、動態選項和匹配；設計與 README 更新當前用法 | 真實瀏覽器選擇、輸入、排序及行結果斷言 |
++| 從詳情返回保留篩選及原瀏覽位置 | 沿用 sessionStorage、詳情鏈接和列表返回，新增條件併入原瀏覽狀態 | 打開詳情後點擊返回；檢查條件、結果、頁碼及滾動位置 |
++| 保留協同崗位篩選與重置語義 | 協同 `role` 不變；空結果清除新增訂單條件並保留排序；全局重置仍清空兩頁狀態 | 切換頁面、協同詳情返回、空結果清除、兩頁發起全局重置 |
++| 篩選工具欄保持可用 | `assets/styles.css` 僅允許訂單工具欄按寬度換行 | 1280×800 與 1440×900 控件邊界檢查，1280截圖實際查看 |
++
++保留文件及原因：模擬數據、三條 HTML 入口、AGENTS 無需改變；01/02、Raw、TeachingWorkbench 與 `.agents` 受保護，本次原型反饋不更新客戶事實、業務批准或 Skill。僅同步原有設計、README 和本驗看記錄，不另建規格鏈。
++
++### 實際執行與結果
++
++複用已安裝的 `<COURSE_CONTENT_WORKSPACE>/.agents/skills/excalidraw-diagram/scripts/node_modules/playwright`，啟動獨立 Chromium `151.0.7922.34`，未安裝依賴或框架，未使用系統 Chrome 用戶配置。測試腳本啟動 `python3 -B -u` 靜態服務，綁定隨機空閒 `127.0.0.1:49354`；瀏覽器只允許訪問該本地源。執行命令：
++
++```sh
++python3 .agents/skills/maintain-project/scripts/maintenance.py run-check --project . --id order-owner-filter-forward-test --name prototype-browser --input .codex/maintenance/prototype-browser.cjs --input docs/04_frontend-prototype/assets/mock-data.js --input docs/04_frontend-prototype/index.html --input docs/04_frontend-prototype/order.html --input docs/04_frontend-prototype/followups.html -- node .codex/maintenance/prototype-browser.cjs
++```
++
++實際於 2026-09-28 19:25:20–19:25:23（Asia/Shanghai）執行，命令退出0，47項斷言通過，瀏覽器沒有腳本異常。方法為頁面真實輸入、選擇、點擊、滾動與導航，讀取已呈現結果及保存的瀏覽狀態核對；未向 sessionStorage 注入模擬業務變化。業務崗位變化全部經現有辦理按鈕觸發。
++
++| 路徑 | 實際觀察 |
++| --- | --- |
++| 默認與組合篩選 | 初始18條每頁8行；交付崗位匹配10條。搜索“模塊”+“跟進中”+“到貨”+“交付”按客戶名顯示041、065、026，改交付時間排序為026、041、065 |
++| 詳情返回與刷新 | 搜索、分類、口徑、崗位、排序和頁碼均恢復；交付崗位第2頁返回仍為9–10/共10條；表格滾動位置恢復；刷新後崗位仍為交付 |
++| 分頁與條件變化 | 交付崗位真實分2頁；第2頁改生產崗位後回第1頁、滾動清零、得到6條結果 |
++| 協同原路徑 | 採購崗位+“北辰”只顯示採購事項，訂單篩選不覆蓋辦理崗位、狀態、搜索、頁碼或選中項；協同詳情返回仍保留採購崗位 |
++| 空結果與清除 | 不存在的搜索顯示空結果；清除搜索、分類、口徑、崗位、頁碼與滾動，保留客戶排序及協同採購/北辰條件 |
++| 當前崗位來源 | 北辰初始計劃；確認調撥後原計劃篩選為空且選中值保留，倉儲篩選顯示北辰；接手並核對交接後進入生產；接受生產安排後由單一生產結果移出，完整“生產 / 質量”選項準確匹配北辰 |
++| 重置演示 | 恢復初始業務數據、訂單和協同兩頁篩選、默認排序與頁碼、瀏覽位置；北辰恢復計劃；從協同頁點擊重置也清空訂單崗位 |
++| 桌面呈現 | 兩個桌面尺寸的4個工具欄控件均完整位於工具欄內；實際查看1280截圖，搜索、口徑、崗位、排序、表格及分頁無相互覆蓋，組合崗位顯示完整 |
++
++### 證據、恢復與限制
++
++- 原始輸出：`.codex/maintenance/logs/order-owner-filter-forward-test-prototype-browser.txt`；結構結果：`.codex/maintenance/browser-results.json`；測試腳本：`.codex/maintenance/prototype-browser.cjs`。運行記錄對實現、HTML、模擬數據與測試腳本保存輸入指紋。
++- 頁面截圖：`.codex/maintenance/orders-1280.png`、`orders-1440.png`、`current-owner-combined.png`。其中1280初始列表及組合崗位截圖已實際查看；1440只作尺寸證據保留，沒有單獨做人工視覺審閱。
++- `.codex/maintenance/` 約460 KB，保存本輪臨時證據，目錄由 `.gitignore` 忽略。沒有依賴樹、構建輸出、錄屏或另一個產品工程；瀏覽器與本地靜態服務已在腳本 `finally` 中關閉並等待退出，隔離副本保留供審閱，統一清理前不刪除。
++- 語義審閱：新崗位條件採用訂單當前顯示值，訂單/協同崗位狀態分開；空結果清除繼續保留排序，完整重置繼續恢復原數據；現有設計與 README 的當前描述一致，原交付“不運行瀏覽器自動化”明確歸於歷史條件。
++- 本輪沒有驗證移動端、其他瀏覽器、關閉標籤頁後的恢復、完整鍵盤無障礙或所有歷史業務路徑。採購回覆、部分驗收等未受影響場景不據此次篩選測試標為全面通過。仍為模擬原型，未接入真實後臺、賬號或外部業務系統。
+--- a/docs/04_frontend-prototype/README.md
++++ b/docs/04_frontend-prototype/README.md
+@@ -7,15 +7,15 @@
+ 在工作區根目錄運行：
+ 
+ ```sh
+-cd <HISTORICAL_TEST_WORKSPACE>
++# 在包含 docs/ 的當前工作區或隔離副本根目錄運行
+ python3 -B -m http.server 5197 --bind 127.0.0.1 --directory docs/04_frontend-prototype
+ ```
+ 
+-打開 <http://127.0.0.1:5197/>。本輪複用該端口原有的本項目靜態服務，已保留運行，PID為83323；不再需要時可停止該進程。通過HTTP訪問，不直接雙擊HTML。無需安裝依賴或構建。
++打開 <http://127.0.0.1:5197/>。端口被佔用時先確認服務歸屬，或為當前副本選擇獨立空閒端口；在啟動服務的終端按 Ctrl+C 停止。通過HTTP訪問，不直接雙擊HTML。無需安裝依賴或構建。
+ 
+ ## 建議驗看
+ 
+-1. **日常找單**：18條模擬訂單，每頁8條；試用搜索、關注分類、履約口徑和排序。在第二頁打開訂單，再點擊“返回訂單列表”，查看篩選、排序、頁碼與位置是否保留。
++1. **日常找單**：18條模擬訂單，每頁8條；試用搜索、關注分類、履約口徑、跟進崗位和排序組合。“跟進崗位”按訂單行當前展示的完整崗位匹配（包括“生產 / 質量”）；業務狀態變化會同步匹配結果，空結果可“清除篩選”，清除後仍保留排序。在第二頁打開訂單，再點擊“返回訂單列表”，查看包括跟進崗位在內的篩選、排序、頁碼與位置是否保留。
+ 2. **判斷與比較**：打開北辰裝備，查看訂單行和交付條件；點擊依據打開側欄。在“方案比較”橫向查看跨倉、採購與分批的數量、時間、費用和影響。
+ 3. **崗位接續**：在跨倉方案列“提交計劃確認”，隨後“辦理調撥事項”。左側保留事項隊列，右側依次由計劃確認、倉儲接手、倉儲核對交接記錄。每一步在辦理區直接操作，操作崗位明確顯示。
+ 4. **結果回到訂單**：核對交接後，物料可分配8→20只、缺口12→0只，原訂單仍已發40臺；從後續工作繼續核實生產安排，再等待實際測試和質量結果。
+@@ -23,7 +23,7 @@
+ 6. **部分驗收**：在協同隊列打開澄星儀器事項，記錄20臺驗收通過；回到訂單查看20/30的進展，剩餘10臺由交付繼續補資料。
+ 7. **溝通變化**：補錄溝通並勾選條件變化。訂單與相關事項標記待複查；記錄複查結論後繼續。山嵐在途、景川配置與禾風簽收都有對應負責崗位和等待結果的事項。
+ 
+-“協同記錄”在訂單內查看相同事項；“關聯資料”按版本和業務時點集中查看。全局協同頁可按崗位、狀態和文本搜索，每頁6項。從事項進入訂單再返回，保留原工作隊列上下文。
++“協同記錄”在訂單內查看相同事項；“關聯資料”按版本和業務時點集中查看。全局協同頁可按辦理崗位、狀態和文本搜索，其崗位條件與訂單列表的跟進崗位互不覆蓋，每頁6項。從事項進入訂單再返回，保留原工作隊列上下文。
+ 
+ ## 模擬邊界與恢復
+ 
+@@ -31,7 +31,7 @@
+ 
+ 調撥、供應回覆、驗收與生產安排使用預置結果；其他等待事項可以補錄進展，未擴展為完整業務編輯與狀態機。辦理崗位用於表達職責，不代表真實賬號權限。自由文字不會自動改動業務數量，涉及條件變化時由相關崗位複查。
+ 
+-會話數據與瀏覽狀態保存在sessionStorage，跨頁和刷新保留；關閉標籤頁後的恢復由瀏覽器會話決定，不作為長期存儲。本次重設計使用新會話版本；底部“重置演示”清空本版操作、篩選和頁碼，恢復初始數據。
++會話數據與瀏覽狀態保存在sessionStorage，跨頁和刷新保留；關閉標籤頁後的恢復由瀏覽器會話決定，不作為長期存儲。本次重設計使用新會話版本；底部“重置演示”清空本版操作、兩頁篩選（含新增跟進崗位）、排序、頁碼及瀏覽位置，恢復初始數據。
+ 
+ ## 文件與實際檢查
+ 
+@@ -44,6 +44,6 @@
+ 
+ [設計記錄](../03_prototype-design/design.md)保留需求歸屬、空間結構、輸入/處理/輸出、流程圖和待確認假設。[驗看記錄](../03_prototype-design/verification.md)區分實際技術檢查和待用戶體驗內容。
+ 
+-已做腳本語法、本地資源引用與HTTP內容一致性檢查。按用戶要求，沒有運行Playwright或其他瀏覽器自動化，實際點擊、視覺與返回體驗尚待用戶驗看。
++原交付已做腳本語法、本地資源引用與HTTP內容一致性檢查，當時按用戶要求未運行瀏覽器自動化。本次隔離維護變更 `order-owner-filter-forward-test` 已獲准使用項目局部 Playwright/Chromium，具體交互結果見驗看記錄；未覆蓋的原型體驗保留待驗看狀態。本次為測試需求，不構成客戶業務批准。
+ 
+-原型源碼與說明約100 KB，唯一位置為本目錄；沒有依賴樹、構建輸出、截圖、錄屏、備份或新運行目錄。停止靜態服務即可結束預覽，保留源碼可隨時按上述命令重啟。
++原型源碼與說明約100 KB，唯一源碼位置為本目錄；本次沒有安裝依賴或新增構建步驟。臨時測試腳本、截圖和檢查輸出位於忽略目錄 `.codex/maintenance/`，用於本輪審閱，審閱完成後可刪除；正式結果保留在驗看記錄。測試使用獨立臨時服務和瀏覽器，結束後停止；源碼可隨時按上述命令重啟。
+--- a/docs/04_frontend-prototype/assets/app.js
++++ b/docs/04_frontend-prototype/assets/app.js
+@@ -8,7 +8,7 @@
+ const chosen = orders.find(o => o.id === params.get('id')) || orders[0];
+ let state = load();
+ const UIKEY = KEY+'-view';
+-const defaults = {query:'', group:'全部訂單', basis:'全部口徑', sort:'priority', orderPage:1, orderScroll:0, lastOrder:'', role:'全部崗位', task:'未完成', taskQuery:'', taskPage:1, selectedTask:''};
++const defaults = {query:'', group:'全部訂單', basis:'全部口徑', orderOwner:'全部崗位', sort:'priority', orderPage:1, orderScroll:0, lastOrder:'', role:'全部崗位', task:'未完成', taskQuery:'', taskPage:1, selectedTask:''};
+ function loadUI() { try { return {...defaults,...JSON.parse(sessionStorage.getItem(UIKEY)||'{}')}; } catch { return {...defaults}; } }
+ let filters = loadUI();
+ if(params.get('task')) { filters.selectedTask=params.get('task'); filters.role='全部崗位'; filters.task='全部'; filters.taskQuery=''; }
+@@ -119,14 +119,15 @@
+ function groupOf(o) { const s=situation(o); return s.tone==='amber'?'需要協調':totals(o).remaining===0?'已履約':'跟進中'; }
+ function matchingOrders() {
+   const priority={需要協調:0,跟進中:1,已履約:2};
+-  return orders.filter(o=>(filters.group==='全部訂單'||groupOf(o)===filters.group)&&(filters.basis==='全部口徑'||o.basis===filters.basis)&&`${o.id} ${o.customer} ${o.products}`.toLowerCase().includes(filters.query.trim().toLowerCase())).sort((a,b)=>filters.sort==='customer'?a.customer.localeCompare(b.customer,'zh-CN'):filters.sort==='due'?a.due.localeCompare(b.due):(priority[groupOf(a)]-priority[groupOf(b)]||a.due.localeCompare(b.due)));
++  return orders.filter(o=>(filters.group==='全部訂單'||groupOf(o)===filters.group)&&(filters.basis==='全部口徑'||o.basis===filters.basis)&&(filters.orderOwner==='全部崗位'||situation(o).owner===filters.orderOwner)&&`${o.id} ${o.customer} ${o.products}`.toLowerCase().includes(filters.query.trim().toLowerCase())).sort((a,b)=>filters.sort==='customer'?a.customer.localeCompare(b.customer,'zh-CN'):filters.sort==='due'?a.due.localeCompare(b.due):(priority[groupOf(a)]-priority[groupOf(b)]||a.due.localeCompare(b.due)));
+ }
+ function pagination(total,current,size,action) {
+   const pages=Math.max(1,Math.ceil(total/size));
+   return `<div class="pagination"><span>${total?`${(current-1)*size+1}–${Math.min(current*size,total)}`:'0'} / 共 ${total} 條</span><div>${button('上一頁',action,String(current-1),true,current===1)}${Array.from({length:pages},(_,i)=>`<button class="page-number ${current===i+1?'active':''}" data-action="${action}" data-id="${i+1}" aria-label="第${i+1}頁" ${current===i+1?'aria-current="page"':''}>${i+1}</button>`).join('')}${button('下一頁',action,String(current+1),true,current===pages)}</div><span>每頁 ${size} 條</span></div>`;
+ }
+ function renderOrders() {
+-  main.innerHTML=`<section class="page-heading"><div><div class="eyebrow">訂單管理 / 近期交付</div><h1>訂單</h1></div><div class="asof">${icon('clock')}資料截至 ${snapshot}</div></section><section class="workspace order-workspace"><div class="list-tabs">${['全部訂單','需要協調','跟進中','已履約'].map(g=>`<button data-action="filter-order" data-id="${g}" class="${filters.group===g?'active':''}">${g}<b>${g==='全部訂單'?orders.length:orders.filter(o=>groupOf(o)===g).length}</b></button>`).join('')}</div><div class="toolbar"><label class="search">${icon('search')}<input id="order-search" aria-label="搜索訂單、客戶、產品" value="${e(filters.query)}" placeholder="搜索訂單、客戶或產品"></label><label class="select-label">履約口徑<select id="basis-filter">${['全部口徑','發運','到貨','驗收'].map(v=>option(v,v,filters.basis)).join('')}</select></label><label class="select-label sort">排序<select id="order-sort">${[['priority','需協調優先'],['due','交付時間由近到遠'],['customer','客戶名稱']].map(([v,l])=>option(v,l,filters.sort)).join('')}</select></label></div><div id="order-results" class="results"></div></section>`;
++  const owners=[...new Set([...orders.map(o=>situation(o).owner),filters.orderOwner])].filter(owner=>owner!=='全部崗位').sort((a,b)=>a.localeCompare(b,'zh-CN'));
++  main.innerHTML=`<section class="page-heading"><div><div class="eyebrow">訂單管理 / 近期交付</div><h1>訂單</h1></div><div class="asof">${icon('clock')}資料截至 ${snapshot}</div></section><section class="workspace order-workspace"><div class="list-tabs">${['全部訂單','需要協調','跟進中','已履約'].map(g=>`<button data-action="filter-order" data-id="${g}" class="${filters.group===g?'active':''}">${g}<b>${g==='全部訂單'?orders.length:orders.filter(o=>groupOf(o)===g).length}</b></button>`).join('')}</div><div class="toolbar"><label class="search">${icon('search')}<input id="order-search" aria-label="搜索訂單、客戶、產品" value="${e(filters.query)}" placeholder="搜索訂單、客戶或產品"></label><label class="select-label">履約口徑<select id="basis-filter">${['全部口徑','發運','到貨','驗收'].map(v=>option(v,v,filters.basis)).join('')}</select></label><label class="select-label">跟進崗位<select id="order-owner-filter">${['全部崗位',...owners].map(owner=>option(owner,owner,filters.orderOwner)).join('')}</select></label><label class="select-label sort">排序<select id="order-sort">${[['priority','需協調優先'],['due','交付時間由近到遠'],['customer','客戶名稱']].map(([v,l])=>option(v,l,filters.sort)).join('')}</select></label></div><div id="order-results" class="results"></div></section>`;
+   renderOrderRows();
+ }
+ function renderOrderRows() {
+@@ -267,7 +268,7 @@
+   'choose-transfer':()=>actions['confirm-choose'](),
+   split:()=>actions['confirm-split'](),
+   'filter-task':id=>{filters.task=id;filters.taskPage=1;filters.selectedTask='';saveUI();renderFollowups();},
+-  'clear-filter':()=>{filters.query='';filters.group='全部訂單';filters.basis='全部口徑';filters.orderPage=1;filters.orderScroll=0;saveUI();renderOrders();},
++  'clear-filter':()=>{filters.query='';filters.group='全部訂單';filters.basis='全部口徑';filters.orderOwner='全部崗位';filters.orderPage=1;filters.orderScroll=0;saveUI();renderOrders();},
+   evidence:showEvidence,
+   'confirm-choose':()=>{state.transfer='proposed';log(primary,'選擇跨倉補料方案','12只、480元、今天14:00的交接窗口提交計劃確認；尚未執行。');done('方案已選擇，計劃確認事項已建立。');},
+   'confirm-approve':()=>{state.transfer='approved';log(primary,'計劃已確認調撥範圍','已確認本次12只與480元費用，由倉儲辦理實際交接。');done('計劃確認已記錄，等待倉儲接手。');},
+@@ -297,6 +298,7 @@
+   if(event.target.id==='task-search'){filters.taskQuery=event.target.value;filters.taskPage=1;filters.selectedTask='';renderTaskRows();}
+ });
+ document.addEventListener('change',event=>{
++  if(event.target.id==='order-owner-filter'){filters.orderOwner=event.target.value;filters.orderPage=1;filters.orderScroll=0;renderOrderRows();}
+   if(event.target.id==='role-filter'){filters.role=event.target.value;filters.taskPage=1;filters.selectedTask='';renderTaskRows();}
+   if(['basis-filter','order-sort'].includes(event.target.id)){filters[event.target.id==='basis-filter'?'basis':'sort']=event.target.value;filters.orderPage=1;filters.orderScroll=0;renderOrderRows();}
+ });
+--- a/docs/04_frontend-prototype/assets/styles.css
++++ b/docs/04_frontend-prototype/assets/styles.css
+@@ -12,3 +12,5 @@
+ @media(max-width:1050px){body{grid-template-columns:148px minmax(0,1fr)}.brand{font-size:16px;margin-left:3px}.brand small{font-size:7px;letter-spacing:1.5px}.nav-label{padding-left:10px}#header nav a{font-size:12px;gap:8px;padding:12px 10px}#header nav .icon{height:16px;width:16px}.overview-layout{grid-template-columns:1fr}.context-aside{border-left:0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:0 22px}.latest-event{display:none}.aside-section{border:0}.order-summary small{font-size:10px}.order-summary>div{padding:0 13px}.toolbar .search{width:230px}.select-label{font-size:11px}.tasks-workspace>.toolbar{flex-wrap:wrap;gap:10px}.tasks-workspace .task-search{flex:1}.task-detail-heading{flex-wrap:wrap;gap:7px;padding-top:17px}.task-detail-heading>.badge{margin:0}.task-action-bar .btn{font-size:11px;padding:8px 10px}.task-facts{gap:8px}.task-facts strong{font-size:11px}.task-order>span{gap:5px}.task-layout{grid-template-columns:290px minmax(0,1fr)}.asof{display:none}.result-sheet{padding:15px}.result-sheet h3{font-size:13px}.task-scroll{padding:0 16px 18px}.task-facts{padding:15px 16px}.task-order{margin:0 16px}.task-detail-heading{padding-left:16px;padding-right:16px}.task-action-bar{padding:13px 16px}}
+ @media(max-width:760px){body{height:auto;min-height:100dvh;overflow:auto;display:block}#header{padding:15px 17px;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:18px}.brand{font-size:16px;margin:0}.brand small,.nav-label,.nav-bottom{display:none}.brand>span{width:30px;height:30px}#header nav{flex-direction:row;gap:5px}#header nav a{font-size:12px;padding:10px}#header nav a .icon,#header nav a>span{display:none}main{padding:24px 16px 0;overflow:visible;min-height:calc(100dvh - 108px)}.page-heading{margin-bottom:21px}h1{font-size:25px}.workspace{overflow:hidden;min-height:450px;flex:auto}.list-tabs{gap:22px;padding:0 16px;min-height:53px}.list-tabs button{font-size:12px}.list-tabs b{font-size:10px;margin-left:5px}.toolbar{padding:14px;flex-wrap:wrap;gap:10px}.toolbar .search{width:100%}.select-label{flex:1}.select-label select{flex:1;min-width:80px;font-size:12px}.sort{margin:0}.table-scroll{max-height:660px;overflow:auto}.pagination{padding:14px;gap:8px;font-size:11px;flex-wrap:wrap}.pagination>span:last-child{display:none}footer{font-size:9px;padding:17px 16px;gap:5px}footer button{font-size:9px}.detail-heading h1{font-size:22px;gap:8px}.detail-heading h1 .badge{font-size:10px}.detail-heading p{font-size:11px}.detail-heading .btn{font-size:11px;padding:8px 10px}.order-summary{grid-template-columns:1fr 1fr;padding:16px 0;gap:18px 0}.order-summary>div{padding:0 17px}.order-summary>div:nth-child(2){border:0}.order-summary>div:first-child small{display:inline;margin-left:7px}.order-summary>div:first-child strong{font-size:16px}.order-summary strong{font-size:23px}.order-summary span{font-size:11px;margin-bottom:7px}.detail-tabs{gap:23px;padding:0 17px}.detail-tabs a{font-size:12px}.detail-tabs b{font-size:9px}.detail-content{overflow:visible;display:block}.overview-main{padding:0 16px 20px}.line-table{min-width:520px}.condition{grid-template-columns:1fr;gap:10px;padding:18px 0}.context-aside{grid-template-columns:1fr;gap:0;padding:0 19px}.aside-section{border-bottom:1px solid var(--line)}.comparison-scroll{overflow:auto;max-height:650px}.compare-heading{padding:20px 18px}.compare-heading h2{font-size:15px}.compare-heading p{font-size:11px}.comparison{min-width:880px}.files-table{min-width:810px}.detail-content:has(.files-table){overflow:auto}.files-heading{padding:22px 18px;min-width:500px}.task-layout{grid-template-columns:1fr;height:auto;overflow:visible}.queue{border-right:0}.queue-list{max-height:350px}.task-detail{border-top:1px solid var(--line);min-height:400px;overflow:visible}.task-scroll{overflow:visible;max-height:none}.task-facts{padding:17px 21px}.task-order{margin:0 21px}.task-detail-heading{padding:23px 21px 16px}.task-scroll{padding:0 21px 23px}.task-action-bar{position:sticky;bottom:0;padding:14px 21px;z-index:2}.task-layout .queue .pagination{min-height:0}.queue .pagination>span:first-child{flex-basis:auto}.task-detail-heading h2{font-size:17px}.task-detail-heading>.badge{margin-top:22px}.task-order small{display:inline}.tasks-workspace>.toolbar{padding:14px}.tasks-workspace .task-search{flex-basis:100%;order:3}.tasks-workspace .select-label{flex:1}.tasks-workspace .segmented{gap:0}.segmented button{font-size:11px;padding:6px 8px}.result-sheet h3{font-size:14px}.queue-content{overflow:visible}.change-banner{font-size:11px;flex-wrap:wrap}.change-banner .btn{font-size:11px;padding:6px 9px}#toast{left:50%;bottom:20px;font-size:12px;padding:12px 17px}.evidence-drawer{width:100%;max-width:100vw;padding:34px 25px}dialog{padding:25px}dialog h2{font-size:18px}.no-plan{padding:32px 20px}.no-plan>div{padding:15px}.breadcrumb{font-size:11px}}
+ @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}button:active{transform:none}}
++
++.order-workspace>.toolbar{flex-wrap:wrap}
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1 @@
++/.codex/maintenance/

@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "scope": "F004",
+  "sources": [
+    "docs/PRD.md",
+    "docs/specs/product-spec.md",
+    "docs/specs/F004-clinical-context/spec.md"
+  ],
+  "cases": [
+    {
+      "id": "EV-F004-001",
+      "title": "有據身份與未關聯",
+      "source_ac": [
+        "AC-F004-001"
+      ],
+      "given": "MIMIC 與 eICU 各含相同編號，兩條文書只具相似文本，另有源聲明的病例/就診關聯。",
+      "when": "組織病例和事件關係。",
+      "expected": [
+        "僅有依據的同命名空間關係被關聯；相同編號、相似文書與缺就診記錄仍明確未關聯或待核實，源標識不改寫。",
+        "證據應包括：命名空間與關係證據對照；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F004-implementation-acceptance"
+    },
+    {
+      "id": "EV-F004-002",
+      "title": "原值、時間與單位不被吞併",
+      "source_ac": [
+        "AC-F004-002"
+      ],
+      "given": "字段含空白、0、未知、偏移日期、相對時間、缺單位和跨段相反描述。 合成片段另含“患者否認過敏史”“家屬有過敏史”“既往疑似過敏”，不引入真實患者診斷。",
+      "when": "生成規範化字段與時間線。",
+      "expected": [
+        "原值和轉換依據可回查，未知/衝突保留；不恢復真實日曆或把未記載當未實施，不可比較時間不被強排成確定順序。",
+        "證據應包括：原表達、規範化與衝突斷言；固定輸入與真實運行結果分開，未執行不能宣稱通過。",
+        "患者/家屬、否定、歷史與假設分別表示並回指原文，不能只因相同詞彙合併當前事實。"
+      ],
+      "check_ref": "F004-implementation-acceptance"
+    },
+    {
+      "id": "EV-F004-003",
+      "title": "結構化結果粒度與授權範圍一致",
+      "source_ac": [
+        "AC-F004-003"
+      ],
+      "given": "一人多住院、一次住院多個檢查，部分記錄無就診號；主體只可查看其中兩個病例。",
+      "when": "查詢病例/事件集合及數量。",
+      "expected": [
+        "結果和數量使用相同授權與粒度，未知關聯不被靜默丟棄；不以檢索片段估算完整集合，不返回範圍外對象。",
+        "證據應包括：實際對象集合、總數及拒絕範圍；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F004-implementation-acceptance"
+    },
+    {
+      "id": "EV-F004-004",
+      "title": "列表定位與桌面入口可操作",
+      "source_ac": [
+        "AC-F004-004"
+      ],
+      "given": "授權病例跨多個列表頁，在 1280×800 和 1440×1000 視口包含長名稱與風險提示。",
+      "when": "搜索/篩選/排序後翻頁並進入詳情。",
+      "expected": [
+        "列表、計數及順序一致，主要動作可達；風險有文字、處理中/失敗有真實反饋，不能只用原型固定頁數模擬規模能力。",
+        "證據應包括：篩選/分頁/詳情與兩視口操作記錄；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F004-implementation-acceptance"
+    },
+    {
+      "id": "EV-F004-005",
+      "title": "崗位處理後接續同一任務",
+      "source_ac": [
+        "AC-F004-005"
+      ],
+      "given": "用戶從篩選列表進入病例；F007 已保存改派或整改後的新狀態，記錄可能不再滿足原篩選。",
+      "when": "消費新狀態並返回列表。",
+      "expected": [
+        "詳情、列表、統計與當前責任節點反映同一已保存結果，保留有效瀏覽條件；退出篩選時給出可定位反饋，不把通知當處理完成。",
+        "證據應包括：F007 版本引用與前後視圖記錄；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F004-implementation-acceptance"
+    },
+    {
+      "id": "EV-F004-006",
+      "title": "解析缺口在上下文中保持可見",
+      "source_ac": [
+        "AC-F004-006"
+      ],
+      "given": "F003 返回可用段落、定位缺失和未解析文書。",
+      "when": "顯示病例並向質控交接。",
+      "expected": [
+        "可用部分保留，缺口及影響範圍傳遞；部分病例不顯示全量資料完備，也不由 F004 作臨床通過判斷。",
+        "證據應包括：缺口/可用範圍與下游輸入對照；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F004-implementation-acceptance"
+    },
+    {
+      "id": "EV-F004-007",
+      "title": "更新上下文不改寫歷史",
+      "source_ac": [
+        "AC-F004-007"
+      ],
+      "given": "舊上下文已被質控運行引用，新的文書或語義映射改變關聯/時間解釋。",
+      "when": "形成新上下文並展示當前狀態。",
+      "expected": [
+        "新舊版本可區別回查；舊運行保留舊輸入，當前視圖不繼承舊完成/簽字；不覆蓋歷史意見或原件。",
+        "證據應包括：輸入快照、映射版本與舊/新上下文斷言；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F004-implementation-acceptance"
+    },
+    {
+      "id": "EV-F004-008",
+      "title": "交接對象可回到實際證據",
+      "source_ac": [
+        "AC-F004-008"
+      ],
+      "given": "一個上下文含有據字段、事件、衝突及原始附件，並有不兼容的輸入合同版本。",
+      "when": "F006 合同消費者取得病例上下文並回查。",
+      "expected": [
+        "可取固定範圍的證據與未知/衝突；無來源支持不生成關係，不兼容版本明確拒絕；消費者替身通過不等於醫學判斷已通過。",
+        "證據應包括：CaseContext、實際原文回查及拒絕結果；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F004-implementation-acceptance"
+    },
+    {
+      "id": "EV-F004-009",
+      "title": "必需本體定義、數據綁定和約束可消費",
+      "source_ac": [
+        "AC-F004-009",
+        "AC-F004-002",
+        "AC-F004-008"
+      ],
+      "given": "批准的限定本體區分檢驗項目/結果、藥品成分/規格、診斷表述/疾病；源字段/證據及必要約束已準備，另含無依據和不支持概念。 同名檢驗另有不同標本/方法/尺度，中文別名含多義表達。",
+      "when": "構建候選、實際核對並向消費者提供固定語義。",
+      "expected": [
+        "定義/關係/綁定/約束有來源和固定版本，保留實際形式檢查/專業核對狀態；沒有有效本體不能稱一期語義已完成。",
+        "項目字典不成為某次結果，成分不補規格，概念命中不確認患者患病；無支持/不兼容返回缺口而不造語義。",
+        "按實際所需的檢驗六軸和語境核對映射；字段不足或別名多義時返回候選/未映射，顯示原詞、採用定義/版本和支持，不能只按近似名稱統一。"
+      ],
+      "check_ref": "F004-implementation-acceptance"
+    },
+    {
+      "id": "EV-F004-010",
+      "title": "原生活動版本不切換產品語義運行",
+      "source_ac": [
+        "AC-F004-007",
+        "AC-F004-009"
+      ],
+      "given": "原生 ontology_v1/active 與產品 SemanticRelease S1 有明確映射，運行已引用 S1；原生 active 改到 v2、S2 候選尚未批准或不兼容。",
+      "when": "繼續原運行、請求新語義或發佈當前版本。",
+      "expected": [
+        "舊運行仍綁定完整 S1，不能混用新映射/形狀/值集；原生激活不等於產品批准。",
+        "新版本只有經過規定驗證/審核和完整投影后成為新基線；失效範圍拒絕或重驗，歷史原文/簽字不漂移。"
+      ],
+      "check_ref": "F004-implementation-acceptance"
+    },
+    {
+      "id": "EV-F004-011",
+      "title": "原生工具與五類對象適配不能偽造能力",
+      "source_ac": [
+        "AC-F004-010",
+        "AC-F004-008"
+      ],
+      "given": "Core/MCP 缺失或實際工具不支持凍結版本，五類對象有歧義方向/有損約束轉換，另有有效產品只讀投影。",
+      "when": "構建/回放候選或請求語義消費。",
+      "expected": [
+        "按真實工具 Schema 核對，缺工具/版本保證不偽造調用、參數或通過；已有合法產品投影可獨立服務其允許範圍。",
+        "類/實例、層級方向、等價/近似與 Constraint 的形式化明確適配；不能轉換的內容進入 gap 並限制依賴，不用同名/同值域自動造等價。",
+        "建設/演化/發佈與運行身份分開，原生 supported/Accept 不成為專業批准。"
+      ],
+      "check_ref": "F004-implementation-acceptance"
+    }
+  ],
+  "checks": [
+    {
+      "id": "F004-implementation-acceptance",
+      "method": "manual",
+      "inputs": [
+        "backend/medical_quality/clinical_context/context.py",
+        "backend/medical_quality/clinical_context/query_catalog.py",
+        "backend/medical_quality/ontology.py",
+        "backend/medical_quality/native_semantic.py",
+        "backend/medical_quality/clinical_context/ontology",
+        "frontend/src/App.tsx",
+        "frontend/src/pages/CasePage.tsx",
+        "frontend/src/pages/OperationsPages.tsx",
+        "backend/tests/test_data_semantics.py",
+        "backend/tests/test_retrieval_inputs.py",
+        "backend/tests/test_governance.py",
+        "backend/tests/test_workflow_graph.py",
+        "frontend/e2e",
+        "docs/verification/F004-implementation.md",
+        "backend/uv.lock",
+        "frontend/package-lock.json"
+      ],
+      "procedure": "按 docs/verification/F004-implementation.md 的逐用例臺賬核對實際斷言與範圍；工程命令/報告複用 development-report.md 的同輸入結果。對 not_run 項按原 given/when 補足獨立場景；對 blocked 項只在真實資料/身份/責任前置到位後執行，不能用重複工程測試充當專業驗收。",
+      "evidence": "docs/verification/F004-implementation.md 與 docs/verification/development-report.md；原生收據在 artifacts/verification/，綁定本身不代表全部通過。"
+    }
+  ]
+}

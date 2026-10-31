@@ -1,0 +1,453 @@
+{
+  "schema_version": 1,
+  "reading_controls": true,
+  "project": {
+    "title": "FF - 醫療病歷質控",
+    "badge": "一期",
+    "scope": "病歷質控、證據定位與整改協同；覆蓋單一內科病區、成人肺炎住院病歷與 8 條文書質控規則。",
+    "boundary": "系統不自動診斷，不在無人確認時修改病歷；證據不足、規則衝突或高風險爭議時停止自動推進並轉人工。病歷數據按授權範圍處理，質控複核、整改和簽字全程留痕。",
+    "effect_note": "以下為預期業務效果，實施後按評測和驗收記錄驗證；公開脫敏資料、合成資料與生產證據分開管理。"
+  },
+  "sources": [
+    {
+      "id": "REQ-MED-001",
+      "path": "../01_normalize-project-requirements/客戶需求/REQ-MED-001-客戶需求.md",
+      "sha256": "1300f831f20ceaac47995d0dbab5ff96a2fb66cc7c4fd290a7f5bb52de4282a3"
+    },
+    {
+      "id": "AGR-MED-001",
+      "path": "../01_normalize-project-requirements/業務約定/AGR-MED-001-業務約定.md",
+      "sha256": "2b232e8807541cd9821a0714fc07c93ba9efa1ea1035012dce8a231428e11ba5"
+    },
+    {
+      "id": "COM-MED-001",
+      "path": "../01_normalize-project-requirements/溝通記錄/COM-MED-001-需求溝通記錄.md",
+      "sha256": "6ee6a2dc99afc548684ee9a78353aa7cbd2667766d7cecbff41592de6ab4a0fd"
+    }
+  ],
+  "rows": [
+    {
+      "id": "MED-01",
+      "pain": {
+        "title": "輔助建議容易被當成專業決定",
+        "description": "缺少明確的責任邊界時，系統結論、人工複核和最終責任容易混在一起。"
+      },
+      "feature": {
+        "title": "明確 Copilot 職責與責任分工",
+        "actions": [
+          "限定為病歷質控、證據定位與整改協同，不自動診斷或無人確認改寫病歷。",
+          "區分醫生、質控、專家、信息科、管理部門和供應商職責。"
+        ]
+      },
+      "effect": {
+        "title": "每一步判斷都有責任主體",
+        "description": "使用者能識別系統建議、專業複核與責任接受的區別。"
+      },
+      "references": [
+        {
+          "source": "REQ-MED-001",
+          "location": "REQ-MED-001-01"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-01"
+        }
+      ]
+    },
+    {
+      "id": "MED-02",
+      "pain": {
+        "title": "一期範圍和接入方式容易無限擴大",
+        "description": "同時覆蓋全院、所有病種和多種系統形態，會使項目難以驗證和交付。"
+      },
+      "feature": {
+        "title": "限定一期範圍與形態",
+        "actions": [
+          "一期覆蓋單一內科病區、成人肺炎病歷與 8 條文書質控規則，超範圍輸入轉人工。",
+          "採用獨立工作臺貫通閉環，並明確 API/SDK 與 HIS 內嵌的接入邊界。"
+        ]
+      },
+      "effect": {
+        "title": "在有限範圍內形成完整閉環",
+        "description": "一期目標、驗證範圍和後續擴展條件清楚，降低實施與驗收的不確定性。"
+      },
+      "references": [
+        {
+          "source": "REQ-MED-001",
+          "location": "REQ-MED-001-02"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-02"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-12"
+        },
+        {
+          "source": "COM-MED-001",
+          "location": "COM-MED-001-02"
+        }
+      ]
+    },
+    {
+      "id": "MED-03",
+      "pain": {
+        "title": "測試資料與生產證據容易混用",
+        "description": "公開脫敏病例、文獻敘述、合成材料和真實醫院記錄具有不同用途與證明能力。"
+      },
+      "feature": {
+        "title": "標明數據來源與證據性質",
+        "actions": [
+          "在輸入和結果中保留來源類別、版本、用途與授權範圍。",
+          "合成材料顯式標記，參考標註與專家金標準分別管理，生產驗收使用實際業務記錄。"
+        ]
+      },
+      "effect": {
+        "title": "每個效果聲明都能說明依據",
+        "description": "清楚區分測試用途和生產驗收依據，避免材料性質混淆影響判斷。"
+      },
+      "references": [
+        {
+          "source": "REQ-MED-001",
+          "location": "REQ-MED-001-03"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-03"
+        }
+      ]
+    },
+    {
+      "id": "MED-04",
+      "pain": {
+        "title": "跨段信息難以對齊和核查",
+        "description": "字段、時間、檢查和診療事件分散，長尾寫法、缺失與矛盾會造成錯誤關聯。"
+      },
+      "feature": {
+        "title": "保留原文的結構化語義層",
+        "actions": [
+          "關聯字段、段落、時間線、檢查結果與診療事件，保留原始表達和版本。",
+          "將未知、缺失、衝突與無法關聯分別呈現；不補造事實或真實時間。"
+        ]
+      },
+      "effect": {
+        "title": "複核能回到完整醫療語境",
+        "description": "減少從孤立字段或模型補全中推斷事實，明確哪些關係仍需人工判斷。"
+      },
+      "references": [
+        {
+          "source": "REQ-MED-001",
+          "location": "REQ-MED-001-04"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-05"
+        }
+      ]
+    },
+    {
+      "id": "MED-05",
+      "pain": {
+        "title": "數據流向和訪問範圍難以控制",
+        "description": "域外服務、過度取數和日誌全文留存可能突破崗位授權與數據責任邊界。"
+      },
+      "feature": {
+        "title": "域內處理、最小權限與審計",
+        "actions": [
+          "將解析、檢索、模型、日誌和備份納入域內數據流，只使用必要字段。",
+          "結合角色與科室、病例歸屬、目的和期限控制訪問，記錄允許和拒絕的操作。",
+          "按數據類別明確保留與處置政策，具體期限由數據責任部門確定。"
+        ]
+      },
+      "effect": {
+        "title": "看得清誰因何使用了哪些數據",
+        "description": "功能效果與數據權限、留存和審計邊界同時可追查。"
+      },
+      "references": [
+        {
+          "source": "REQ-MED-001",
+          "location": "REQ-MED-001-05"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-04"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-10"
+        }
+      ]
+    },
+    {
+      "id": "MED-06",
+      "pain": {
+        "title": "規則變化後無法解釋舊結論",
+        "description": "規則和指南的版本、生效時間或適用範圍不清，同一病例的判斷難以重放。"
+      },
+      "feature": {
+        "title": "管理規則與知識的適用版本",
+        "actions": [
+          "記錄規則、指南來源、版本、適用範圍、批准狀態和生效時間。",
+          "結果綁定病例及依據版本；更新形成新記錄，衝突或適用性不明轉人工。"
+        ]
+      },
+      "effect": {
+        "title": "能夠說明當時為何這樣判斷",
+        "description": "版本變化的影響可定位，舊證據和舊結論仍保留可追溯關係。"
+      },
+      "references": [
+        {
+          "source": "REQ-MED-001",
+          "location": "REQ-MED-001-06"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-06"
+        }
+      ]
+    },
+    {
+      "id": "MED-07",
+      "pain": {
+        "title": "不同風險的判斷被交給同一模型",
+        "description": "確定性檢查、語義疑點和專業爭議混用同一判斷方式，導致審計和責任不清。"
+      },
+      "feature": {
+        "title": "規則、知識、LLM 與專家協同",
+        "actions": [
+          "規則處理可枚舉條件，檢索提供適用依據，LLM 生成跨段疑點和結構化建議。",
+          "專家處理爭議、例外和高風險結論；各環節記錄輸入、版本與判斷性質。"
+        ]
+      },
+      "effect": {
+        "title": "判斷方式與風險和責任相匹配",
+        "description": "模型建議可以輔助複核，同時保留規則的可審計性與專家最終責任。"
+      },
+      "references": [
+        {
+          "source": "REQ-MED-001",
+          "location": "REQ-MED-001-07"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-07"
+        }
+      ]
+    },
+    {
+      "id": "MED-08",
+      "pain": {
+        "title": "只有結論，沒有可核查的證據鏈",
+        "description": "醫生看不到具體原文、規則和判斷來源，無法有效複核或申訴。"
+      },
+      "feature": {
+        "title": "建立分層的質控證據契約",
+        "actions": [
+          "問題關聯類型、嚴重度、規則版本、理由、整改建議和原文位置。",
+          "分層展示事實、規則判斷、模型推斷與專家結論，回指知識與來源記錄。",
+          "定位失效或證據缺失明確標記，不偽造座標。"
+        ]
+      },
+      "effect": {
+        "title": "複核與申訴圍繞同一份證據",
+        "description": "結論可解釋、來源可定位，版本變化不抹去原判斷依據。"
+      },
+      "references": [
+        {
+          "source": "REQ-MED-001",
+          "location": "REQ-MED-001-08"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-08"
+        }
+      ]
+    },
+    {
+      "id": "MED-09",
+      "pain": {
+        "title": "不確定或失敗時仍可能自動推進",
+        "description": "無證據、衝突和未經校準的高分若被當成通過，會掩蓋實際風險。"
+      },
+      "feature": {
+        "title": "失敗關閉與可解釋的人工分流",
+        "actions": [
+          "證據不足、規則衝突或服務失敗時停止自動通過、回寫和簽字准入。",
+          "展示原因與恢復路徑，允許人工補充證據和裁決。",
+          "僅將經校準且註明適用域的信號用於分流，不能替代專業確認。"
+        ]
+      },
+      "effect": {
+        "title": "未知和失敗不會被隱藏成成功",
+        "description": "阻斷項可見、有人接手，恢復後按受影響版本重新核驗。"
+      },
+      "references": [
+        {
+          "source": "REQ-MED-001",
+          "location": "REQ-MED-001-09"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-07"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-08"
+        }
+      ]
+    },
+    {
+      "id": "MED-10",
+      "pain": {
+        "title": "問題發現後缺少完整處理閉環",
+        "description": "醫生反饋、申訴和整改分散，無法說明問題是否解決或簽字對應哪個版本。"
+      },
+      "feature": {
+        "title": "貫通複核、申訴、整改與簽字",
+        "actions": [
+          "支持接受、駁回、修改、重提、再核驗和爭議升級，並保留原意見。",
+          "未解決高風險問題、爭議或證據缺口阻斷簽字；簽字綁定凍結版本。"
+        ]
+      },
+      "effect": {
+        "title": "從疑似問題到責任接受可追蹤",
+        "description": "新版本有新的核驗鏈，誤報撤銷與整改完成也能清楚區分。"
+      },
+      "references": [
+        {
+          "source": "REQ-MED-001",
+          "location": "REQ-MED-001-10"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-09"
+        }
+      ]
+    },
+    {
+      "id": "MED-11",
+      "pain": {
+        "title": "任務有狀態，卻找不到負責的人",
+        "description": "責任人、時限、改派和簽字邊界不清，會出現漏跟進、越權或代簽。"
+      },
+      "feature": {
+        "title": "明確責任節點與全程留痕",
+        "actions": [
+          "記錄責任醫生、複核人、當前處理人、截止時間、意見和版本。",
+          "改派、延期、退回和簽字都留理由與前後狀態；逾期只提醒或升級。",
+          "按對象與任務授權操作，供應商不默認擁有生產病歷權限。"
+        ]
+      },
+      "effect": {
+        "title": "每個待辦都能找到責任主體",
+        "description": "處理過程和權限依據可核查，通知、處理完成與責任簽署不會混淆。"
+      },
+      "references": [
+        {
+          "source": "REQ-MED-001",
+          "location": "REQ-MED-001-11"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-09"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-10"
+        }
+      ]
+    },
+    {
+      "id": "MED-12",
+      "pain": {
+        "title": "總體分數掩蓋高風險漏報",
+        "description": "簡單準確率、單人判斷和模型輔助標註不足以說明醫療質控是否可靠。"
+      },
+      "feature": {
+        "title": "分層評測、雙人複核與仲裁",
+        "actions": [
+          "分開評估規則召回、誤報、證據定位、解釋和建議可用性，保留棄答與覆蓋分母。",
+          "專家獨立複核、爭議仲裁併報告原始一致性。",
+          "驗收中任何已確認高風險漏報阻止晉級，不用平均分抵消。"
+        ]
+      },
+      "effect": {
+        "title": "放權依據能對應具體風險",
+        "description": "高風險缺陷可見；零次觀察漏報不被解釋為總體零風險。"
+      },
+      "references": [
+        {
+          "source": "REQ-MED-001",
+          "location": "REQ-MED-001-12"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-11"
+        }
+      ]
+    },
+    {
+      "id": "MED-13",
+      "pain": {
+        "title": "單次測試通過容易被當成上線許可",
+        "description": "缺少關鍵人驗收、責任接受和範圍記錄時，技術可用被誤認為業務已經放行。"
+      },
+      "feature": {
+        "title": "按證據逐步放權並保留回退",
+        "actions": [
+          "從離線驗證到限定影子運行，再到人確認的輔助決策。",
+          "凍結版本和範圍，記錄關鍵崗位驗收、業務簽字及責任接受；擴大範圍重新評估。",
+          "門禁失效時停止受影響能力並回到人工流程。"
+        ]
+      },
+      "effect": {
+        "title": "每次擴大使用都有證據與責任",
+        "description": "未實際取得的驗收、簽字或生產效果不被提前宣稱完成。"
+      },
+      "references": [
+        {
+          "source": "REQ-MED-001",
+          "location": "REQ-MED-001-13"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-12"
+        }
+      ]
+    },
+    {
+      "id": "MED-14",
+      "pain": {
+        "title": "照搬舊案例或全部重做都難以複用",
+        "description": "沿用舊權限和自動化程度可能越界，全部重做又丟失已有交付經驗。"
+      },
+      "feature": {
+        "title": "複用骨架並沉澱醫療專用資產",
+        "actions": [
+          "複用需求發現、系統調查、證據、評測與門禁的組織方式，重設醫療風險和責任變量。",
+          "沉澱帶版本與驗證狀態的規則包、權限模板、專家評測包和責任流程組件。",
+          "區分通用方法、醫療域能力與醫院定製，具體代碼複用另行核對。"
+        ]
+      },
+      "effect": {
+        "title": "把遷移過程變成可再次使用的方法",
+        "description": "交付團隊能說明哪些保持穩定、哪些必須調整，以及用什麼證據證明調整有效。"
+      },
+      "references": [
+        {
+          "source": "REQ-MED-001",
+          "location": "REQ-MED-001-14"
+        },
+        {
+          "source": "AGR-MED-001",
+          "location": "AGR-MED-001-13"
+        },
+        {
+          "source": "COM-MED-001",
+          "location": "COM-MED-001-03"
+        }
+      ]
+    }
+  ]
+}

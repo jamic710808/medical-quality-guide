@@ -1,0 +1,790 @@
+{
+  "schema": "code-animation/v1",
+  "locked": true,
+  "filmSha256": "f96daa8410c159953a264127326f3f974fc400c7c25c2ec78c88aa67b6fda752",
+  "assetSha256": {
+    "audio/s01.wav": "662d091bf7068f590de0a957ceb556a64771506c1bd1853566a46ea1a9b0edc6",
+    "audio/s02.wav": "1ed94b6e8ed4af13e1cafe390b1616d715e6d06f84fad90a21b43c0320adf940",
+    "audio/s03.wav": "ba605d8a801a3b08d79b20235fef606cf75b518634d03ebd3b38240caf4cb4b5",
+    "audio/s04.wav": "c623e6ca8bc5c17f55ff6250d8068bf246a2190b87de09b8c9cb21251c2fd006",
+    "audio/s05.wav": "30a912c1a084facf93715847db0deb1e9164d89ad71a6824909c61dca87441fe",
+    "audio/s06.wav": "dde4a7aa0c2de7367eab155a214d1e5b3f4da81c9964df96d3d7dac93102c9ad",
+    "audio/s07.wav": "8b874d4663fc34261d0da0623e62dde182da264d8bcfbf00be04d03f7b2cc996",
+    "audio/s08.wav": "4e2b018f33aa6b8c7ebdff00134bbe0a47faf3e2ad0610da3ecfaa095dc1964c",
+    "audio/s09.wav": "fd1e7e1a4b91cded76b2572055e3407ce2bddaa4e18645512d4f096e2b79430b",
+    "audio/s10.wav": "424cb17e11a8d06ac01e79ec15d90f738a917f581b5eee0e730b8acc8c070164",
+    "audio/s11.wav": "8839588fbc7edc80ce22384f559fc0eeae719e415b556636c5112abe5807ec85",
+    "audio/s12.wav": "97c296ebb8a713e432b15d0fd7b64077a41673ffd3576df1c5d863643f8a30ee",
+    "audio/original-score.wav": "574b284daa284353f4743db811c71a9ea2e6e4878cc3a627ec647ff36c3c3372"
+  },
+  "title": "這一筆，先別急著蓋章｜FF - 醫療病歷質控",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "totalFrames": 6536,
+  "durationSeconds": 217.86666666666667,
+  "seed": 20261031,
+  "scenes": [
+    {
+      "id": "s01",
+      "scriptId": "S01",
+      "title": "交班前，咖啡先下班了",
+      "screenText": "同一份病歷，不同文書",
+      "visualSeconds": 16,
+      "leadSeconds": 0.6,
+      "tailSeconds": 1.0,
+      "narration": "交班前，小周還在核對病歷。入院記錄、後續文書、修訂版本，每份都很重要。只有她的咖啡，已經提前下班了。",
+      "voice": "audio/s01.wav",
+      "visual": {
+        "subject": {
+          "id": "medical-team",
+          "type": "adult-colleagues"
+        },
+        "style": "ink-paper",
+        "motion": {
+          "action": "s01",
+          "effect": "story-driven"
+        },
+        "renderer": "canvas2d"
+      },
+      "startFrame": 0,
+      "durationFrames": 480,
+      "endFrame": 480,
+      "voiceStartFrame": 18,
+      "voiceFrames": 360
+    },
+    {
+      "id": "s02",
+      "scriptId": "S02",
+      "title": "先認人，再開門",
+      "screenText": "身份 × 用途 × 資料範圍",
+      "visualSeconds": 15,
+      "leadSeconds": 0.6,
+      "tailSeconds": 1.0,
+      "narration": "她打開 FF，醫療病歷質控工作檯。系統先確認她是誰、這次為什麼查、可以看哪些資料。該看的進來，不該看的，就留在門外。",
+      "voice": "audio/s02.wav",
+      "visual": {
+        "subject": {
+          "id": "medical-team",
+          "type": "adult-colleagues"
+        },
+        "style": "ink-paper",
+        "motion": {
+          "action": "s02",
+          "effect": "story-driven"
+        },
+        "renderer": "canvas2d"
+      },
+      "startFrame": 480,
+      "durationFrames": 450,
+      "endFrame": 930,
+      "voiceStartFrame": 498,
+      "voiceFrames": 376
+    },
+    {
+      "id": "s03",
+      "scriptId": "S03",
+      "title": "兩份文書，說法不同",
+      "screenText": "文字不同 ≠ 已經判錯",
+      "visualSeconds": 19,
+      "leadSeconds": 0.6,
+      "tailSeconds": 1.0,
+      "narration": "這次，兩份文書對過敏狀態的記載不同。先別急著判錯。說的是不是同一個人？同一段時間？要看原文，不能只看被剪下來的一句話。",
+      "voice": "audio/s03.wav",
+      "visual": {
+        "subject": {
+          "id": "medical-team",
+          "type": "adult-colleagues"
+        },
+        "style": "ink-paper",
+        "motion": {
+          "action": "s03",
+          "effect": "story-driven"
+        },
+        "renderer": "canvas2d"
+      },
+      "startFrame": 930,
+      "durationFrames": 570,
+      "endFrame": 1500,
+      "voiceStartFrame": 948,
+      "voiceFrames": 402
+    },
+    {
+      "id": "s04",
+      "scriptId": "S04",
+      "title": "工作檯裡，誰在忙？",
+      "screenText": "入口 → 任務 → 背景處理 → 紀錄",
+      "visualSeconds": 19,
+      "leadSeconds": 0.6,
+      "tailSeconds": 1.0,
+      "narration": "工作檯背後，服務入口核對請求，資料庫保存紀錄，背景工作者接手慢任務。規則按清單檢查，模型協助找限定範圍的跨段差異，各有各的工作。",
+      "voice": "audio/s04.wav",
+      "visual": {
+        "subject": {
+          "id": "medical-team",
+          "type": "adult-colleagues"
+        },
+        "style": "ink-paper",
+        "motion": {
+          "action": "s04",
+          "effect": "story-driven"
+        },
+        "renderer": "canvas2d"
+      },
+      "startFrame": 1500,
+      "durationFrames": 570,
+      "endFrame": 2070,
+      "voiceStartFrame": 1518,
+      "voiceFrames": 435
+    },
+    {
+      "id": "s05",
+      "scriptId": "S05",
+      "title": "AI 要帶著出處來",
+      "screenText": "候選疑點＋至少兩項原文證據",
+      "visualSeconds": 20,
+      "leadSeconds": 0.6,
+      "tailSeconds": 1.0,
+      "narration": "八條有限規則，有各自的檢查範圍。模型只協助過敏與診斷記載的跨段候選，而且要帶著至少兩項不同證據。這裡沒有「我覺得應該是」的免附證明通道。",
+      "voice": "audio/s05.wav",
+      "visual": {
+        "subject": {
+          "id": "medical-team",
+          "type": "adult-colleagues"
+        },
+        "style": "ink-paper",
+        "motion": {
+          "action": "s05",
+          "effect": "story-driven"
+        },
+        "renderer": "canvas2d"
+      },
+      "startFrame": 2070,
+      "durationFrames": 600,
+      "endFrame": 2670,
+      "voiceStartFrame": 2088,
+      "voiceFrames": 442
+    },
+    {
+      "id": "s06",
+      "scriptId": "S06",
+      "title": "不知道，也要說清楚",
+      "screenText": "未見問題 ／ 疑點 ／ 無法判斷",
+      "visualSeconds": 17,
+      "leadSeconds": 0.6,
+      "tailSeconds": 1.0,
+      "narration": "引用對得上，也不代表意思一定判對。原文缺了、範圍不清楚，就要留下「無法判斷」。沒讀到，不能算沒問題；不知道，也值得老實說。",
+      "voice": "audio/s06.wav",
+      "visual": {
+        "subject": {
+          "id": "medical-team",
+          "type": "adult-colleagues"
+        },
+        "style": "ink-paper",
+        "motion": {
+          "action": "s06",
+          "effect": "story-driven"
+        },
+        "renderer": "canvas2d"
+      },
+      "startFrame": 2670,
+      "durationFrames": 510,
+      "endFrame": 3180,
+      "voiceStartFrame": 2688,
+      "voiceFrames": 374
+    },
+    {
+      "id": "s07",
+      "scriptId": "S07",
+      "title": "請人來，把話說完整",
+      "screenText": "先核對，再決定",
+      "visualSeconds": 19,
+      "leadSeconds": 0.6,
+      "tailSeconds": 1.0,
+      "narration": "小周和林醫師一起核對主體、時間和前後文。差異合理，可以駁回疑點；有爭議，就保留意見、交給授權角色接續。這次的合成故事，經核對後決定修訂。",
+      "voice": "audio/s07.wav",
+      "visual": {
+        "subject": {
+          "id": "medical-team",
+          "type": "adult-colleagues"
+        },
+        "style": "ink-paper",
+        "motion": {
+          "action": "s07",
+          "effect": "story-driven"
+        },
+        "renderer": "canvas2d"
+      },
+      "startFrame": 3180,
+      "durationFrames": 587,
+      "endFrame": 3767,
+      "voiceStartFrame": 3198,
+      "voiceFrames": 539
+    },
+    {
+      "id": "s08",
+      "scriptId": "S08",
+      "title": "修訂，不能把昨天擦掉",
+      "screenText": "v1 保留 → v2 建立",
+      "visualSeconds": 18,
+      "leadSeconds": 0.6,
+      "tailSeconds": 1.0,
+      "narration": "修訂不是把舊內容偷偷擦掉。工作檯建立新版本，保留原版本與處理依據。內容換了，先前的核驗或簽字不能直接搬過來。紀錄可以更新，來龍去脈不能失蹤。",
+      "voice": "audio/s08.wav",
+      "visual": {
+        "subject": {
+          "id": "medical-team",
+          "type": "adult-colleagues"
+        },
+        "style": "ink-paper",
+        "motion": {
+          "action": "s08",
+          "effect": "story-driven"
+        },
+        "renderer": "canvas2d"
+      },
+      "startFrame": 3767,
+      "durationFrames": 549,
+      "endFrame": 4316,
+      "voiceStartFrame": 3785,
+      "voiceFrames": 501
+    },
+    {
+      "id": "s09",
+      "scriptId": "S09",
+      "title": "再核一次，才各自簽字",
+      "screenText": "重新核驗 → 人工確認 → 分別簽署",
+      "visualSeconds": 18,
+      "leadSeconds": 0.6,
+      "tailSeconds": 1.0,
+      "narration": "新版本重新核驗，還要由人確認。接著，責任醫師與質控人員依各自權限簽署。AI 可以把證據送到面前；最後那一筆，仍然要由有責任的人來寫。",
+      "voice": "audio/s09.wav",
+      "visual": {
+        "subject": {
+          "id": "medical-team",
+          "type": "adult-colleagues"
+        },
+        "style": "ink-paper",
+        "motion": {
+          "action": "s09",
+          "effect": "story-driven"
+        },
+        "renderer": "canvas2d"
+      },
+      "startFrame": 4316,
+      "durationFrames": 540,
+      "endFrame": 4856,
+      "voiceStartFrame": 4334,
+      "voiceFrames": 464
+    },
+    {
+      "id": "s10",
+      "scriptId": "S10",
+      "title": "按繼續，不等於按同意",
+      "screenText": "記住進度 ≠ 替人批准",
+      "visualSeconds": 18,
+      "leadSeconds": 0.6,
+      "tailSeconds": 1.0,
+      "narration": "如果背景工作中斷，執行存檔幫忙記住做到哪裡。恢復後，還得重查權限和版本。「繼續執行」不是「我同意」，更不會順便幫大家簽名。",
+      "voice": "audio/s10.wav",
+      "visual": {
+        "subject": {
+          "id": "medical-team",
+          "type": "adult-colleagues"
+        },
+        "style": "ink-paper",
+        "motion": {
+          "action": "s10",
+          "effect": "story-driven"
+        },
+        "renderer": "canvas2d"
+      },
+      "startFrame": 4856,
+      "durationFrames": 540,
+      "endFrame": 5396,
+      "voiceStartFrame": 4874,
+      "voiceFrames": 400
+    },
+    {
+      "id": "s11",
+      "scriptId": "S11",
+      "title": "能運作，還要過關",
+      "screenText": "工程驗證 ≠ 臨床或生產批准",
+      "visualSeconds": 20,
+      "leadSeconds": 0.6,
+      "tailSeconds": 1.0,
+      "narration": "不過，故事走得通，還不等於可以進醫院正式使用。工程要驗證，專家要評測，目標醫院的身份、資料、規則資格和責任也要到位。漏報和未決問題，不能被漂亮畫面遮住。",
+      "voice": "audio/s11.wav",
+      "visual": {
+        "subject": {
+          "id": "medical-team",
+          "type": "adult-colleagues"
+        },
+        "style": "ink-paper",
+        "motion": {
+          "action": "s11",
+          "effect": "story-driven"
+        },
+        "renderer": "canvas2d"
+      },
+      "startFrame": 5396,
+      "durationFrames": 600,
+      "endFrame": 5996,
+      "voiceStartFrame": 5414,
+      "voiceFrames": 473
+    },
+    {
+      "id": "s12",
+      "scriptId": "S12",
+      "title": "讓下一個人，接得住",
+      "screenText": "FF - 醫療病歷質控｜找得到依據，接得住責任",
+      "visualSeconds": 18,
+      "leadSeconds": 0.6,
+      "tailSeconds": 1.0,
+      "narration": "好的質控工作檯，不只是圈出哪裡不一樣。它把依據、處理和責任留下，讓下一個人接得住。咖啡可以再熱一杯；重要的判斷，值得有根有據。",
+      "voice": "audio/s12.wav",
+      "visual": {
+        "subject": {
+          "id": "medical-team",
+          "type": "adult-colleagues"
+        },
+        "style": "ink-paper",
+        "motion": {
+          "action": "s12",
+          "effect": "story-driven"
+        },
+        "renderer": "canvas2d"
+      },
+      "startFrame": 5996,
+      "durationFrames": 540,
+      "endFrame": 6536,
+      "voiceStartFrame": 6014,
+      "voiceFrames": 399
+    }
+  ],
+  "captions": [
+    {
+      "text": "交班前，",
+      "startFrame": 18,
+      "endFrame": 47
+    },
+    {
+      "text": "小周還在核對病歷。",
+      "startFrame": 47,
+      "endFrame": 112
+    },
+    {
+      "text": "入院記錄、後續文書、修訂版本，",
+      "startFrame": 112,
+      "endFrame": 220
+    },
+    {
+      "text": "每份都很重要。",
+      "startFrame": 220,
+      "endFrame": 270
+    },
+    {
+      "text": "只有她的咖啡，",
+      "startFrame": 270,
+      "endFrame": 320
+    },
+    {
+      "text": "已經提前下班了。",
+      "startFrame": 320,
+      "endFrame": 378
+    },
+    {
+      "text": "她打開 FF，",
+      "startFrame": 498,
+      "endFrame": 543
+    },
+    {
+      "text": "醫療病歷質控工作檯。",
+      "startFrame": 543,
+      "endFrame": 608
+    },
+    {
+      "text": "系統先確認她是誰、這次為什麼查、可以看哪些資",
+      "startFrame": 608,
+      "endFrame": 751
+    },
+    {
+      "text": "料。",
+      "startFrame": 751,
+      "endFrame": 764
+    },
+    {
+      "text": "該看的進來，",
+      "startFrame": 764,
+      "endFrame": 803
+    },
+    {
+      "text": "不該看的，",
+      "startFrame": 803,
+      "endFrame": 835
+    },
+    {
+      "text": "就留在門外。",
+      "startFrame": 835,
+      "endFrame": 874
+    },
+    {
+      "text": "這次，",
+      "startFrame": 948,
+      "endFrame": 968
+    },
+    {
+      "text": "兩份文書對過敏狀態的記載不同。",
+      "startFrame": 968,
+      "endFrame": 1071
+    },
+    {
+      "text": "先別急著判錯。",
+      "startFrame": 1071,
+      "endFrame": 1118
+    },
+    {
+      "text": "說的是不是同一個人？",
+      "startFrame": 1118,
+      "endFrame": 1186
+    },
+    {
+      "text": "同一段時間？",
+      "startFrame": 1186,
+      "endFrame": 1227
+    },
+    {
+      "text": "要看原文，",
+      "startFrame": 1227,
+      "endFrame": 1261
+    },
+    {
+      "text": "不能只看被剪下來的一句話。",
+      "startFrame": 1261,
+      "endFrame": 1350
+    },
+    {
+      "text": "工作檯背後，",
+      "startFrame": 1518,
+      "endFrame": 1559
+    },
+    {
+      "text": "服務入口核對請求，",
+      "startFrame": 1559,
+      "endFrame": 1620
+    },
+    {
+      "text": "資料庫保存紀錄，",
+      "startFrame": 1620,
+      "endFrame": 1674
+    },
+    {
+      "text": "背景工作者接手慢任務。",
+      "startFrame": 1674,
+      "endFrame": 1749
+    },
+    {
+      "text": "規則按清單檢查，",
+      "startFrame": 1749,
+      "endFrame": 1803
+    },
+    {
+      "text": "模型協助找限定範圍的跨段差異，",
+      "startFrame": 1803,
+      "endFrame": 1905
+    },
+    {
+      "text": "各有各的工作。",
+      "startFrame": 1905,
+      "endFrame": 1953
+    },
+    {
+      "text": "八條有限規則，",
+      "startFrame": 2088,
+      "endFrame": 2134
+    },
+    {
+      "text": "有各自的檢查範圍。",
+      "startFrame": 2134,
+      "endFrame": 2192
+    },
+    {
+      "text": "模型只協助過敏與診斷記載的跨段候選，",
+      "startFrame": 2192,
+      "endFrame": 2309
+    },
+    {
+      "text": "而且要帶著至少兩項不同證據。",
+      "startFrame": 2309,
+      "endFrame": 2400
+    },
+    {
+      "text": "這裡沒有「我覺得應該是」的免附證明通道。",
+      "startFrame": 2400,
+      "endFrame": 2530
+    },
+    {
+      "text": "引用對得上，",
+      "startFrame": 2688,
+      "endFrame": 2725
+    },
+    {
+      "text": "也不代表意思一定判對。",
+      "startFrame": 2725,
+      "endFrame": 2792
+    },
+    {
+      "text": "原文缺了、範圍不清楚，",
+      "startFrame": 2792,
+      "endFrame": 2860
+    },
+    {
+      "text": "就要留下「無法判斷」。",
+      "startFrame": 2860,
+      "endFrame": 2927
+    },
+    {
+      "text": "沒讀到，",
+      "startFrame": 2927,
+      "endFrame": 2952
+    },
+    {
+      "text": "不能算沒問題；",
+      "startFrame": 2952,
+      "endFrame": 2995
+    },
+    {
+      "text": "不知道，",
+      "startFrame": 2995,
+      "endFrame": 3019
+    },
+    {
+      "text": "也值得老實說。",
+      "startFrame": 3019,
+      "endFrame": 3062
+    },
+    {
+      "text": "小周和林醫師一起核對主體、時間和前後文。",
+      "startFrame": 3198,
+      "endFrame": 3357
+    },
+    {
+      "text": "差異合理，",
+      "startFrame": 3357,
+      "endFrame": 3396
+    },
+    {
+      "text": "可以駁回疑點；",
+      "startFrame": 3396,
+      "endFrame": 3452
+    },
+    {
+      "text": "有爭議，",
+      "startFrame": 3452,
+      "endFrame": 3483
+    },
+    {
+      "text": "就保留意見、交給授權角色接續。",
+      "startFrame": 3483,
+      "endFrame": 3602
+    },
+    {
+      "text": "這次的合成故事，",
+      "startFrame": 3602,
+      "endFrame": 3666
+    },
+    {
+      "text": "經核對後決定修訂。",
+      "startFrame": 3666,
+      "endFrame": 3737
+    },
+    {
+      "text": "修訂不是把舊內容偷偷擦掉。",
+      "startFrame": 3785,
+      "endFrame": 3878
+    },
+    {
+      "text": "工作檯建立新版本，",
+      "startFrame": 3878,
+      "endFrame": 3942
+    },
+    {
+      "text": "保留原版本與處理依據。",
+      "startFrame": 3942,
+      "endFrame": 4021
+    },
+    {
+      "text": "內容換了，",
+      "startFrame": 4021,
+      "endFrame": 4057
+    },
+    {
+      "text": "先前的核驗或簽字不能直接搬過來。",
+      "startFrame": 4057,
+      "endFrame": 4171
+    },
+    {
+      "text": "紀錄可以更新，",
+      "startFrame": 4171,
+      "endFrame": 4222
+    },
+    {
+      "text": "來龍去脈不能失蹤。",
+      "startFrame": 4222,
+      "endFrame": 4286
+    },
+    {
+      "text": "新版本重新核驗，",
+      "startFrame": 4334,
+      "endFrame": 4390
+    },
+    {
+      "text": "還要由人確認。",
+      "startFrame": 4390,
+      "endFrame": 4439
+    },
+    {
+      "text": "接著，",
+      "startFrame": 4439,
+      "endFrame": 4461
+    },
+    {
+      "text": "責任醫師與質控人員依各自權限簽署。",
+      "startFrame": 4461,
+      "endFrame": 4580
+    },
+    {
+      "text": "AI 可以把證據送到面前；",
+      "startFrame": 4580,
+      "endFrame": 4671
+    },
+    {
+      "text": "最後那一筆，",
+      "startFrame": 4671,
+      "endFrame": 4714
+    },
+    {
+      "text": "仍然要由有責任的人來寫。",
+      "startFrame": 4714,
+      "endFrame": 4798
+    },
+    {
+      "text": "如果背景工作中斷，",
+      "startFrame": 4874,
+      "endFrame": 4933
+    },
+    {
+      "text": "執行存檔幫忙記住做到哪裡。",
+      "startFrame": 4933,
+      "endFrame": 5018
+    },
+    {
+      "text": "恢復後，",
+      "startFrame": 5018,
+      "endFrame": 5044
+    },
+    {
+      "text": "還得重查權限和版本。",
+      "startFrame": 5044,
+      "endFrame": 5110
+    },
+    {
+      "text": "「繼續執行」不是「我同意」，",
+      "startFrame": 5110,
+      "endFrame": 5202
+    },
+    {
+      "text": "更不會順便幫大家簽名。",
+      "startFrame": 5202,
+      "endFrame": 5274
+    },
+    {
+      "text": "不過，",
+      "startFrame": 5414,
+      "endFrame": 5433
+    },
+    {
+      "text": "故事走得通，",
+      "startFrame": 5433,
+      "endFrame": 5470
+    },
+    {
+      "text": "還不等於可以進醫院正式使用。",
+      "startFrame": 5470,
+      "endFrame": 5557
+    },
+    {
+      "text": "工程要驗證，",
+      "startFrame": 5557,
+      "endFrame": 5594
+    },
+    {
+      "text": "專家要評測，",
+      "startFrame": 5594,
+      "endFrame": 5632
+    },
+    {
+      "text": "目標醫院的身份、資料、規則資格和責任也要到位",
+      "startFrame": 5632,
+      "endFrame": 5769
+    },
+    {
+      "text": "。",
+      "startFrame": 5769,
+      "endFrame": 5775
+    },
+    {
+      "text": "漏報和未決問題，",
+      "startFrame": 5775,
+      "endFrame": 5825
+    },
+    {
+      "text": "不能被漂亮畫面遮住。",
+      "startFrame": 5825,
+      "endFrame": 5887
+    },
+    {
+      "text": "好的質控工作檯，",
+      "startFrame": 6014,
+      "endFrame": 6065
+    },
+    {
+      "text": "不只是圈出哪裡不一樣。",
+      "startFrame": 6065,
+      "endFrame": 6134
+    },
+    {
+      "text": "它把依據、處理和責任留下，",
+      "startFrame": 6134,
+      "endFrame": 6217
+    },
+    {
+      "text": "讓下一個人接得住。",
+      "startFrame": 6217,
+      "endFrame": 6274
+    },
+    {
+      "text": "咖啡可以再熱一杯；",
+      "startFrame": 6274,
+      "endFrame": 6331
+    },
+    {
+      "text": "重要的判斷，",
+      "startFrame": 6331,
+      "endFrame": 6369
+    },
+    {
+      "text": "值得有根有據。",
+      "startFrame": 6369,
+      "endFrame": 6413
+    }
+  ],
+  "captionTiming": "character-weighted-approximation",
+  "audioTracks": [
+    {
+      "file": "audio/original-score.wav",
+      "startSeconds": 0,
+      "gain": 1.0
+    }
+  ]
+}

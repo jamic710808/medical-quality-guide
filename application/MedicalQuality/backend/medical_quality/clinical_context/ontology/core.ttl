@@ -1,0 +1,124 @@
+@prefix mq: <urn:mq:ontology:> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dct:source a owl:AnnotationProperty .
+
+<urn:mq:ontology> a owl:Ontology ; owl:versionIRI <urn:mq:ontology:0.1.0> ;
+  rdfs:label "醫療病歷質控應用本體"@zh ;
+  rdfs:comment "依據本項目已確認業務合同的工程候選；臨床概念映射與生產適用性待專業審核。"@zh .
+
+mq:SourceNamespace a owl:Class ; rdfs:label "來源命名空間"@zh ; rdfs:label "SourceNamespace"@en ;
+  rdfs:comment "一組有共同標識語義的來源域；邊界：MIMIC 與 eICU 同號不合並"@zh ; dct:source "PRD/PSC；OC-01；SQLite 前綴、dataset_id、數據說明" .
+
+mq:SourceVersion a owl:Class ; rdfs:label "來源版本"@zh ; rdfs:label "SourceVersion"@en ;
+  rdfs:comment "某來源在聲明一致性條件下的固定內容；邊界：讀取時間不是充分快照證明"@zh ; dct:source "PRD/PSC；OC-02；文件摘要/數據庫範圍、F002" .
+
+mq:EvidenceReference a owl:Class ; rdfs:label "證據引用"@zh ; rdfs:label "EvidenceReference"@en ;
+  rdfs:comment "可定位到來源內容的一項證據身份；邊界：引用存在不證明主張受支持"@zh ; dct:source "PRD/PSC；OC-03；F003 EvidenceItem 1.0" .
+
+mq:PatientRecord a owl:Class ; rdfs:label "患者記錄身份"@zh ; rdfs:label "PatientRecord"@en ;
+  rdfs:comment "來源域內被記錄的患者對象；邊界：不是可跨機構自動識別的真實個人"@zh ; dct:source "PRD/PSC；OC-04；patients/源說明" .
+
+mq:Encounter a owl:Class ; rdfs:label "就診/住院範圍"@zh ; rdfs:label "Encounter"@en ;
+  rdfs:comment "有源標識或充分依據的一次醫療接觸；邊界：不由日期接近猜造住院歸屬"@zh ; dct:source "PRD/PSC；OC-05；admissions、ED/eICU 字典" .
+
+mq:ClinicalDocument a owl:Class ; rdfs:label "臨床文書"@zh ; rdfs:label "ClinicalDocument"@en ;
+  rdfs:comment "按來源/用途可區分的臨床記錄載體；邊界：文獻摘要與完整住院文書分型"@zh ; dct:source "PRD/PSC；OC-06；病例 JSONL、報告 XML" .
+
+mq:DocumentVersion a owl:Class ; rdfs:label "文書版本"@zh ; rdfs:label "DocumentVersion"@en ;
+  rdfs:comment "一份文書的固定內容修訂；邊界：新版不繼承舊簽字"@zh ; dct:source "PRD/PSC；OC-07；源版本、F007 新提交" .
+
+mq:DocumentSection a owl:Class ; rdfs:label "文書段落"@zh ; rdfs:label "DocumentSection"@en ;
+  rdfs:comment "原文中有結構/功能的段落範圍；邊界：“家族史”是解釋上下文，不等於患者史"@zh ; dct:source "PRD/PSC；OC-08；XML 標籤、Markdown/PDF 結構" .
+
+mq:ClinicalAssertion a owl:Class ; rdfs:label "臨床斷言"@zh ; rdfs:label "ClinicalAssertion"@en ;
+  rdfs:comment "原資料對某主體、概念、時段所作主張；邊界：記錄主張不等於已確認疾病"@zh ; dct:source "PRD/PSC；OC-09；臨床原段/字段、TP-15" .
+
+mq:ClinicalConcept a owl:Class ; rdfs:label "臨床概念條目"@zh ; rdfs:label "ClinicalConcept"@en ;
+  rdfs:comment "術語體系中可被穩定指代的語義項；邊界：與具體患者實例分開；疾病/表型/行為不混類"@zh ; dct:source "PRD/PSC；OC-10；經審核術語模塊" .
+
+mq:ObservationDefinition a owl:Class ; rdfs:label "觀察/檢驗項目"@zh ; rdfs:label "ObservationDefinition"@en ;
+  rdfs:comment "描述測量或觀察“測什麼、如何測”的定義；邊界：檢驗項目不是某次結果"@zh ; dct:source "PRD/PSC；OC-11；d_labitems、院內字典、LOINC 候選" .
+
+mq:ObservationRecord a owl:Class ; rdfs:label "觀察結果記錄"@zh ; rdfs:label "ObservationRecord"@en ;
+  rdfs:comment "來源中一項具體觀察/測量主張；邊界：結果未提供不推斷沒檢查"@zh ; dct:source "PRD/PSC；OC-12；labevents/字段或正文" .
+
+mq:MedicationConcept a owl:Class ; rdfs:label "藥品概念"@zh ; rdfs:label "MedicationConcept"@en ;
+  rdfs:comment "以明確粒度描述藥物/藥品條目；邊界：成分、商品和給藥方案不能視為同一對象"@zh ; dct:source "PRD/PSC；OC-13；源字典、RxNorm/院內目錄候選" .
+
+mq:MedicationMention a owl:Class ; rdfs:label "用藥文字提及"@zh ; rdfs:label "MedicationMention"@en ;
+  rdfs:comment "文書對藥品及相關字段的文字記錄；邊界：提及/計劃/醫囑不自動成為實際給藥事件"@zh ; dct:source "PRD/PSC；OC-14；用藥段落/結構字段" .
+
+mq:DiagnosticStatement a owl:Class ; rdfs:label "診斷表述"@zh ; rdfs:label "DiagnosticStatement"@en ;
+  rdfs:comment "來源明確記錄的一項診斷相關斷言；邊界：文書名稱為“診斷”不消除疑似/排除語義"@zh ; dct:source "PRD/PSC；OC-15；診斷字段、病程/出院文字" .
+
+mq:AssetReference a owl:Class ; rdfs:label "原生附件"@zh ; rdfs:label "AssetReference"@en ;
+  rdfs:comment "與病例/報告有據關聯的圖像/波形等資產；邊界：不自動生成影像/心電診斷"@zh ; dct:source "PRD/PSC；OC-16；圖文 CSV、WFDB 索引" .
+
+mq:TermDefinition a owl:Class ; rdfs:label "術語定義"@zh ; rdfs:label "TermDefinition"@en ;
+  rdfs:comment "可審閱的名稱、定義、納入/排除與語義範圍；邊界：字面標籤不是概念身份"@zh ; dct:source "PRD/PSC；OC-17；本地概念卡、標準定義引用" .
+
+mq:ConceptMapping a owl:Class ; rdfs:label "概念對齊"@zh ; rdfs:label "ConceptMapping"@en ;
+  rdfs:comment "兩個術語項之間有方向/性質和條件的映射主張；邊界：近義不默認等價；物理字段綁定另存 grounding"@zh ; dct:source "PRD/PSC；OC-18；XLSX、外部映射、專家意見" .
+
+mq:ValueSet a owl:Class ; rdfs:label "用途值集"@zh ; rdfs:label "ValueSet"@en ;
+  rdfs:comment "某場景/版本允許或需要使用的術語集合；邊界：不是整個詞表，也不是自動診斷人群定義"@zh ; dct:source "PRD/PSC；OC-19；一期範圍、審核規則/字段約定" .
+
+mq:RuleVersion a owl:Class ; rdfs:label "質控規則版本"@zh ; rdfs:label "RuleVersion"@en ;
+  rdfs:comment "已定義適用範圍與責任的具體規則版本；邊界：本體不自行批准候選規則"@zh ; dct:source "PRD/PSC；OC-20；F005、本地 8 條候選規則" .
+
+mq:ApplicabilityScope a owl:Class ; rdfs:label "適用範圍"@zh ; rdfs:label "ApplicabilityScope"@en ;
+  rdfs:comment "使用語義/規則的限定人群、文書、機構/時間條件；邊界：未確認範圍不能當適用"@zh ; dct:source "PRD/PSC；OC-21；PRD/專業規則/授權範圍" .
+
+mq:QualityRun a owl:Class ; rdfs:label "質控運行"@zh ; rdfs:label "QualityRun"@en ;
+  rdfs:comment "固定輸入和配置的一次有限檢查；邊界：程序完成不等於病歷合格"@zh ; dct:source "PRD/PSC；OC-22；F006" .
+
+mq:QualityIssue a owl:Class ; rdfs:label "疑似問題"@zh ; rdfs:label "QualityIssue"@en ;
+  rdfs:comment "有依據的待複核文書問題；邊界：不把本體約束失敗直接當嚴重醫療錯誤"@zh ; dct:source "PRD/PSC；OC-23；F006 候選、F007 複核" .
+
+mq:HumanDecision a owl:Class ; rdfs:label "人工決定"@zh ; rdfs:label "HumanDecision"@en ;
+  rdfs:comment "具名有權限者對固定範圍作出的決定；邊界：LLM 輸出不生成實際決定"@zh ; dct:source "PRD/PSC；OC-24；F007/F008 的真實責任事件" .
+
+mq:RemediationRevision a owl:Class ; rdfs:label "整改修訂"@zh ; rdfs:label "RemediationRevision"@en ;
+  rdfs:comment "獲授權醫生提交的新資料/文書版本關係；邊界：清洗修復不等同醫生整改"@zh ; dct:source "PRD/PSC；OC-25；F007" .
+
+mq:SignatureScope a owl:Class ; rdfs:label "簽署範圍"@zh ; rdfs:label "SignatureScope"@en ;
+  rdfs:comment "兩崗位各自確認所綁定的固定對象集合；邊界：身份/崗位驗證由應用負責，OWL 不代簽"@zh ; dct:source "PRD/PSC；OC-26；F007" .
+
+mq:ResponsibilityRole a owl:Class ; rdfs:label "責任崗位"@zh ; rdfs:label "ResponsibilityRole"@en ;
+  rdfs:comment "當前任務中實際承擔責任的崗位語義；邊界：術語中出現“醫生”不授予系統權限"@zh ; dct:source "PRD/PSC；OC-27；業務約定、F001/F007" .
+
+mq:SemanticRelease a owl:Class ; rdfs:label "本體發佈版本"@zh ; rdfs:label "SemanticRelease"@en ;
+  rdfs:comment "經檢查/審核的本體、映射、值集、形狀與投影基線；邊界：草稿/生成文件不是已激活版本"@zh ; dct:source "PRD/PSC；OC-28；新版本化本體包" .
+
+mq:hasRecordedSubject a owl:ObjectProperty ; rdfs:label "記錄主體"@zh ; rdfs:domain mq:Encounter ; rdfs:range mq:PatientRecord .
+mq:hasVersion a owl:ObjectProperty ; rdfs:label "具有版本"@zh ; rdfs:domain mq:ClinicalDocument ; rdfs:range mq:DocumentVersion .
+mq:hasSection a owl:ObjectProperty ; rdfs:label "包含段落"@zh ; rdfs:domain mq:DocumentVersion ; rdfs:range mq:DocumentSection .
+mq:recordsAssertion a owl:ObjectProperty ; rdfs:label "記載斷言"@zh ; rdfs:domain mq:DocumentSection ; rdfs:range mq:ClinicalAssertion .
+mq:aboutConcept a owl:ObjectProperty ; rdfs:label "涉及概念"@zh ; rdfs:domain mq:ClinicalAssertion ; rdfs:range mq:ClinicalConcept .
+mq:hasEvidence a owl:ObjectProperty ; rdfs:label "依據證據"@zh ; rdfs:domain mq:ClinicalAssertion ; rdfs:range mq:EvidenceReference .
+mq:observes a owl:ObjectProperty ; rdfs:label "觀察項目"@zh ; rdfs:domain mq:ObservationRecord ; rdfs:range mq:ObservationDefinition .
+mq:denotes a owl:ObjectProperty ; rdfs:label "提及藥品"@zh ; rdfs:domain mq:MedicationMention ; rdfs:range mq:MedicationConcept .
+mq:linkedFrom a owl:ObjectProperty ; rdfs:label "來源關聯"@zh ; rdfs:domain mq:AssetReference ; rdfs:range mq:DocumentVersion .
+mq:partOf a owl:ObjectProperty ; rdfs:label "組成部分"@zh ; rdfs:domain mq:DocumentSection ; rdfs:range mq:DocumentVersion .
+mq:mapsTo a owl:ObjectProperty ; rdfs:label "映射至"@zh ; rdfs:domain mq:ConceptMapping ; rdfs:range mq:ClinicalConcept .
+mq:derivedFrom a owl:ObjectProperty ; rdfs:label "派生自"@zh ; rdfs:domain mq:EvidenceReference ; rdfs:range mq:SourceVersion .
+mq:requiresConcept a owl:ObjectProperty ; rdfs:label "要求概念"@zh ; rdfs:domain mq:RuleVersion ; rdfs:range mq:ClinicalConcept .
+mq:requiresEvidence a owl:ObjectProperty ; rdfs:label "要求證據"@zh ; rdfs:domain mq:RuleVersion ; rdfs:range mq:EvidenceReference .
+mq:governedBy a owl:ObjectProperty ; rdfs:label "依據規則"@zh ; rdfs:domain mq:QualityIssue ; rdfs:range mq:RuleVersion .
+mq:supportedBy a owl:ObjectProperty ; rdfs:label "支持證據"@zh ; rdfs:domain mq:QualityIssue ; rdfs:range mq:EvidenceReference .
+mq:decidesOn a owl:ObjectProperty ; rdfs:label "決定對象"@zh ; rdfs:domain mq:HumanDecision ; rdfs:range mq:QualityIssue .
+mq:binds a owl:ObjectProperty ; rdfs:label "綁定語義版本"@zh ; rdfs:domain mq:SignatureScope ; rdfs:range mq:SemanticRelease .
+mq:withinEncounter a owl:ObjectProperty ; rdfs:label "就診範圍"@zh ; rdfs:domain mq:ClinicalDocument ; rdfs:range mq:Encounter .
+mq:usesRelease a owl:ObjectProperty ; rdfs:label "採用語義版本"@zh ; rdfs:domain mq:QualityRun ; rdfs:range mq:SemanticRelease .
+mq:producesIssue a owl:ObjectProperty ; rdfs:label "生成疑似問題"@zh ; rdfs:domain mq:QualityRun ; rdfs:range mq:QualityIssue .
+mq:assignedRole a owl:ObjectProperty ; rdfs:label "責任崗位"@zh ; rdfs:domain mq:HumanDecision ; rdfs:range mq:ResponsibilityRole .
+mq:DiagnosticStatement rdfs:subClassOf mq:ClinicalAssertion .
+mq:ObservationRecord rdfs:subClassOf mq:ClinicalAssertion .
+mq:MedicationMention rdfs:subClassOf mq:ClinicalAssertion .
+mq:MedicationConcept rdfs:subClassOf mq:ClinicalConcept .
+mq:ObservationDefinition rdfs:subClassOf mq:ClinicalConcept .

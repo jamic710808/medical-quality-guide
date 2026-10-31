@@ -1,0 +1,10 @@
+const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),crypto=require('node:crypto');
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const root=process.argv[2],t=JSON.parse(fs.readFileSync(path.join(root,'timeline.json')));
+(async()=>{
+ const errors=[],server=http.createServer((req,res)=>{const f=path.join(root,decodeURIComponent(req.url.split('?')[0]==='/'?'/index.html':req.url.split('?')[0]));if(fs.existsSync(f)&&fs.statSync(f).isFile()){res.setHeader('Content-Type',f.endsWith('.js')?'application/javascript':f.endsWith('.json')?'application/json':f.endsWith('.html')?'text/html':'application/octet-stream');res.end(fs.readFileSync(f))}else{res.writeHead(404);res.end()}});
+ await new Promise(r=>server.listen(0,'127.0.0.1',r));const b=await chromium.launch({headless:true,executablePath:process.env.CHROME_PATH || undefined});const p=await b.newPage({viewport:{width:1920,height:1080}});p.on('pageerror',e=>errors.push(e.message));await p.goto(`http://127.0.0.1:${server.address().port}/?export=1`);await p.waitForFunction(()=>window.__ready);
+ const cases=[['s01',4],['s07',11.5],['s08',3.5],['s09',8.5],['s11',8.5]];let results=[];const out=path.join(root,'motion-review');fs.mkdirSync(out,{recursive:true});
+ for(const [id,start] of cases){const s=t.scenes.find(x=>x.id===id),hashes=[];for(let i=0;i<6;i++){const frame=s.startFrame+Math.round((start+i*.3)*30);await p.evaluate(async f=>window.renderFrame(f),frame);const png=Buffer.from(await p.locator('#stage').evaluate(c=>c.toDataURL('image/png').split(',')[1]),'base64');fs.writeFileSync(path.join(out,id+'-'+i+'.png'),png);hashes.push(crypto.createHash('sha256').update(png).digest('hex'));}results.push({scene:id,frames:6,intervalSeconds:.3,distinctFrames:new Set(hashes).size});}
+ fs.writeFileSync(path.join(root,'motion-review.json'),JSON.stringify({method:'six consecutive samples over 1.5 seconds at five action points; not a full-frame human review',results,browserErrors:errors},null,2));console.log(JSON.stringify(results));await b.close();await new Promise(r=>server.close(r));
+})().catch(e=>{console.error(e);process.exit(1)});

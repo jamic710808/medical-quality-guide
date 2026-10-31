@@ -1,0 +1,4 @@
+interface:
+  display_name: "業務理解與追問"
+  short_description: "結合現有資料引導 FDE 理解業務，通過逐輪追問獨立生成供 Playground 讀取的索引與業務資料"
+  default_prompt: "請使用 $understand-business，結合現有業務資料和初步想法，和我逐步理解業務，最後整理供後續 Playground 讀取的資料索引與關聯文件。"

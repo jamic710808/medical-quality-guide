@@ -1,0 +1,3 @@
+interface:
+  display_name: "已有項目持續維護"
+  short_description: "維護已有項目的功能、實現和相關文檔，按真實檢查結果交付；可選接入結束檢查"

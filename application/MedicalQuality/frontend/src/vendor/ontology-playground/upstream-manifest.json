@@ -1,0 +1,613 @@
+{
+  "repository": "https://github.com/microsoft/Ontology-Playground",
+  "commit": "defb487b133786c826eab60b99fcef9b8d3c6fbd",
+  "archive_sha256": "38d820d530b9eaed07b46f1bd5cb0c32d6ff71ef364ca1bec287c07320c71662",
+  "files": [
+    {
+      "upstream_path": "LICENSE",
+      "project_path": "frontend/src/vendor/ontology-playground/UPSTREAM-LICENSE",
+      "sha256": "7df20dcdf9197e9945c14858d41c60f11b52b93e5b69e2b63416b874d598d322",
+      "bytes": 1074
+    },
+    {
+      "upstream_path": "package-lock.json",
+      "project_path": "frontend/src/vendor/ontology-playground/UPSTREAM-package-lock.json",
+      "sha256": "c1d355e41f0d684508a6c2f1704ae541616c11040a328344b3794f26251b8294",
+      "bytes": 181247
+    },
+    {
+      "upstream_path": "package.json",
+      "project_path": "frontend/src/vendor/ontology-playground/UPSTREAM-package.json",
+      "sha256": "e9d2f31c2c20e1a8b3fe86443d67baaa4ac03d5626f0f9cf2d28b5c5ea8e3d01",
+      "bytes": 2053
+    },
+    {
+      "upstream_path": "public/embed/samples.html",
+      "project_path": "frontend/public/ontology-playground/embed/samples.html",
+      "sha256": "d6c671f635da11602967a9c26de1beaa6977ad09fa31344246900a21b23d1c17",
+      "bytes": 16257
+    },
+    {
+      "upstream_path": "public/learn.json",
+      "project_path": "frontend/public/ontology-playground/learn.json",
+      "sha256": "22a23c943951be9a33d18f6ce87b71b004200030b3a993928eb66355ed550157",
+      "bytes": 311367
+    },
+    {
+      "upstream_path": "public/og-image.png",
+      "project_path": "frontend/public/ontology-playground/og-image.png",
+      "sha256": "1970cdc4ab534144db8880e4cc383bc41a2043661b4daa0a4560b3031af28d0d",
+      "bytes": 326944
+    },
+    {
+      "upstream_path": "public/vite.svg",
+      "project_path": "frontend/public/ontology-playground/vite.svg",
+      "sha256": "4a748afd443918bb16591c834c401dae33e87861ab5dbad0811c3a3b4a9214fb",
+      "bytes": 1497
+    },
+    {
+      "upstream_path": "src/App.css",
+      "project_path": "frontend/src/vendor/ontology-playground/App.css",
+      "sha256": "a0715e0a09edbd0fbde65816a75e0fa0fc8b314c5260c0768c19bf3aac22621a",
+      "bytes": 606
+    },
+    {
+      "upstream_path": "src/App.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/App.tsx",
+      "sha256": "801918d7f9beef831761e81d7a1ad171ca7dbd1fe9eed4f0c6c1cbfe8e944854",
+      "bytes": 11473
+    },
+    {
+      "upstream_path": "src/a11y/contrast.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/a11y/contrast.ts",
+      "sha256": "9044aeaff6d067d7f2128e1c23c42aea2a4798b1b440482256805add254b1b8a",
+      "bytes": 3771
+    },
+    {
+      "upstream_path": "src/a11y/themeContrast.test.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/a11y/themeContrast.test.ts",
+      "sha256": "d8afabc74d9c4c270868c5ed9475bd8552cb0376c46806317d8da31612a6fdc9",
+      "bytes": 8233
+    },
+    {
+      "upstream_path": "src/a11y/themeTokens.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/a11y/themeTokens.ts",
+      "sha256": "e545c147bce5f7c2e16766930426c8a6bc96cdfa8d4182db1e37d50830fdf984",
+      "bytes": 2525
+    },
+    {
+      "upstream_path": "src/assets/react.svg",
+      "project_path": "frontend/src/vendor/ontology-playground/assets/react.svg",
+      "sha256": "35ef61ed53b323ae94a16a8ec659b3d0af3880698791133f23b084085ab1c2e5",
+      "bytes": 4126
+    },
+    {
+      "upstream_path": "src/components/AboutModal.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/AboutModal.tsx",
+      "sha256": "ea8868870bcd6f604444ca825b06638af3234a8e5fb2d2ff0212466e22da3e56",
+      "bytes": 3277
+    },
+    {
+      "upstream_path": "src/components/AppFooter.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/AppFooter.tsx",
+      "sha256": "488dee4ffd6ebcfc4049fad6cb2fa867766a7a1647ab93be63f418852d6b30d4",
+      "bytes": 1257
+    },
+    {
+      "upstream_path": "src/components/CommandPalette.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/CommandPalette.tsx",
+      "sha256": "349a6d2f8663464812ff3505aa68e12450afad209d87141a4bbefdf0a1efebf0",
+      "bytes": 4350
+    },
+    {
+      "upstream_path": "src/components/DataSourcesModal.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/DataSourcesModal.tsx",
+      "sha256": "69ebcd2635a1ce28443e2bbf2a94b458368c391acd4357133aa8a26a132bf948",
+      "bytes": 7773
+    },
+    {
+      "upstream_path": "src/components/EmbedWidget.test.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/EmbedWidget.test.tsx",
+      "sha256": "f7b472cd2d9c6de336508de91f4d2df6db0bece692369d810fafb128956091c4",
+      "bytes": 6691
+    },
+    {
+      "upstream_path": "src/components/EmbedWidget.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/EmbedWidget.tsx",
+      "sha256": "5824bc400d7465565d05f06c036ac6a90fb15a6b4a6d6222757b5e72f05e4d25",
+      "bytes": 17793
+    },
+    {
+      "upstream_path": "src/components/FabricExportModal.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/FabricExportModal.tsx",
+      "sha256": "2c6895238f75bb23bf2257865b8311345bd9348c11de881e7d363bc16490cda3",
+      "bytes": 14957
+    },
+    {
+      "upstream_path": "src/components/GalleryModal.test.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/GalleryModal.test.tsx",
+      "sha256": "12e807b96812d01b18bce567ec3c7c4ae7cc3836bc55573ebe90c034573229e2",
+      "bytes": 10423
+    },
+    {
+      "upstream_path": "src/components/GalleryModal.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/GalleryModal.tsx",
+      "sha256": "dd2b8a9eb952561d0df5d9ec794730a8e6bd0717bf75efced00b46b972359619",
+      "bytes": 23372
+    },
+    {
+      "upstream_path": "src/components/GuidedTour.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/GuidedTour.tsx",
+      "sha256": "78a235c8e7a5f96f8d7684c46e6a75d40edba72cbcbb22428f1ef525b8ccd20f",
+      "bytes": 7280
+    },
+    {
+      "upstream_path": "src/components/Header.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/Header.tsx",
+      "sha256": "fc094a3e377cf9cb0196558095a8d141cbc90b914972d869a88769048e0a1a15",
+      "bytes": 11698
+    },
+    {
+      "upstream_path": "src/components/HelpModal.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/HelpModal.tsx",
+      "sha256": "7f4017ae105846217a401f0af21c1de7dc6f4a275d03400877a67879881201c9",
+      "bytes": 5698
+    },
+    {
+      "upstream_path": "src/components/ImportExportModal.test.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/ImportExportModal.test.tsx",
+      "sha256": "7d40c22d6035b75811f773099db8edef131347b6323006d96b9c158a0d663507",
+      "bytes": 7452
+    },
+    {
+      "upstream_path": "src/components/ImportExportModal.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/ImportExportModal.tsx",
+      "sha256": "b3290ef4ae44960e7d526f693d26aab07ae6ed16b1065aa4df8848cb10b62fb9",
+      "bytes": 19932
+    },
+    {
+      "upstream_path": "src/components/InspectorPanel.test.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/InspectorPanel.test.tsx",
+      "sha256": "36d5a34b08d540a857d18c6b18493d304722de43800c46bb00bf6ba7b872a691",
+      "bytes": 1909
+    },
+    {
+      "upstream_path": "src/components/InspectorPanel.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/InspectorPanel.tsx",
+      "sha256": "6b975232badefd40aef7704939ee5e63c2f0d96539d16ef165fe6ccc9f3f1028",
+      "bytes": 9589
+    },
+    {
+      "upstream_path": "src/components/LearnPage.test.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/LearnPage.test.tsx",
+      "sha256": "8da3440dc3d0840f535758a0cbfbe6eea252996dede76a89f307d25210f1c435",
+      "bytes": 2202
+    },
+    {
+      "upstream_path": "src/components/LearnPage.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/LearnPage.tsx",
+      "sha256": "4268449e59fcd8e805ba0ce31442220cfe162e0c24f9584665425f4bbc51d538",
+      "bytes": 41455
+    },
+    {
+      "upstream_path": "src/components/NLBuilderModal.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/NLBuilderModal.tsx",
+      "sha256": "de10e5eecada37264257d1cbae6d12c87d4cd767a20af07da95f9689ef0bdff4",
+      "bytes": 15633
+    },
+    {
+      "upstream_path": "src/components/OntologyDesigner.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/OntologyDesigner.tsx",
+      "sha256": "8b77b87aff823ee99cba1e4663ffbac45e761c1f91e23ba081c1eb2783239e2d",
+      "bytes": 4000
+    },
+    {
+      "upstream_path": "src/components/OntologyGraph.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/OntologyGraph.tsx",
+      "sha256": "f9f1a3656c27c5e609139ed633131f9dbbdd31b595c3d6b719e80726fd1962d8",
+      "bytes": 19952
+    },
+    {
+      "upstream_path": "src/components/OntologyStatsPanel.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/OntologyStatsPanel.tsx",
+      "sha256": "4c667bfa4cfe664dbf7e7d421fc8d17d2c99e0b29b18ddb1533e4956b934263a",
+      "bytes": 2215
+    },
+    {
+      "upstream_path": "src/components/OntologySummaryModal.test.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/OntologySummaryModal.test.tsx",
+      "sha256": "bee9482af8e7461d4625c1712748420fb4c0a038c59354a9ccb16ffb966d20db",
+      "bytes": 1809
+    },
+    {
+      "upstream_path": "src/components/OntologySummaryModal.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/OntologySummaryModal.tsx",
+      "sha256": "84a78d19cbbb646fe22c1566d22024ad72dde9322ef4ae4817dc1a4d25b1941b",
+      "bytes": 6739
+    },
+    {
+      "upstream_path": "src/components/PathFinderPanel.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/PathFinderPanel.tsx",
+      "sha256": "e1ef1d18c85da78e317407c828c44e2bee47ef05851b3fa9a9ed978d6f106725",
+      "bytes": 6455
+    },
+    {
+      "upstream_path": "src/components/QueryPlayground.test.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/QueryPlayground.test.tsx",
+      "sha256": "c994accd5a4c8c2b399fef9ddb88939566b05e87178e3da7be9ed9c8a7408f79",
+      "bytes": 2030
+    },
+    {
+      "upstream_path": "src/components/QueryPlayground.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/QueryPlayground.tsx",
+      "sha256": "5281e98568fe5cf02f97160bb3ae96795bbea1e49ce87ef7b069790b24d460e0",
+      "bytes": 6501
+    },
+    {
+      "upstream_path": "src/components/QuestPanel.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/QuestPanel.tsx",
+      "sha256": "461f078cdb8a1f282ec3f66809da707d5356362056026814927d7f9ab6992fcb",
+      "bytes": 4896
+    },
+    {
+      "upstream_path": "src/components/QuizCompile.test.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/components/QuizCompile.test.ts",
+      "sha256": "f234a4b751eef50ee557d7b762bc4f9fa8d1e5b8bd185d8e0d8984af52d5c840",
+      "bytes": 3088
+    },
+    {
+      "upstream_path": "src/components/QuizSlide.test.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/QuizSlide.test.tsx",
+      "sha256": "1bd8f323b9d093bb1a45d3c7b13ed6ef908620a9238035d424be58da087f5c05",
+      "bytes": 10291
+    },
+    {
+      "upstream_path": "src/components/SearchFilter.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/SearchFilter.tsx",
+      "sha256": "dc42916e525e535784c442fba8e82127f33cba0d3bbf5e1bb0ec67c1d9598f74",
+      "bytes": 10601
+    },
+    {
+      "upstream_path": "src/components/Toast.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/Toast.tsx",
+      "sha256": "c5ebd03c224a749913ae91717d4b74c177eac9bf2e39b4fce7548c701a20f747",
+      "bytes": 521
+    },
+    {
+      "upstream_path": "src/components/WelcomeModal.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/WelcomeModal.tsx",
+      "sha256": "930e7ccfeaa3c2b793d706946c7ad292e5552f7ad59aa71d0b063bf521d2863a",
+      "bytes": 2962
+    },
+    {
+      "upstream_path": "src/components/designer/DesignerActions.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/designer/DesignerActions.tsx",
+      "sha256": "753e9dbdbbebf9b9abe971f90c2d990032f8677ae890d6a61f74863cc8f2a43f",
+      "bytes": 5735
+    },
+    {
+      "upstream_path": "src/components/designer/DesignerPreview.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/designer/DesignerPreview.tsx",
+      "sha256": "e4b73a27e335273e1ce44d45097f899624cc8d6712f9556f5c4ff264cafbe77a",
+      "bytes": 12469
+    },
+    {
+      "upstream_path": "src/components/designer/EntityForm.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/designer/EntityForm.tsx",
+      "sha256": "59fd099dbf6bfbb86daf6991c5cf278469dea44f1034f21e4fb4e254e0cd92e3",
+      "bytes": 10619
+    },
+    {
+      "upstream_path": "src/components/designer/RelationshipForm.test.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/designer/RelationshipForm.test.tsx",
+      "sha256": "6eb73e35f8dd15642332e13b717dc755591026c0dff72ab7efdee5c757ea6f30",
+      "bytes": 2468
+    },
+    {
+      "upstream_path": "src/components/designer/RelationshipForm.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/designer/RelationshipForm.tsx",
+      "sha256": "e588365395d48bb5b5ce81629a089e10edf89c3d9a407c270f9fb80bf76dac5a",
+      "bytes": 8102
+    },
+    {
+      "upstream_path": "src/components/designer/SubmitCatalogueModal.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/designer/SubmitCatalogueModal.tsx",
+      "sha256": "f085ca9a26009ad141b954d1769c238cd3f10f919c9f8b7dd3f47ebdd9b4bd23",
+      "bytes": 3694
+    },
+    {
+      "upstream_path": "src/components/designer/TemplatePicker.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/components/designer/TemplatePicker.tsx",
+      "sha256": "1d32b9ad9687a3a6d624a890c6114520d31b26295c04dbb610348c4e1197d50e",
+      "bytes": 943
+    },
+    {
+      "upstream_path": "src/components/designer/index.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/components/designer/index.ts",
+      "sha256": "13069737d52d5f87290a6c1f67fe721f0a0047577d19bde26fd36015815f3062",
+      "bytes": 275
+    },
+    {
+      "upstream_path": "src/components/index.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/components/index.ts",
+      "sha256": "a3603baab0b9802a26c1bc12b4115f8dc7443bfea1c36af2e8ae97bc6a1480ec",
+      "bytes": 1280
+    },
+    {
+      "upstream_path": "src/data/designerTemplates.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/data/designerTemplates.ts",
+      "sha256": "37b2e4a0a8fe295d3a2e09f6c269e0d820a37a5eae105e6a09b34d0c6ad86d37",
+      "bytes": 9977
+    },
+    {
+      "upstream_path": "src/data/ontology.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/data/ontology.ts",
+      "sha256": "491008ad78c07697b0331faf6ccd53f592f61b2c4d39bbe5b2f5c93a1d2e1fdc",
+      "bytes": 11399
+    },
+    {
+      "upstream_path": "src/data/queryEngine.test.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/data/queryEngine.test.ts",
+      "sha256": "ab2eae94a41324962c4213e4fb8c92d95d879009a590c388a589afe5e69db8ef",
+      "bytes": 2626
+    },
+    {
+      "upstream_path": "src/data/queryEngine.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/data/queryEngine.ts",
+      "sha256": "5ddedfdab365a47adfdb81ca833930c224ef03e495331db980762d2463b5140d",
+      "bytes": 12167
+    },
+    {
+      "upstream_path": "src/data/questGenerator.test.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/data/questGenerator.test.ts",
+      "sha256": "97ac0c79a30569be7a33043c7ef39540eed5f648da97be69c39b8f040a0e39e2",
+      "bytes": 2137
+    },
+    {
+      "upstream_path": "src/data/questGenerator.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/data/questGenerator.ts",
+      "sha256": "e935548679d8626e5a5798de844835e40ab1ada2775fc4664fbab659f1039b9b",
+      "bytes": 11109
+    },
+    {
+      "upstream_path": "src/data/questIntegrity.test.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/data/questIntegrity.test.ts",
+      "sha256": "821f17333b45d0b85bfc06d6ef4eff5fe4be1cdf71111dc55040eb2599eb0e68",
+      "bytes": 4033
+    },
+    {
+      "upstream_path": "src/data/questQueryValidator.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/data/questQueryValidator.ts",
+      "sha256": "6a118f2c751f3de7cf492b067eca8ea15fea04f75e3b98786f3c55da8d8a71e7",
+      "bytes": 2011
+    },
+    {
+      "upstream_path": "src/data/quests.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/data/quests.ts",
+      "sha256": "bca141001a3000ca3a9c6fc2aa73433233e411dd4c96cc6c081b2ffdf681ea16",
+      "bytes": 9494
+    },
+    {
+      "upstream_path": "src/data/sampleOntologies.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/data/sampleOntologies.ts",
+      "sha256": "495ada77dcf1012e050fc1822b37914379bd9c294f04182ddc2d5632f024258d",
+      "bytes": 18140
+    },
+    {
+      "upstream_path": "src/embed.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/embed.tsx",
+      "sha256": "595f26482e0b89c63bf8e23ba796a5d155d4437ae6f81d0af84959ca08e296c3",
+      "bytes": 1847
+    },
+    {
+      "upstream_path": "src/hooks/useRoute.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/hooks/useRoute.ts",
+      "sha256": "0e850be33255d4ce1be9a285c263baa1154f8e19b1813056e36df8dbbc979129",
+      "bytes": 470
+    },
+    {
+      "upstream_path": "src/index.css",
+      "project_path": "frontend/src/vendor/ontology-playground/index.css",
+      "sha256": "bdba2919116e9b72ac06558f88371dc4c80fb0196da6403d239e0fb085250892",
+      "bytes": 1154
+    },
+    {
+      "upstream_path": "src/lib/contentSafety.test.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/contentSafety.test.ts",
+      "sha256": "54ffceeae1ef13cf912ffc9cfc7f56c71500c182d8bb24bcc857be8ba8d5894f",
+      "bytes": 1079
+    },
+    {
+      "upstream_path": "src/lib/contentSafety.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/contentSafety.ts",
+      "sha256": "d430c13e98803ec9aff63f7fba9cb65d5ec9e7802dbe5cff0fc76e45cfef7a27",
+      "bytes": 1299
+    },
+    {
+      "upstream_path": "src/lib/fabric.test.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/fabric.test.ts",
+      "sha256": "fb8eff251d7bf367bd258b333c8375a0979a7dff2659ad07a55cad6c6e3146a4",
+      "bytes": 16704
+    },
+    {
+      "upstream_path": "src/lib/fabric.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/fabric.ts",
+      "sha256": "9d98ad7bf827fa118a4f127d495b9362d916bfb2b3b7fede45ba4e6313d74319",
+      "bytes": 12818
+    },
+    {
+      "upstream_path": "src/lib/github.test.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/github.test.ts",
+      "sha256": "8dfa96919662a26bea04ef8b22db4d1e6bf9ee2179c6648e02ba82b5ceda2159",
+      "bytes": 7341
+    },
+    {
+      "upstream_path": "src/lib/github.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/github.ts",
+      "sha256": "32094736f0f94fe4c7b3af6a4d799268861389ce005c2204c7113c740e773d98",
+      "bytes": 11613
+    },
+    {
+      "upstream_path": "src/lib/learn/sanitizeHtml.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/learn/sanitizeHtml.ts",
+      "sha256": "474c03d302032e2cd22152145bc2bdfe20791dfd23abb584939c2ffa20624d15",
+      "bytes": 979
+    },
+    {
+      "upstream_path": "src/lib/ontologyScale.test.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/ontologyScale.test.ts",
+      "sha256": "aeaaa213baeb06f1ae0be054fd8d636a39b554addf9012e7c5043109e8befced",
+      "bytes": 1048
+    },
+    {
+      "upstream_path": "src/lib/ontologyScale.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/ontologyScale.ts",
+      "sha256": "aa22c94423605fd49c63d0eb8b4ee12f9ac88a0eeafce9ce0ab85a29a02452be",
+      "bytes": 757
+    },
+    {
+      "upstream_path": "src/lib/pathFinder.test.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/pathFinder.test.ts",
+      "sha256": "12d3d747a3b0f10654fe2f9bc844312d5df14bb4a332b87ba276f603a7d4fb18",
+      "bytes": 3049
+    },
+    {
+      "upstream_path": "src/lib/pathFinder.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/pathFinder.ts",
+      "sha256": "7d349129bbfc47a7a1d11c2e09e5a6269d8545cfd500072da95671615664f5c7",
+      "bytes": 1294
+    },
+    {
+      "upstream_path": "src/lib/rdf/highlighter.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/rdf/highlighter.ts",
+      "sha256": "169409cb5bda11ae02e7e98aec465605772ae56e5d2dfb8e7accf69f0857c6c2",
+      "bytes": 4192
+    },
+    {
+      "upstream_path": "src/lib/rdf/index.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/rdf/index.ts",
+      "sha256": "84221c6bb477992d0cc7850fac5639c6cddf9b7a670fab479dc3b91a1cd42a59",
+      "bytes": 125
+    },
+    {
+      "upstream_path": "src/lib/rdf/parser.test.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/rdf/parser.test.ts",
+      "sha256": "79768237104054bed1d005a6b161c2d77f94293980603c5ed5a3bae7532a45d7",
+      "bytes": 32812
+    },
+    {
+      "upstream_path": "src/lib/rdf/parser.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/rdf/parser.ts",
+      "sha256": "a6a4459297bc48659aad67ffc95eaac9ba763e8db8ffa6560e53ca658d93faad",
+      "bytes": 16810
+    },
+    {
+      "upstream_path": "src/lib/rdf/roundtrip.test.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/rdf/roundtrip.test.ts",
+      "sha256": "7f52b6bc2d6cdfe2d01cce07ba351d37f02a52a78443acf7f40a1162314124c7",
+      "bytes": 8408
+    },
+    {
+      "upstream_path": "src/lib/rdf/serializer.test.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/rdf/serializer.test.ts",
+      "sha256": "3074f5c784ce220ee7a92d65a1f378246db270064d7b4650de7679771ef6e1e4",
+      "bytes": 9775
+    },
+    {
+      "upstream_path": "src/lib/rdf/serializer.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/rdf/serializer.ts",
+      "sha256": "b1c7214133fdb92209f3f7a35848a06dfa6e1254935e85b484a6b32883899b61",
+      "bytes": 7810
+    },
+    {
+      "upstream_path": "src/lib/router.test.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/router.test.ts",
+      "sha256": "af10d7f0ed371fee419f6421064becd1d2447e7d633fd5460d6f82339b03f5a9",
+      "bytes": 11210
+    },
+    {
+      "upstream_path": "src/lib/router.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/router.ts",
+      "sha256": "2687362bf1c43db94851894e52eabd43c5d2a60d7e02b7644ecdfb3aafd9f54f",
+      "bytes": 6678
+    },
+    {
+      "upstream_path": "src/lib/shareCodec.test.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/shareCodec.test.ts",
+      "sha256": "b9f3835fc696055fd190b1a0c3edee5dc0889bc6d716390b642bae620e041c2d",
+      "bytes": 12300
+    },
+    {
+      "upstream_path": "src/lib/shareCodec.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/lib/shareCodec.ts",
+      "sha256": "996e5d811519bf12e6bfa6388da48e864366950a08f5aff394f299c829da5a0a",
+      "bytes": 4144
+    },
+    {
+      "upstream_path": "src/main.tsx",
+      "project_path": "frontend/src/vendor/ontology-playground/main.tsx",
+      "sha256": "1fb0a6557f1a6e99b38ca335be5eb198b3210159feeb49a0f84b0b722aaa5552",
+      "bytes": 308
+    },
+    {
+      "upstream_path": "src/store/appStore.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/store/appStore.ts",
+      "sha256": "53955acc2e4112c1ca45a89098765b8f9308841969c3ad0976bcbc3c3dfce037",
+      "bytes": 7613
+    },
+    {
+      "upstream_path": "src/store/designerStore.test.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/store/designerStore.test.ts",
+      "sha256": "f6c874f02e8b70faa827c2a3f4636df767a2f96bbe4302947aeefbceaa73793e",
+      "bytes": 22176
+    },
+    {
+      "upstream_path": "src/store/designerStore.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/store/designerStore.ts",
+      "sha256": "394201056de77779a1fbd1de1bc042658122344ef52d6022d1e2f34f1d47c55b",
+      "bytes": 17091
+    },
+    {
+      "upstream_path": "src/styles/app.css",
+      "project_path": "frontend/src/vendor/ontology-playground/styles/app.css",
+      "sha256": "ecd9097be52a41a1600558ad35de4c38fc0f2947063c09fce3b579f45404d641",
+      "bytes": 89003
+    },
+    {
+      "upstream_path": "src/test/setup.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/test/setup.ts",
+      "sha256": "91a3c8962a0edcb956206a501d943fe99e1c78c6d4d8b5c9a948a3362c75978c",
+      "bytes": 43
+    },
+    {
+      "upstream_path": "src/types/catalogue.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/types/catalogue.ts",
+      "sha256": "b3831029b7588f838d8c326eb2730229ea4dc589a7f7ffd5921579c3e6d56ad5",
+      "bytes": 1160
+    },
+    {
+      "upstream_path": "src/types/cytoscape-fcose.d.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/types/cytoscape-fcose.d.ts",
+      "sha256": "3b662dddf9f35828d6fd7cc8e2517474e1a5e1179517cc56fe0975e16cdfcc7b",
+      "bytes": 128
+    },
+    {
+      "upstream_path": "src/types/learn.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/types/learn.ts",
+      "sha256": "7e31445781a30c6e8ae79f034354dd7ee9beabc5ad5cfeb89bf86eaf37f12a4f",
+      "bytes": 789
+    },
+    {
+      "upstream_path": "src/vite-env.d.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/vite-env.d.ts",
+      "sha256": "b856329aa34668fad5cc8f5beb18b3207db7fbb03d41dd09fee78d79aeb3b00d",
+      "bytes": 417
+    },
+    {
+      "upstream_path": "vitest.config.ts",
+      "project_path": "frontend/src/vendor/ontology-playground/UPSTREAM-vitest.config.ts",
+      "sha256": "9cdd69b27bae4d905b8157231ea6dc6f72d0fb63509b3b25c3851fdc4d8841ac",
+      "bytes": 305
+    }
+  ]
+}

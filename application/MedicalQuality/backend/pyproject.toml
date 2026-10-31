@@ -1,0 +1,38 @@
+[project]
+name = "medical-quality"
+version = "0.1.0"
+description = "醫療病歷質控、證據定位與整改協同"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+  "fastapi>=0.115,<1", "uvicorn>=0.34,<1", "pydantic>=2.10,<3",
+  "sqlalchemy>=2.0,<2.1", "psycopg[binary,pool]>=3.2,<4", "alembic>=1.15,<2",
+  "pgvector>=0.3,<1", "python-multipart>=0.0.20", "httpx>=0.28,<1",
+  "authlib>=1.5,<2", "itsdangerous>=2.2,<3", "jsonschema>=4.23,<5",
+  "rdflib>=7.1,<8", "pyshacl>=0.30,<1", "defusedxml>=0.7,<1",
+  "rank-bm25>=0.2.2,<1", "jieba>=0.42.1,<1", "numpy>=2.2,<3",
+  "langgraph>=1.0,<2", "langgraph-checkpoint-postgres>=3,<4",
+  "pypdf>=5,<7", "pypdfium2>=4.30,<6", "pillow>=11,<13",
+  "openpyxl>=3.1,<4", "markdown-it-py>=3,<5", "wfdb>=4.3,<5"
+]
+
+[project.optional-dependencies]
+ocr = ["docling>=2.50,<3", "rapidocr-onnxruntime>=1.4,<2"]
+models = ["FlagEmbedding>=1.3,<2", "onnxruntime>=1.20,<2", "tokenizers>=0.21,<1", "huggingface-hub>=0.30,<2"]
+
+[dependency-groups]
+dev = ["pytest>=8.3,<10", "pytest-cov>=6,<8", "ruff>=0.11,<1", "reportlab>=4.3,<5"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["medical_quality"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 110

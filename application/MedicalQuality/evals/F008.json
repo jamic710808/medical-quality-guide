@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "scope": "F008",
+  "sources": [
+    "docs/PRD.md",
+    "docs/specs/product-spec.md",
+    "docs/specs/F008-expert-evaluation/spec.md"
+  ],
+  "cases": [
+    {
+      "id": "EV-F008-001",
+      "title": "凍結評測樣本與完整配置",
+      "source_ac": [
+        "AC-F008-001"
+      ],
+      "given": "同病例有多文書版本，模型/規則/本體可更新，樣本含真實脫敏、文獻和合成來源。",
+      "when": "凍結評測批次並稍後運行。",
+      "expected": [
+        "固定樣本/來源類別、證據及規則/知識/本體/模型/提示/解析配置和指標口徑，後續變化不替換原批次；所有結果能回查當時輸入。",
+        "應保留：凍結 manifest、版本摘要及舊輸入回放；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F008-implementation-acceptance"
+    },
+    {
+      "id": "EV-F008-002",
+      "title": "抽樣分層與建設評測隔離",
+      "source_ac": [
+        "AC-F008-002"
+      ],
+      "given": "同文本不同指標、同患者多文書、近重複候選和獨立標籤文件，存在開發/驗證/留出邊界。",
+      "when": "選擇樣本/分區並交給建設或 Evaluator。",
+      "expected": [
+        "保留分層與分組依據，關聯資料不跨分區洩漏；建設者不讀取標籤/留出正文，未知來源和無法確認組關係顯式記錄，合成與真實結果分開。",
+        "應保留：分組清單、樣本來源和零標籤洩漏記錄；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F008-implementation-acceptance"
+    },
+    {
+      "id": "EV-F008-003",
+      "title": "兩名真實專家獨立保留原判",
+      "source_ac": [
+        "AC-F008-003"
+      ],
+      "given": "兩位不同獲派專家和同一身份重複提交；原判可能互異。",
+      "when": "分別保存問題、證據、嚴重度與無法判斷。",
+      "expected": [
+        "身份/指派核對成立，保存兩份獨立原判；重複同身份不算第二名專家，未提交前不展示對方原判誘導；提交/審計一致，歷史不可被仲裁覆蓋。",
+        "應保留：兩份原判、提交時間/版本、拒絕和審計；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F008-implementation-acceptance"
+    },
+    {
+      "id": "EV-F008-004",
+      "title": "仲裁追加並保留原始一致性",
+      "source_ac": [
+        "AC-F008-004"
+      ],
+      "given": "凍結樣本兩份原判不一致，含高風險無法判斷，專家可追加裁決。",
+      "when": "提交仲裁或繼續保留爭議。",
+      "expected": [
+        "原判與原始一致性不改，仲裁記錄理由/證據/實際主體；未決事項保持可見，高風險未決不得形成可用於晉級的通過結論。",
+        "應保留：原判關係、追加裁決及未決清單；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F008-implementation-acceptance"
+    },
+    {
+      "id": "EV-F008-005",
+      "title": "指標保留覆蓋、棄答和分母",
+      "source_ac": [
+        "AC-F008-005"
+      ],
+      "given": "參照包含陽性/陰性，運行結果包含 TP/FP/FN/TN、陽性/陰性棄答、失敗與未運行。 另設明確合成算例：20 個參照可定單位中 TP=8、FN=1、陽性棄答=1、FP=2、TN=7、陰性棄答=1，所有數字只驗證計算。",
+      "when": "按固定口徑計算端到端召回、條件指標和覆蓋。",
+      "expected": [
+        "給出統計單位、分子/分母、未決/棄答/失敗與風險分層；零分母為未定義，未運行不出成績，不將棄答陽性從端到端漏檢負擔中消失。",
+        "應保留：混淆計數、棄答/未評估分母及可重算結果；合成/替身、真實執行和專業驗收分別標識。",
+        "算例端到端召回為 8/10、條件召回為 8/9、precision 為 8/10、決策覆蓋為 18/20、棄答為 2/20；參照未定和未執行另列，不偽裝臨床成績。"
+      ],
+      "check_ref": "F008-implementation-acceptance"
+    },
+    {
+      "id": "EV-F008-006",
+      "title": "證據、解釋和建議分別評價",
+      "source_ac": [
+        "AC-F008-006"
+      ],
+      "given": "結論引用 ID 存在但位置錯誤、原文不支持，以及語言流暢卻不可執行或越界的建議。",
+      "when": "按凍結 rubric 由專家評價。",
+      "expected": [
+        "位置正確、主張支持、解釋可用性和建議可用性分別記錄；生成流暢/鏈接可打開不當專業正確，越界診療建議明確標錯並留案例。",
+        "應保留：逐項判定、原文/依據引用與不同失敗類型；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F008-implementation-acceptance"
+    },
+    {
+      "id": "EV-F008-007",
+      "title": "高風險漏報形成不可被平均分抵消的信號",
+      "source_ac": [
+        "AC-F008-007"
+      ],
+      "given": "總體指標可能較高，但存在一項經專家確認高風險漏報或高風險未決/無法判斷。",
+      "when": "生成面向准入的風險報告。",
+      "expected": [
+        "逐項標識風險與來源，輸出明確否決/未滿足信號；不因平均分或零次觀察就聲明可晉級，不替 F009 批准。",
+        "應保留：否決項、未決事項、報告與樣本引用；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F008-implementation-acceptance"
+    },
+    {
+      "id": "EV-F008-008",
+      "title": "同條件比較版本並報告退化",
+      "source_ac": [
+        "AC-F008-008"
+      ],
+      "given": "Parent/Candidate 的本體、OCR或模型配置變化，固定獨立樣本及評分口徑。",
+      "when": "比較結果或重跑失敗單元。",
+      "expected": [
+        "保留兩版結果及差異歸因，不能改樣本/參照/閾值來提分；失敗/未完成也納入比較，改善與不可接受退化分別報告，原生演化 Accept 不自動成為臨床驗收。",
+        "應保留：同輸入配置差異、逐案例結果、退化與缺項；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F008-implementation-acceptance"
+    },
+    {
+      "id": "EV-F008-009",
+      "title": "評測崗位界面與審計不洩漏",
+      "source_ac": [
+        "AC-F008-009"
+      ],
+      "given": "被分配與未分配專家、管理/支持人員，以及長原文、多頁樣本和兩種桌面視口。",
+      "when": "定位樣本、查看證據、提交原判/仲裁併返回。",
+      "expected": [
+        "只見授權範圍，當前階段/進度/缺項真實；統計和列表同源、返回上下文保持，普通日誌無正文/答案，責任記錄不因保存失敗丟失。",
+        "應保留：真實身份/範圍、兩視口操作、提交/審計與返回狀態；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F008-implementation-acceptance"
+    },
+    {
+      "id": "EV-F008-010",
+      "title": "交接固定報告和真實未滿足項",
+      "source_ac": [
+        "AC-F008-010"
+      ],
+      "given": "報告部分完成、缺閾值或專家參照，F009 請求評測證據，舊批次另有歷史結果。",
+      "when": "生成並交接 MetricReport/GateEvidence。",
+      "expected": [
+        "報告固定版本/範圍和實際驗證狀態，所有缺項可查；缺閾值/參照不偽造通過，舊結果不靜默套新模型或新範圍。",
+        "應保留：report/manifest、未滿足項與消費結果；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F008-implementation-acceptance"
+    }
+  ],
+  "checks": [
+    {
+      "id": "F008-implementation-acceptance",
+      "method": "manual",
+      "inputs": [
+        "backend/medical_quality/evaluation.py",
+        "frontend/src/App.tsx",
+        "frontend/src/pages/CasePage.tsx",
+        "frontend/src/pages/OperationsPages.tsx",
+        "backend/tests/test_evaluation_delivery.py",
+        "backend/tests/test_workflow_graph.py",
+        "frontend/e2e",
+        "docs/verification/F008-implementation.md",
+        "backend/uv.lock",
+        "frontend/package-lock.json"
+      ],
+      "procedure": "按 docs/verification/F008-implementation.md 的逐用例臺賬核對實際斷言與範圍；工程命令/報告複用 development-report.md 的同輸入結果。對 not_run 項按原 given/when 補足獨立場景；對 blocked 項只在真實資料/身份/責任前置到位後執行，不能用重複工程測試充當專業驗收。",
+      "evidence": "docs/verification/F008-implementation.md 與 docs/verification/development-report.md；原生收據在 artifacts/verification/，綁定本身不代表全部通過。"
+    }
+  ]
+}

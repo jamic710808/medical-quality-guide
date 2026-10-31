@@ -1,0 +1,4 @@
+interface:
+  display_name: "交互式數據分類與整理"
+  short_description: "逐文件識別數據形態、讀取內容並討論業務分類，審核確認後構建整理結果"
+  default_prompt: "使用 $classify-project-data，先識別指定資料的數據形態並讀取內容，再結合業務需求逐步和我討論分類；等我審核確認具體整理方案後再構建。"

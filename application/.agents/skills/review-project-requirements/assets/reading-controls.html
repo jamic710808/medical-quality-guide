@@ -1,0 +1,32 @@
+  <div class="reading-bar">
+    <div class="reading-controls" role="group" aria-label="閱讀設置">
+      <span>閱讀設置</span>
+      <label for="reading-size">字號 <select id="reading-size"><option value="standard">標準</option><option value="larger">稍大</option><option value="large">大字</option></select></label>
+      <label class="density-label" for="reading-density">行距與留白 <select id="reading-density"><option value="comfortable">舒展</option><option value="compact">緊湊</option></select></label>
+      <button id="reading-reset" type="button">恢復默認</button>
+    </div>
+    <div class="reading-legend"><span class="legend-bars" aria-hidden="true"><i></i><i></i></span><span>聚焦問題</span><span class="dot">·</span><span>對齊方案</span><span class="dot">·</span><span>看見效果</span></div>
+  </div>
+<script>
+(() => {
+  const size = document.getElementById('reading-size');
+  const density = document.getElementById('reading-density');
+  const state = {size:'standard', density:'comfortable'};
+  function render() {
+    const style = document.documentElement.style;
+    const compact = state.density === 'compact';
+    style.setProperty('--scale', {standard:1, larger:1.15, large:1.3}[state.size]);
+    style.setProperty('--body-line', compact ? '23px' : '26px');
+    style.setProperty('--feature-line', compact ? '18px' : '20px');
+    style.setProperty('--effect-line', compact ? '24px' : '27px');
+    style.setProperty('--card-pad', compact ? '8px' : '11px');
+    style.setProperty('--row-factor', compact ? '.88' : '1');
+    document.body.dataset.readingDensity = state.density;
+    size.value = state.size;
+    density.value = state.density;
+  }
+  size.addEventListener('change', () => {state.size=size.value;render();});
+  density.addEventListener('change', () => {state.density=density.value;render();});
+  document.getElementById('reading-reset').addEventListener('click', () => {state.size='standard';state.density='comfortable';render();});
+})();
+</script>

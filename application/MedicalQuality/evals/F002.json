@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "scope": "F002",
+  "sources": [
+    "docs/PRD.md",
+    "docs/specs/product-spec.md",
+    "docs/specs/F002-source-registration/spec.md"
+  ],
+  "cases": [
+    {
+      "id": "EV-F002-001",
+      "title": "只登記允許來源與用途",
+      "source_ac": [
+        "AC-F002-001"
+      ],
+      "given": "指定批准數據根/connector、合法文件，以及目錄穿越、越界符號鏈接、任意 URL 和無授權來源。",
+      "when": "請求登記及可讀性檢查。",
+      "expected": [
+        "只讀取授權根/範圍內的來源，其他請求拒絕；客戶端不能讓服務端任意取文件/網絡資源，失敗不切未授權端點。",
+        "應保留：實際讀取清單、拒絕原因、允許用途；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F002-implementation-acceptance"
+    },
+    {
+      "id": "EV-F002-002",
+      "title": "文件與數據庫版本語義真實",
+      "source_ac": [
+        "AC-F002-002"
+      ],
+      "given": "同名不同內容文件和查詢期間會變化的數據庫，另有不可證明一致快照的來源。",
+      "when": "登記來源版本併發出讀取請求。",
+      "expected": [
+        "文件固定內容身份，數據庫保留實際快照/一致性條件及範圍；僅有時間戳不聲明全庫同時刻版本，內容不符不會套舊版本 ID。",
+        "應保留：摘要/快照標識、版本差異與受限說明；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F002-implementation-acceptance"
+    },
+    {
+      "id": "EV-F002-003",
+      "title": "數據庫結構和業務記錄分開",
+      "source_ac": [
+        "AC-F002-003"
+      ],
+      "given": "SQLite 表含 TEXT 原字段、內部源記錄號主鍵、未聲明外鍵和結構目錄。",
+      "when": "登記表/字段/約束與允許記錄範圍。",
+      "expected": [
+        "保留實際結構、類型和聲明鍵，結構已讀不代表業務行已讀；不憑字段名推外鍵，不把記錄序號當患者 ID，原庫不寫入。",
+        "應保留：真實表/字段/聲明約束、讀取粒度及未讀範圍；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F002-implementation-acceptance"
+    },
+    {
+      "id": "EV-F002-004",
+      "title": "路徑基準和定位口徑可回查",
+      "source_ac": [
+        "AC-F002-004"
+      ],
+      "given": "圖文路徑相對 Data 根、心電路徑相對 05_心電圖，CSV 帶引號內換行與原源記錄號。",
+      "when": "生成文件/記錄回查句柄。",
+      "expected": [
+        "按各自基準定位且不越界，源 URL/歷史包路徑不當本地文件；邏輯記錄與物理行/表頭計數分開，定位不足明確受限。",
+        "應保留：固定源句柄、路徑/計數說明和錯誤定位拒絕；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F002-implementation-acceptance"
+    },
+    {
+      "id": "EV-F002-005",
+      "title": "來源性質與評測角色隔離",
+      "source_ac": [
+        "AC-F002-005"
+      ],
+      "given": "業務原文、schema_reference、規則、術語、reference_label、validation/heldout 與未知來源性質並存。",
+      "when": "登記並生成 F003 建設讀取範圍。",
+      "expected": [
+        "角色、性質、用途和許可沿源保存；答案/留出僅交合法評測方，建設者不探讀正文；未知不自動標生產可用，公開/合成不升級為生產證據。",
+        "應保留：角色矩陣、建模集合與零答案讀取探針；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F002-implementation-acceptance"
+    },
+    {
+      "id": "EV-F002-006",
+      "title": "內容重複不混淆業務身份",
+      "source_ac": [
+        "AC-F002-006"
+      ],
+      "given": "同一請求重試、同內容不同來源/任務、同鍵不同請求體及併發登記。",
+      "when": "保存來源版本/接入操作。",
+      "expected": [
+        "同一有效操作返回既有結果，內容族可以識別但不合並不同來源/任務；請求摘要衝突拒絕，責任記錄與登記結果一致。",
+        "應保留：operation、來源/版本唯一性與不同任務關係；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F002-implementation-acceptance"
+    },
+    {
+      "id": "EV-F002-007",
+      "title": "接入覆蓋包含失敗和未讀",
+      "source_ac": [
+        "AC-F002-007"
+      ],
+      "given": "一批聲明文件有可讀、不可讀、未知總數、空範圍和中斷情形。",
+      "when": "登記和彙總實際輸入。",
+      "expected": [
+        "範圍及計數單位可對賬，成功/失敗/未讀及未知明確；空範圍不同於未知或全病歷無問題，不刪失敗項製造完整成功。",
+        "應保留：聲明清單、單位、實際統計和未完成項；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F002-implementation-acceptance"
+    },
+    {
+      "id": "EV-F002-008",
+      "title": "更新與撤權保留歷史並限制新讀取",
+      "source_ac": [
+        "AC-F002-008"
+      ],
+      "given": "源文件被替換、文書新增版本或授權撤銷，舊解析任務持舊 handle。",
+      "when": "讀取/恢復和請求歷史回查。",
+      "expected": [
+        "新內容生成新版本，舊句柄不能讀取新字節冒充舊來源；撤權限制當前訪問，歷史記錄保留但回查仍需授權，變化通知帶影響範圍。",
+        "應保留：版本鏈、失效/拒絕與變更事件；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F002-implementation-acceptance"
+    },
+    {
+      "id": "EV-F002-009",
+      "title": "向解析方交付穩定受限合同",
+      "source_ac": [
+        "AC-F002-009"
+      ],
+      "given": "一份固定來源和範圍已登記，另有不兼容版本/過期授權，F003 為消費者。",
+      "when": "取得 SourceVersion/ReadScope 並實際讀取聲明單元。",
+      "expected": [
+        "消費者得到相同身份/版本/用途/結構和回查入口，無法解釋的版本或過期條件明確拒絕；登記成功不宣稱解析/醫學驗收成功。",
+        "應保留：請求/響應、實際回查及拒絕結果，註明替身範圍；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F002-implementation-acceptance"
+    }
+  ],
+  "checks": [
+    {
+      "id": "F002-implementation-acceptance",
+      "method": "manual",
+      "inputs": [
+        "backend/medical_quality/sources.py",
+        "backend/medical_quality/app.py",
+        "frontend/src/App.tsx",
+        "frontend/src/pages/CasePage.tsx",
+        "frontend/src/pages/OperationsPages.tsx",
+        "backend/tests/test_data_semantics.py",
+        "backend/tests/test_recovery_permissions.py",
+        "backend/tests/test_retrieval_inputs.py",
+        "frontend/e2e",
+        "docs/verification/F002-implementation.md",
+        "backend/uv.lock",
+        "frontend/package-lock.json"
+      ],
+      "procedure": "按 docs/verification/F002-implementation.md 的逐用例臺賬核對實際斷言與範圍；工程命令/報告複用 development-report.md 的同輸入結果。對 not_run 項按原 given/when 補足獨立場景；對 blocked 項只在真實資料/身份/責任前置到位後執行，不能用重複工程測試充當專業驗收。",
+      "evidence": "docs/verification/F002-implementation.md 與 docs/verification/development-report.md；原生收據在 artifacts/verification/，綁定本身不代表全部通過。"
+    }
+  ]
+}

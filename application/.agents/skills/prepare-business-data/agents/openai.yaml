@@ -1,0 +1,4 @@
+interface:
+  display_name: "業務數據預處理與選型"
+  short_description: "讀取文件與本地環境，交互選擇解析、清洗和事實抽取的合適方案"
+  default_prompt: "使用 $prepare-business-data 檢查指定數據目錄和本地環境，結合在線 API 與本地部署偏好推薦處理方案。"

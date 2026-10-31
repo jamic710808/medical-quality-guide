@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "scope": "F005",
+  "sources": [
+    "docs/PRD.md",
+    "docs/specs/product-spec.md",
+    "docs/specs/F005-rule-knowledge-governance/spec.md"
+  ],
+  "cases": [
+    {
+      "id": "EV-F005-001",
+      "title": "規則知識身份與生命週期分離",
+      "source_ac": [
+        "AC-F005-001"
+      ],
+      "given": "同一規則有 v1/v2，知識來源與發佈/批准/生效/加載時間不同，另有 98 項上游參考與本項目 8 條候選。",
+      "when": "登記和修訂規則/知識。",
+      "expected": [
+        "規則、知識、索引身份分開且有來源；候選不自動生效，舊版本可回查，上游參考不自動成為執行包。",
+        "證據應包括：版本記錄、來源與允許轉換；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F005-implementation-acceptance"
+    },
+    {
+      "id": "EV-F005-002",
+      "title": "用途、範圍與授權共同決定可選依據",
+      "source_ac": [
+        "AC-F005-002"
+      ],
+      "given": "候選規則可用於離線驗證，但未批准用於生產；另有病種/語言範圍未知、過期授權和衝突生效版本。",
+      "when": "為給定用途和時間選擇依據。",
+      "expected": [
+        "只有資格與授權同時滿足的版本可用；不明確條件返回原因和衝突，不能默認選最新或越權讀取。",
+        "證據應包括：允許/拒絕集合和原因；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F005-implementation-acceptance"
+    },
+    {
+      "id": "EV-F005-003",
+      "title": "原文、編號與上下文可準確回查",
+      "source_ac": [
+        "AC-F005-003"
+      ],
+      "given": "同編號不同版本條文包含否定、例外、表格及跨段說明。",
+      "when": "按編號或文字請求查看依據。",
+      "expected": [
+        "指定編號/版本不會被相似條文替換；返回支持理解的原文與父上下文、定位和來源性質，不能只返回生成解釋。",
+        "證據應包括：片段/父上下文及 locator 對照；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F005-implementation-acceptance"
+    },
+    {
+      "id": "EV-F005-004",
+      "title": "問法變化召回仍保留共同證據語義",
+      "source_ac": [
+        "AC-F005-004"
+      ],
+      "given": "同一允許規則集有條號提問、中文改寫及中英術語變體，存在相近但不適用條款。",
+      "when": "在固定版本執行已聲明的檢索路線。",
+      "expected": [
+        "命中帶實際模式、原生名次/分數、資格及證據定位；近義不替代適用性，排序分數不變成醫學可信概率。",
+        "證據應包括：逐問題命中、版本、範圍與差異；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F005-implementation-acceptance"
+    },
+    {
+      "id": "EV-F005-005",
+      "title": "無答案與部分檢索不偽裝完整依據",
+      "source_ac": [
+        "AC-F005-005"
+      ],
+      "given": "知識集無相關條款，或向量/解析/定位分支失敗，僅部分詞法結果可查。",
+      "when": "請求本次規則依據。",
+      "expected": [
+        "無命中、失敗、資格不明與部分結果分別表達，返回影響範圍；不編造指南、不用其他版本頂替，也不宣稱所需語義覆蓋已完成。",
+        "證據應包括：覆蓋、狀態與拒絕原因；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F005-implementation-acceptance"
+    },
+    {
+      "id": "EV-F005-006",
+      "title": "更新、撤權與發佈保持責任一致",
+      "source_ac": [
+        "AC-F005-006"
+      ],
+      "given": "新知識/分詞/模型產生候選索引，舊資料權限撤銷，且關鍵責任記錄寫入可失敗。",
+      "when": "更新規則資格或發佈檢索索引並恢復失敗。",
+      "expected": [
+        "資格與索引狀態分開；未完整提交不給成功，撤權內容不再進入模型/緩存返回；重試不重複生效，回退不重啟失效依據。",
+        "證據應包括：manifest、責任記錄引用和可訪問集合；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F005-implementation-acceptance"
+    },
+    {
+      "id": "EV-F005-007",
+      "title": "運行與交付固定原有依據基線",
+      "source_ac": [
+        "AC-F005-007"
+      ],
+      "given": "舊運行引用 v1，當前已有 v2，一份資產基線同時包含候選與已批准資料。",
+      "when": "查詢歷史依據並向 F010 提供基線。",
+      "expected": [
+        "舊運行仍對應舊版本，原文回查受當前權限；基線包含用途/來源/狀態，不因導出或新版本出現改寫舊資格。",
+        "證據應包括：固定版本清單及不變資格；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F005-implementation-acceptance"
+    },
+    {
+      "id": "EV-F005-008",
+      "title": "故障不會擴大模型數據流",
+      "source_ac": [
+        "AC-F005-008"
+      ],
+      "given": "檢索請求可能含病例片段，本地嵌入不可用且配置含未授權外部端點。",
+      "when": "發起檢索或重試。",
+      "expected": [
+        "未授權提交被拒絕，正文不會進入普通錯誤日誌；語義分支不可用如實返回，不能把本地索引配遠程調用宣稱全程域內。",
+        "證據應包括：網絡調用、日誌與實際模式斷言；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F005-implementation-acceptance"
+    },
+    {
+      "id": "EV-F005-009",
+      "title": "本體限定擴展與原 query/資格保持",
+      "source_ac": [
+        "AC-F005-002",
+        "AC-F005-003",
+        "AC-F005-004",
+        "AC-F005-006"
+      ],
+      "given": "固定 SemanticRelease/映射/值集含獲准別名與未審近義映射，規則有不同適用版本，父塊可能含無權內容。",
+      "when": "執行編號直達、語義擴展和父塊回取，再撤銷一項來源資格。",
+      "expected": [
+        "編號仍精確直達；擴展只用同一允許版本/範圍的批准映射，原 query、擴展路徑、分數/名次和原文可查。",
+        "近義不替代適用性，父塊擴展不得越權；原生 active 變化不偷換索引語義，撤權先阻斷消費再重建。"
+      ],
+      "check_ref": "F005-implementation-acceptance"
+    }
+  ],
+  "checks": [
+    {
+      "id": "F005-implementation-acceptance",
+      "method": "manual",
+      "inputs": [
+        "backend/medical_quality/retrieval.py",
+        "backend/medical_quality/governance.py",
+        "frontend/src/App.tsx",
+        "frontend/src/pages/CasePage.tsx",
+        "frontend/src/pages/OperationsPages.tsx",
+        "backend/tests/test_retrieval_inputs.py",
+        "backend/tests/test_governance.py",
+        "frontend/e2e",
+        "docs/verification/F005-implementation.md",
+        "backend/uv.lock",
+        "frontend/package-lock.json",
+        "backend/tests/test_index_lifecycle.py"
+      ],
+      "procedure": "按 docs/verification/F005-implementation.md 的逐用例臺賬核對實際斷言與範圍；工程命令/報告複用 development-report.md 的同輸入結果。對 not_run 項按原 given/when 補足獨立場景；對 blocked 項只在真實資料/身份/責任前置到位後執行，不能用重複工程測試充當專業驗收。",
+      "evidence": "docs/verification/F005-implementation.md 與 docs/verification/development-report.md；原生收據在 artifacts/verification/，綁定本身不代表全部通過。"
+    }
+  ]
+}

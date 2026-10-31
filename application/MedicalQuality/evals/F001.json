@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "scope": "F001",
+  "sources": [
+    "docs/PRD.md",
+    "docs/specs/product-spec.md",
+    "docs/specs/F001-access-audit/spec.md"
+  ],
+  "cases": [
+    {
+      "id": "EV-F001-001",
+      "title": "可信身份與默認拒絕",
+      "source_ac": [
+        "AC-F001-001"
+      ],
+      "given": "請求無有效身份、會話過期，或瀏覽器自行聲明醫生/管理員角色；另有有效身份。",
+      "when": "訪問病歷接口或提交責任動作。",
+      "expected": [
+        "主體只由可信身份來源取得；無效身份和偽造角色均拒絕，不暴露正文或取得新權限；有效登錄仍須通過動作與對象授權。",
+        "應保留：實際 actor 映射、拒絕原因與無正文響應；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F001-implementation-acceptance"
+    },
+    {
+      "id": "EV-F001-002",
+      "title": "角色動作與對象用途共同授權",
+      "source_ac": [
+        "AC-F001-002"
+      ],
+      "given": "同角色醫生屬於不同科室/責任組，任務指派、用途與有效期不同。",
+      "when": "對相同病例執行查看、整改、裁決、導出和簽字。",
+      "expected": [
+        "只允許角色動作及對象/用途/期限同時滿足的請求；信息科/管理/支持身份不能憑崗位名獲取正文或代簽。",
+        "應保留：允許/拒絕集合、實際有效條件和策略版本；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F001-implementation-acceptance"
+    },
+    {
+      "id": "EV-F001-003",
+      "title": "所有讀取表面遵守同一範圍",
+      "source_ac": [
+        "AC-F001-003"
+      ],
+      "given": "一個主體只能訪問部分病例，另有列表、計數、原文、附件、緩存和事件流入口。",
+      "when": "分別從各入口讀取並嘗試直接訪問範圍外資源。",
+      "expected": [
+        "列表/計數/詳情/下載/事件和緩存都按相同當前範圍過濾；拒絕反饋不額外洩漏資源存在性或正文，難猜 ID 不充當權限。",
+        "應保留：各入口實際集合、數據庫角色/事務上下文和拒絕記錄；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F001-implementation-acceptance"
+    },
+    {
+      "id": "EV-F001-004",
+      "title": "後臺與模型工具不能擴大數據域",
+      "source_ac": [
+        "AC-F001-004"
+      ],
+      "given": "授權任務由 Worker 處理，工具失敗並提出未批准雲端或任意文件/SQL讀取。",
+      "when": "執行、重試或恢復任務與模型工具調用。",
+      "expected": [
+        "後臺再次核對任務範圍和當前授權，只能訪問批准數據/端點；本地失敗不放寬數據域，模型不能自行擴大對象或工具集合。",
+        "應保留：固定任務範圍、拒絕事件、未授權網絡調用為零；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F001-implementation-acceptance"
+    },
+    {
+      "id": "EV-F001-005",
+      "title": "業務變更與必要審計共同成立",
+      "source_ac": [
+        "AC-F001-005"
+      ],
+      "given": "複核/規則變更/簽字等調用方在當前事務提交狀態，審計或 outbox 寫入可能失敗。",
+      "when": "執行一次關鍵業務命令。",
+      "expected": [
+        "業務變化、責任審計與必要事件共同提交；必要記錄失敗時不產生孤立已完成狀態。查看/拒絕事件與關鍵寫入明確區分。",
+        "應保留：前後狀態、審計/事件 ID、一致提交或回滾；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F001-implementation-acceptance"
+    },
+    {
+      "id": "EV-F001-006",
+      "title": "重複請求與過期操作不造新事實",
+      "source_ac": [
+        "AC-F001-006"
+      ],
+      "given": "相同冪等鍵重複到達、同鍵不同請求體、兩個用戶持不同對象版本，以及提交後響應丟失。",
+      "when": "重試或併發提交已授權操作。",
+      "expected": [
+        "同一有效操作返回同一可識別結果與審計；同鍵不同內容或過期版本拒絕/衝突，不覆蓋新意見，未知響應先對賬。",
+        "應保留：唯一操作結果、衝突記錄與當前版本；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F001-implementation-acceptance"
+    },
+    {
+      "id": "EV-F001-007",
+      "title": "撤權和策略更新立即限制新消費",
+      "source_ac": [
+        "AC-F001-007"
+      ],
+      "given": "會話/緩存/長任務持有舊允許決定，當前授權被撤銷或已到期。",
+      "when": "下一次讀取、結果發佈、恢復或下載發生。",
+      "expected": [
+        "重新核對並停止受影響訪問，不等待索引重建才生效；保留歷史審計但歷史存在不授予當前讀取。",
+        "應保留：策略版本、失效時間和停止消費記錄；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F001-implementation-acceptance"
+    },
+    {
+      "id": "EV-F001-008",
+      "title": "審計查詢可追溯且最小化",
+      "source_ac": [
+        "AC-F001-008"
+      ],
+      "given": "有授權審計者、無權技術支持者及含敏感原文的業務操作。",
+      "when": "查詢操作/對象/版本軌跡並查看運行錯誤。",
+      "expected": [
+        "僅獲准者看到相應審計範圍；能關聯主體、時間、動作、理由、版本與結果，普通日誌不復制正文/憑據/隱藏推理；無權者不能以審計入口繞過正文權限。",
+        "應保留：授權軌跡、最小字段與拒絕/脫敏記錄；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F001-implementation-acceptance"
+    },
+    {
+      "id": "EV-F001-009",
+      "title": "缺生產留存和責任參數時限制啟用",
+      "source_ac": [
+        "AC-F001-009"
+      ],
+      "given": "資料具有不同角色/許可，生產保留期限或真實崗位/簽署映射尚未配置。",
+      "when": "請求生產存儲、正文訪問或責任動作。",
+      "expected": [
+        "只執行已經明確獲准的用途；缺失生產前置不被默認填入或無限留存，允許獨立的合成/離線驗證但狀態不升級。",
+        "應保留：實際條件缺口、允許/限制用途及不啟用記錄；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F001-implementation-acceptance"
+    }
+  ],
+  "checks": [
+    {
+      "id": "F001-implementation-acceptance",
+      "method": "manual",
+      "inputs": [
+        "backend/medical_quality/access.py",
+        "backend/medical_quality/common.py",
+        "backend/medical_quality/db.py",
+        "backend/medical_quality/app.py",
+        "frontend/src/App.tsx",
+        "frontend/src/pages/CasePage.tsx",
+        "frontend/src/pages/OperationsPages.tsx",
+        "backend/tests/test_access.py",
+        "backend/tests/test_oidc.py",
+        "backend/tests/test_recovery_permissions.py",
+        "frontend/e2e",
+        "docs/verification/F001-implementation.md",
+        "backend/uv.lock",
+        "frontend/package-lock.json"
+      ],
+      "procedure": "按 docs/verification/F001-implementation.md 的逐用例臺賬核對實際斷言與範圍；工程命令/報告複用 development-report.md 的同輸入結果。對 not_run 項按原 given/when 補足獨立場景；對 blocked 項只在真實資料/身份/責任前置到位後執行，不能用重複工程測試充當專業驗收。",
+      "evidence": "docs/verification/F001-implementation.md 與 docs/verification/development-report.md；原生收據在 artifacts/verification/，綁定本身不代表全部通過。"
+    }
+  ]
+}

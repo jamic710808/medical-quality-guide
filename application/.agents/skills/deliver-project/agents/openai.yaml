@@ -1,0 +1,4 @@
+interface:
+  display_name: "項目交付與接手"
+  short_description: "基於現有代碼、規格與驗收證據組織標準交付材料，並核對版本和接手條件"
+  default_prompt: "請使用 $deliver-project，基於當前項目的代碼、有效規格與真實驗收記錄，整理可獨立接手的交付材料，並說明交付範圍和剩餘限制。"

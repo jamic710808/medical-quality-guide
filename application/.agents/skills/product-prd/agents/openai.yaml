@@ -1,0 +1,6 @@
+interface:
+  display_name: "Product PRD"
+  short_description: "把產品想法和確認需求落成可追蹤、可驗收的產品級 PRD"
+  default_prompt: "使用 $product-prd 把產品需求整理並落盤為 docs/PRD.md。"
+policy:
+  allow_implicit_invocation: true

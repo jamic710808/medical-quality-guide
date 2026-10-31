@@ -1,0 +1,7 @@
+interface:
+  display_name: "Evolve Ontology · 進化語義層"
+  short_description: "結合真實使用記錄與探索任務驗證改進，展示版本變化和效果"
+  icon_small: "./assets/evoontology.png"
+  icon_large: "./assets/evoontology.png"
+  brand_color: "#3941EA"
+  default_prompt: "Use $evolve-ontology to improve this ontology using relevant project tasks, run missing baselines, validate changes and show the outcome."

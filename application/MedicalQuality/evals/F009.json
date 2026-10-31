@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "scope": "F009",
+  "sources": [
+    "docs/PRD.md",
+    "docs/specs/product-spec.md",
+    "docs/specs/F009-release-gates/spec.md"
+  ],
+  "cases": [
+    {
+      "id": "EV-F009-001",
+      "title": "准入申請固定範圍與基線",
+      "source_ac": [
+        "AC-F009-001"
+      ],
+      "given": "請求從離線進入影子或從影子進入輔助，配置/模型/本體與規則版本可變化。",
+      "when": "創建或核對准入申請。",
+      "expected": [
+        "固定目標階段、病區/病種/規則、數據域、應用/語義/模型/評測基線；輸入變化產生新版本或要求重驗，不把舊成績套新範圍。",
+        "應保留：scope/manifest、版本衝突與新申請關係；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F009-implementation-acceptance"
+    },
+    {
+      "id": "EV-F009-002",
+      "title": "必要條件與缺項可解釋",
+      "source_ac": [
+        "AC-F009-002"
+      ],
+      "given": "閾值、專業樣本、有效規則/本體、身份/留存、恢復或責任證據中任一缺失。",
+      "when": "彙集各前置判定。",
+      "expected": [
+        "逐項輸出滿足/不滿足/未確認/不適用及依據，不把缺字段、未運行、合成證據或任意默認值當滿足；拒絕相應階段啟用。",
+        "應保留：條件結果、證據引用、明確阻斷與負責人；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F009-implementation-acceptance"
+    },
+    {
+      "id": "EV-F009-003",
+      "title": "高風險否決優先於平均指標",
+      "source_ac": [
+        "AC-F009-003"
+      ],
+      "given": "F008 報告存在一項確認高風險漏報或高風險未決/無法判斷，總體分數可能達其他目標。",
+      "when": "判斷晉級或擴大範圍。",
+      "expected": [
+        "拒絕受影響申請並保留具體案例/原因，平均分、零次觀察和管理員開關不能豁免；修復後需要相關重驗。",
+        "應保留：否決條目、申請狀態與不可豁免記錄；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F009-implementation-acceptance"
+    },
+    {
+      "id": "EV-F009-004",
+      "title": "關鍵人驗收與責任接受真實",
+      "source_ac": [
+        "AC-F009-004"
+      ],
+      "given": "申請前置已滿足，有不同職責實際主體、缺少崗位記錄、重複提交或模型工具批准。",
+      "when": "記錄驗收、責任接受和准入決定。",
+      "expected": [
+        "只有獲授權真實崗位的當前範圍意見有效，記錄職責/範圍/版本/理由和時間；缺關鍵人不放權，工具批准不代簽，必要審計與決定同事務。",
+        "應保留：具名決定、責任記錄、審計和拒絕；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F009-implementation-acceptance"
+    },
+    {
+      "id": "EV-F009-005",
+      "title": "階段能力在服務端受控",
+      "source_ac": [
+        "AC-F009-005"
+      ],
+      "given": "離線、影子、輔助分別有固定允許範圍，用戶繞過 UI 直接請求未開放動作。",
+      "when": "發起運行、消費結果或自動推進。",
+      "expected": [
+        "服務端按批准階段/範圍決定能力，影子輸出不成為臨床執行或自動改病歷；UI 改標籤不改變權限，未授權請求拒絕。",
+        "應保留：允許動作、直接 API 拒絕及階段來源；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F009-implementation-acceptance"
+    },
+    {
+      "id": "EV-F009-006",
+      "title": "條件失效後停用和回退保留歷史",
+      "source_ac": [
+        "AC-F009-006"
+      ],
+      "given": "已獲准範圍隨後出現撤權、規則/本體失效、高風險事件或運維條件失效。",
+      "when": "消費失效事件或下一次執行前核對。",
+      "expected": [
+        "停止受影響自動能力、回到允許階段/人工路徑並記錄原因/範圍/責任；舊結果/意見/簽字仍保留，不通過清庫或回滾 checkpoint 抹除事實。",
+        "應保留：停止事件、運行拒絕、歷史仍可回查；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F009-implementation-acceptance"
+    },
+    {
+      "id": "EV-F009-007",
+      "title": "修復與擴大範圍必須重新核驗",
+      "source_ac": [
+        "AC-F009-007"
+      ],
+      "given": "舊申請被否決/停用，提交修復，或更換模型/本體/規則並請求新範圍。",
+      "when": "申請恢復或晉級。",
+      "expected": [
+        "明確受影響條件和重驗基線，必要證據重新滿足才產生新決定；一期範圍外申請指出範圍變更前置，不自行批准全院全病種。",
+        "應保留：新舊申請關係、複驗清單與拒絕原因；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F009-implementation-acceptance"
+    },
+    {
+      "id": "EV-F009-008",
+      "title": "管理視圖顯示真實門檻與責任",
+      "source_ac": [
+        "AC-F009-008"
+      ],
+      "given": "授權管理/業務責任人查看多項通過/阻斷/待確認條件及歷史範圍。",
+      "when": "定位申請、回查證據、作允許決定並返回。",
+      "expected": [
+        "顯示實際階段/版本/缺項/責任及已保存決定；列表/詳情/計數同源，風險含文字、禁用原因可讀；無權人員不能看到超範圍正文。",
+        "應保留：條件明細、兩視口、返回狀態和審計；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F009-implementation-acceptance"
+    },
+    {
+      "id": "EV-F009-009",
+      "title": "向運行與交付提供同一准入事實",
+      "source_ac": [
+        "AC-F009-009"
+      ],
+      "given": "運行入口和 F010 同時讀取當前及歷史決定，並有過期/重複投遞事件。",
+      "when": "交接准入或未放行基線。",
+      "expected": [
+        "消費者取得相同批准範圍/版本/限制，重複事件不重複啟用；未放行可作為說明交付但不變成批准，當前失效不被舊快照恢復。",
+        "應保留：同版 GateDecision、限制傳播和冪等結果；合成/替身、真實執行和專業驗收分別標識。"
+      ],
+      "check_ref": "F009-implementation-acceptance"
+    }
+  ],
+  "checks": [
+    {
+      "id": "F009-implementation-acceptance",
+      "method": "manual",
+      "inputs": [
+        "backend/medical_quality/release.py",
+        "backend/medical_quality/access.py",
+        "backend/medical_quality/quality.py",
+        "frontend/src/App.tsx",
+        "frontend/src/pages/CasePage.tsx",
+        "frontend/src/pages/OperationsPages.tsx",
+        "backend/tests/test_evaluation_delivery.py",
+        "backend/tests/test_access.py",
+        "frontend/e2e",
+        "docs/verification/F009-implementation.md",
+        "backend/uv.lock",
+        "frontend/package-lock.json",
+        "backend/tests/test_stage_capabilities.py"
+      ],
+      "procedure": "按 docs/verification/F009-implementation.md 的逐用例臺賬核對實際斷言與範圍；工程命令/報告複用 development-report.md 的同輸入結果。對 not_run 項按原 given/when 補足獨立場景；對 blocked 項只在真實資料/身份/責任前置到位後執行，不能用重複工程測試充當專業驗收。",
+      "evidence": "docs/verification/F009-implementation.md 與 docs/verification/development-report.md；原生收據在 artifacts/verification/，綁定本身不代表全部通過。"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+# 医疗原始数据仅保留在本地，不进入普通 Git 历史
+/Data/医疗病历质控/0*/
+
+# 后续客户原件保留本地
+/Raw/
+
+# 项目运行依赖与可再生产物
+.venv/
+node_modules/
+__pycache__/
+*.py[cod]
+/MedicalQuality/frontend/dist/
+/MedicalQuality/backend/.runtime/
+/MedicalQuality/.runtime/
+/MedicalQuality/.evoontology/
+/MedicalQuality/artifacts/
+/MedicalQuality/frontend/test-results/
+/MedicalQuality/frontend/playwright-report/
+/MedicalQuality/frontend/.vite/
+/MedicalQuality/backend/.pytest_cache/
+/MedicalQuality/backend/.ruff_cache/
+/MedicalQuality/backend/.coverage
+*.egg-info/
+.env
+.env.local
+
+# 需求看板由数据、Skill 模板与项目生成脚本重建
+/MedicalQuality/docs/02_requirement-playground/index.html
+/.codex/maintenance/

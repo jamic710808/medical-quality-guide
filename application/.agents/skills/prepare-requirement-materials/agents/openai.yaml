@@ -1,0 +1,4 @@
+interface:
+  display_name: "準備已確認需求資料"
+  short_description: "建立需求、溝通記錄和業務約定三類原始資料目錄，引導 FDE 放入對應文件"
+  default_prompt: "使用 $prepare-requirement-materials，在當前工作目錄的 Raw/confirmed-requirements/ 下建立 customer-requirements/、communication-records/、business-agreements/ 三個子目錄，並告訴我每類應放哪些文件。先只准備目錄。"

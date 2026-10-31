@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent 技術選型與業務編排"
+  short_description: "按業務狀態、工具權限和接入方式選擇 Agent 框架或運行環境，驗證恢復並銜接實現"
+  default_prompt: "使用 $select-agent-architecture，結合當前業務流程、工具、狀態與數據域，比較合適的 Agent 編排或運行方案，並按本次授權完成驗證、實現或 Feature 計劃。"

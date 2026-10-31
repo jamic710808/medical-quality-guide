@@ -1,0 +1,525 @@
+import type {
+  Ontology,
+  EntityType,
+  Property,
+  Relationship,
+  RelationshipAttribute,
+  DataBinding,
+} from '../../data/ontology';
+
+export class RDFParseError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'RDFParseError';
+  }
+}
+
+/**
+ * Get the text content of a child element by local name within a parent element.
+ * Searches across common RDF/OWL namespaces.
+ */
+function getChildText(
+  parent: Element,
+  localName: string,
+  namespace?: string,
+): string | null {
+  // Try namespace-aware lookup first
+  if (namespace) {
+    const els = parent.getElementsByTagNameNS(namespace, localName);
+    if (els.length > 0) return els[0].textContent;
+  }
+
+  // Fallback: try all children by local name match
+  for (let i = 0; i < parent.children.length; i++) {
+    const child = parent.children[i];
+    const childLocal = child.localName || child.tagName.split(':').pop();
+    if (childLocal === localName) {
+      return child.textContent;
+    }
+  }
+  return null;
+}
+
+/**
+ * Get the rdf:resource attribute from a child element.
+ */
+function getChildResource(
+  parent: Element,
+  localName: string,
+): string | null {
+  for (let i = 0; i < parent.children.length; i++) {
+    const child = parent.children[i];
+    const childLocal = child.localName || child.tagName.split(':').pop();
+    if (childLocal === localName) {
+      return (
+        child.getAttribute('rdf:resource') ||
+        child.getAttributeNS('http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'resource')
+      );
+    }
+  }
+  return null;
+}
+
+/**
+ * Get all rdf:resource attribute values from children with a given local name.
+ * Children without an rdf:resource attribute (e.g. nested owl:Restriction
+ * nodes) are ignored.
+ */
+function getChildResources(
+  parent: Element,
+  localName: string,
+  namespace?: string,
+): string[] {
+  const results: string[] = [];
+  for (let i = 0; i < parent.children.length; i++) {
+    const child = parent.children[i];
+    const childLocal = child.localName || child.tagName.split(':').pop();
+    if (childLocal !== localName || (namespace && child.namespaceURI !== namespace)) continue;
+    const resource =
+      child.getAttribute('rdf:resource') ||
+      child.getAttributeNS(RDF_NS, 'resource');
+    if (resource) results.push(resource);
+  }
+  return results;
+}
+
+/**
+ * Get all text values from children with a given local name.
+ */
+function getChildTexts(parent: Element, localName: string): string[] {
+  const results: string[] = [];
+  for (let i = 0; i < parent.children.length; i++) {
+    const child = parent.children[i];
+    const childLocal = child.localName || child.tagName.split(':').pop();
+    if (childLocal === localName && child.textContent) {
+      results.push(child.textContent);
+    }
+  }
+  return results;
+}
+
+/**
+ * Extract the local name (fragment) from a URI.
+ * e.g., "http://example.org/ontology/foo/Customer" → "Customer"
+ */
+function localNameFromUri(uri: string): string {
+  const hashIdx = uri.lastIndexOf('#');
+  if (hashIdx >= 0) return uri.substring(hashIdx + 1);
+  const slashIdx = uri.lastIndexOf('/');
+  if (slashIdx >= 0) return uri.substring(slashIdx + 1);
+  return uri;
+}
+
+/**
+ * Uncapitalize the first character.
+ */
+function uncapitalize(str: string): string {
+  return str.charAt(0).toLowerCase() + str.slice(1);
+}
+
+function createUniqueId(baseId: string, usedIds: Set<string>): string {
+  const base = baseId || 'resource';
+  let candidate = base;
+  let suffix = 2;
+  while (usedIds.has(candidate)) {
+    candidate = `${base}-${suffix}`;
+    suffix += 1;
+  }
+  usedIds.add(candidate);
+  return candidate;
+}
+
+const VALID_PROPERTY_TYPES = ['string', 'integer', 'decimal', 'double', 'date', 'datetime', 'boolean', 'enum'] as const;
+type PropertyType = (typeof VALID_PROPERTY_TYPES)[number];
+
+function isValidPropertyType(t: string): t is PropertyType {
+  return (VALID_PROPERTY_TYPES as readonly string[]).includes(t);
+}
+
+const XSD_TO_TYPE: Record<string, PropertyType> = {
+  string: 'string',
+  integer: 'integer',
+  int: 'integer',
+  long: 'integer',
+  decimal: 'decimal',
+  float: 'decimal',
+  double: 'double',
+  date: 'date',
+  dateTime: 'datetime',
+  boolean: 'boolean',
+};
+
+const VALID_CARDINALITIES = ['one-to-one', 'one-to-many', 'many-to-one', 'many-to-many'] as const;
+type Cardinality = (typeof VALID_CARDINALITIES)[number];
+
+function isValidCardinality(c: string): c is Cardinality {
+  return (VALID_CARDINALITIES as readonly string[]).includes(c);
+}
+
+const RDF_NS = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
+const RDFS_NS = 'http://www.w3.org/2000/01/rdf-schema#';
+const OWL_NS = 'http://www.w3.org/2002/07/owl#';
+
+/**
+ * Collect all elements declaring a resource of the given type, supporting both
+ * RDF/XML syntaxes:
+ *
+ *  1. Typed node elements:       `<owl:Class rdf:about="...">`
+ *  2. rdf:Description elements:  `<rdf:Description rdf:about="...">`
+ *                                `  <rdf:type rdf:resource=".../owl#Class"/>`
+ *
+ * Many serializers (e.g. Python's rdflib, used by Brick and other published
+ * ontologies) emit only the second form, which we previously ignored (#85).
+ */
+function indexDescriptionTypes(root: Element): Map<string, Element[]> {
+  const index = new Map<string, Element[]>();
+  const descriptions = root.getElementsByTagNameNS(RDF_NS, 'Description');
+
+  for (let i = 0; i < descriptions.length; i++) {
+    const element = descriptions[i];
+    const indexedTypes = new Set<string>();
+    for (let j = 0; j < element.children.length; j++) {
+      const child = element.children[j];
+      if (child.namespaceURI !== RDF_NS || child.localName !== 'type') continue;
+      const resource =
+        child.getAttribute('rdf:resource') || child.getAttributeNS(RDF_NS, 'resource');
+      if (!resource || indexedTypes.has(resource)) continue;
+      indexedTypes.add(resource);
+      const elements = index.get(resource) ?? [];
+      elements.push(element);
+      index.set(resource, elements);
+    }
+  }
+
+  return index;
+}
+
+function getTypedElements(
+  root: Element,
+  namespace: string,
+  localName: string,
+  descriptionTypeIndex: Map<string, Element[]>,
+): Element[] {
+  const results: Element[] = Array.from(root.getElementsByTagNameNS(namespace, localName));
+  const typeUri = namespace + localName;
+  results.push(...(descriptionTypeIndex.get(typeUri) ?? []));
+  return results;
+}
+
+interface ParsedDatatypeProperty {
+  about: string;
+  label: string;
+  domainUri: string | null;
+  rangeUri: string | null;
+  comment: string | null;
+  isIdentifier: boolean;
+  unit: string | null;
+  enumValues: string | null;
+  propertyType: string | null;
+  relationshipAttributeOf: string | null;
+  attributeType: string | null;
+}
+
+/**
+ * Parse an RDF/XML (OWL) string into an Ontology and optional DataBindings.
+ */
+export function parseRDF(rdfXml: string, preserveIri = false): { ontology: Ontology; bindings: DataBinding[] } {
+  const medicalLocalName = (uri: string) => preserveIri && uri.startsWith('urn:') ? uri.slice(uri.lastIndexOf(':') + 1) : localNameFromUri(uri);
+  // Give Turtle input a clear, actionable error instead of an XML parse error.
+  const sniff = rdfXml.trimStart();
+  if (!sniff.startsWith('<') && /^(@prefix|@base|PREFIX\s|BASE\s)/m.test(sniff)) {
+    throw new RDFParseError(
+      'This file appears to be Turtle (.ttl), which is not supported yet. ' +
+      'Please convert it to RDF/XML first (for example with Apache Jena "riot" or an online RDF converter).'
+    );
+  }
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(rdfXml, 'application/xml');
+
+  // Check for XML parse errors
+  const parseError = doc.querySelector('parsererror');
+  if (parseError) {
+    throw new RDFParseError(`Malformed XML: ${parseError.textContent?.trim() || 'parse error'}`);
+  }
+
+  const root = doc.documentElement;
+  const descriptionTypeIndex = indexDescriptionTypes(root);
+
+  // --- Extract ontology metadata ---
+  let ontologyName = '';
+  let ontologyDescription = '';
+
+  const ontologyEls = getTypedElements(root, OWL_NS, 'Ontology', descriptionTypeIndex);
+  if (ontologyEls.length > 0) {
+    const ontEl = ontologyEls[0];
+    ontologyName = getChildText(ontEl, 'label', RDFS_NS) || '';
+    ontologyDescription = getChildText(ontEl, 'comment', RDFS_NS) || '';
+  }
+
+  // --- Extract OWL Classes → EntityTypes ---
+  const classEls = getTypedElements(root, OWL_NS, 'Class', descriptionTypeIndex);
+  const entityMap = new Map<string, EntityType>();
+  const usedEntityIds = new Set<string>();
+
+  for (let i = 0; i < classEls.length; i++) {
+    const el = classEls[i];
+    const about = el.getAttribute('rdf:about') || el.getAttributeNS(RDF_NS, 'about') || '';
+    if (!about) continue;
+
+    const className = medicalLocalName(about);
+    const existingEntity = entityMap.get(about);
+    const entityId = existingEntity?.id
+      ?? createUniqueId(uncapitalize(className) || 'entity', usedEntityIds);
+    const label = getChildText(el, 'label', RDFS_NS) || className;
+    const description = getChildText(el, 'comment', RDFS_NS) || '';
+    const icon = getChildText(el, 'icon') || '📦';
+    const color = getChildText(el, 'color') || '#0078D4';
+
+    entityMap.set(about, {
+      id: entityId,
+      ...(preserveIri ? { iri: about } : {}),
+      name: label,
+      description,
+      icon,
+      color,
+      properties: [],
+    });
+  }
+
+  // --- Extract DatatypeProperties → Properties + Relationship Attributes ---
+  const dtPropEls = getTypedElements(
+    root,
+    OWL_NS,
+    'DatatypeProperty',
+    descriptionTypeIndex,
+  );
+  const parsedDtProps: ParsedDatatypeProperty[] = [];
+
+  for (let i = 0; i < dtPropEls.length; i++) {
+    const el = dtPropEls[i];
+    const about = el.getAttribute('rdf:about') || el.getAttributeNS(RDF_NS, 'about') || '';
+    if (!about) continue;
+
+    const comments = getChildTexts(el, 'comment');
+    const hasIdentifierComment = comments.some(c => /^identifier\s+property$/i.test(c.trim()));
+    const descriptionComment = comments.find(c => !/^identifier\s+property$/i.test(c.trim())) ?? null;
+
+    parsedDtProps.push({
+      about,
+      label: getChildText(el, 'label', RDFS_NS) || medicalLocalName(about),
+      domainUri: getChildResource(el, 'domain'),
+      rangeUri: getChildResource(el, 'range'),
+      comment: descriptionComment,
+      isIdentifier: getChildText(el, 'isIdentifier') === 'true' || hasIdentifierComment,
+      unit: getChildText(el, 'unit'),
+      enumValues: getChildText(el, 'enumValues'),
+      propertyType: getChildText(el, 'propertyType'),
+      relationshipAttributeOf: getChildText(el, 'relationshipAttributeOf'),
+      attributeType: getChildText(el, 'attributeType'),
+    });
+  }
+
+  // Collect relationship attributes separately
+  const relAttrMap = new Map<string, RelationshipAttribute[]>();
+
+  for (const dtProp of parsedDtProps) {
+    if (dtProp.relationshipAttributeOf) {
+      const relId = dtProp.relationshipAttributeOf;
+      if (!relAttrMap.has(relId)) {
+        relAttrMap.set(relId, []);
+      }
+      relAttrMap.get(relId)!.push({
+        name: dtProp.label,
+        type: dtProp.attributeType || 'string',
+      });
+      continue;
+    }
+
+    // Regular entity property — match to entity by domain URI
+    if (!dtProp.domainUri) continue;
+
+    const entity = entityMap.get(dtProp.domainUri);
+    if (!entity) continue;
+
+    // Determine property type
+    let propType: PropertyType = 'string';
+    if (dtProp.propertyType && isValidPropertyType(dtProp.propertyType)) {
+      propType = dtProp.propertyType;
+    } else if (dtProp.rangeUri) {
+      const xsdLocal = medicalLocalName(dtProp.rangeUri);
+      if (XSD_TO_TYPE[xsdLocal]) {
+        propType = XSD_TO_TYPE[xsdLocal];
+      }
+    }
+
+    const prop: Property = {
+      ...(preserveIri ? { iri: dtProp.about } : {}),
+      name: dtProp.label,
+      type: propType,
+    };
+
+    if (dtProp.isIdentifier) prop.isIdentifier = true;
+    if (dtProp.unit) prop.unit = dtProp.unit;
+    if (dtProp.enumValues) {
+      prop.values = dtProp.enumValues.split(',');
+    }
+    if (dtProp.comment) prop.description = dtProp.comment;
+
+    entity.properties.push(prop);
+  }
+
+  // --- Extract ObjectProperties → Relationships ---
+  const objPropEls = getTypedElements(
+    root,
+    OWL_NS,
+    'ObjectProperty',
+    descriptionTypeIndex,
+  );
+  const relationships: Relationship[] = [];
+  const usedRelationshipIds = new Set<string>();
+
+  for (let i = 0; i < objPropEls.length; i++) {
+    const el = objPropEls[i];
+    const about = el.getAttribute('rdf:about') || el.getAttributeNS(RDF_NS, 'about') || '';
+    if (!about) continue;
+
+    const sourceRelId = medicalLocalName(about) || 'relationship';
+    const relId = createUniqueId(sourceRelId, usedRelationshipIds);
+    const label = getChildText(el, 'label', RDFS_NS) || sourceRelId;
+    const description = getChildText(el, 'comment', RDFS_NS) || undefined;
+
+    // Get from/to entity IDs — prefer explicit ont:fromEntityId/toEntityId,
+    // fallback to domain/range URI.  Always uncapitalize to match entity IDs.
+    let fromId = uncapitalize(getChildText(el, 'fromEntityId') || '');
+    let toId = uncapitalize(getChildText(el, 'toEntityId') || '');
+
+    if (!fromId) {
+      const domainUri = getChildResource(el, 'domain');
+      if (domainUri) {
+        fromId = entityMap.get(domainUri)?.id
+          ?? uncapitalize(medicalLocalName(domainUri));
+      }
+    }
+    if (!toId) {
+      const rangeUri = getChildResource(el, 'range');
+      if (rangeUri) {
+        toId = entityMap.get(rangeUri)?.id
+          ?? uncapitalize(medicalLocalName(rangeUri));
+      }
+    }
+
+    const cardinalityStr = getChildText(el, 'cardinality') || 'one-to-many';
+    const cardinality: Cardinality = isValidCardinality(cardinalityStr)
+      ? cardinalityStr
+      : 'one-to-many';
+
+    const rel: Relationship = {
+      id: relId,
+      ...(preserveIri ? { iri: about, cardinalityKnown: Boolean(getChildText(el, 'cardinality')) } : {}),
+      name: label,
+      from: fromId,
+      to: toId,
+      cardinality,
+    };
+
+    if (description) rel.description = description;
+
+    // Attach relationship attributes
+    const attrs = relAttrMap.get(sourceRelId);
+    if (attrs && attrs.length > 0) {
+      rel.attributes = attrs;
+    }
+
+    // Skip relationships with unresolved source or target
+    if (!rel.from || !rel.to) continue;
+
+    relationships.push(rel);
+  }
+
+  // --- Extract rdfs:subClassOf hierarchy → Relationships (#101) ---
+  // Many published ontologies (e.g. Brick) carry little or no
+  // rdfs:domain/rdfs:range on their object properties; their dominant graph
+  // structure is the class taxonomy. Surface it as relationships so imported
+  // hierarchies are visible instead of rendering as disconnected nodes.
+  const seenSubClassEdges = new Set<string>();
+
+  for (let i = 0; i < classEls.length; i++) {
+    const el = classEls[i];
+    const about = el.getAttribute('rdf:about') || el.getAttributeNS(RDF_NS, 'about') || '';
+    if (!about) continue;
+
+    const subEntity = entityMap.get(about);
+    if (!subEntity) continue;
+
+    const superUris = getChildResources(el, 'subClassOf', RDFS_NS);
+    for (const superUri of superUris) {
+      // Only link classes that were imported as entities; skip external
+      // references (owl:Thing, other vocabularies) and self-references.
+      const superEntity = entityMap.get(superUri);
+      if (!superEntity || superEntity === subEntity) continue;
+
+      const edgeKey = `${subEntity.id}\u0000${superEntity.id}`;
+      if (seenSubClassEdges.has(edgeKey)) continue;
+      seenSubClassEdges.add(edgeKey);
+
+      relationships.push({
+        id: createUniqueId(
+          `${subEntity.id}-subClassOf-${superEntity.id}`,
+          usedRelationshipIds,
+        ),
+        name: 'subClassOf',
+        from: subEntity.id,
+        to: superEntity.id,
+        cardinality: 'many-to-one',
+        kind: 'subclass',
+      });
+    }
+  }
+
+  // --- Extract DataBindings ---
+  const bindings: DataBinding[] = [];
+  // DataBinding uses the ontology's own namespace, so match by local name.
+  const dataBindingElements = root.getElementsByTagNameNS('*', 'DataBinding');
+  for (let i = 0; i < dataBindingElements.length; i++) {
+    const el = dataBindingElements[i];
+
+    const entityId = getChildText(el, 'boundEntityId') || '';
+    const source = getChildText(el, 'source') || '';
+    const table = getChildText(el, 'table') || '';
+    const mappingTexts = getChildTexts(el, 'columnMapping');
+
+    const columnMappings: Record<string, string> = {};
+    for (const mapping of mappingTexts) {
+      const eqIdx = mapping.indexOf('=');
+      if (eqIdx > 0) {
+        columnMappings[mapping.substring(0, eqIdx)] = mapping.substring(eqIdx + 1);
+      }
+    }
+
+    if (entityId) {
+      bindings.push({ entityTypeId: entityId, source, table, columnMappings });
+    }
+  }
+
+  // --- Build the Ontology ---
+  const entityTypes = Array.from(entityMap.values());
+
+  if (!ontologyName && entityTypes.length === 0) {
+    throw new RDFParseError('No ontology metadata or OWL classes found in the RDF document.');
+  }
+
+  const ontology: Ontology = {
+    name: ontologyName || 'Imported Ontology',
+    description: ontologyDescription,
+    entityTypes,
+    relationships,
+  };
+
+  if (preserveIri && ontologyEls.length > 0) {
+    const iri = ontologyEls[0].getAttributeNS(RDF_NS, 'about') || ontologyEls[0].getAttribute('rdf:about');
+    if (iri) ontology.iri = iri;
+  }
+
+  return { ontology, bindings };
+}

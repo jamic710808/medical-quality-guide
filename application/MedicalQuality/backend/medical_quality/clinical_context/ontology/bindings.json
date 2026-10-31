@@ -1,0 +1,30 @@
+{
+  "version": "0.1.0",
+  "bindings": [
+    {
+      "concept": "PatientRecord",
+      "namespace": "mimic_iv_demo",
+      "table": "mimic_iv_demo__patients",
+      "column": "subject_id",
+      "grain": "source_patient",
+      "status": "candidate"
+    },
+    {
+      "concept": "Encounter",
+      "namespace": "mimic_iv_demo",
+      "table": "mimic_iv_demo__admissions",
+      "column": "hadm_id",
+      "grain": "source_encounter",
+      "status": "candidate"
+    },
+    {
+      "concept": "ObservationRecord",
+      "namespace": "mimic_iv_demo",
+      "table": "mimic_iv_demo__labevents",
+      "column": "value",
+      "unit_column": "valueuom",
+      "grain": "source_observation",
+      "status": "candidate"
+    }
+  ]
+}

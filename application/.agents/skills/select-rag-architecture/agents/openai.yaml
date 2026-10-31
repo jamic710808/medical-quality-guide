@@ -1,0 +1,4 @@
+interface:
+  display_name: "知識檢索選型與構建"
+  short_description: "根據業務目標和數據特點選擇檢索架構，比較效果並銜接最小可運行構建"
+  default_prompt: "使用 $select-rag-architecture，結合當前業務需求、代表問題和指定數據，推薦有依據的檢索架構，設計最小驗證，並在本次授權範圍內完成構建與交接。"

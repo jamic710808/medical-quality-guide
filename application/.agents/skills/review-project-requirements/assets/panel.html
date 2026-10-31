@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23176755'/%3E%3Cpath d='M10 13h20M10 20h20M10 27h13' stroke='white' stroke-width='3'/%3E%3C/svg%3E">
+<title>__PROJECT_TITLE__ · 需求審閱</title>
+<style>
+:root{--ink:#202d32;--muted:#6d7a7c;--bg:#f3f5f3;--line:#dfe6e1;--paper:#fff;--accent:#176755;--accent-bg:#e6f2eb;--amber:#956022;--amber-bg:#faf1dd;--red:#a34d3b;--red-bg:#fbebe6;--radius:14px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer;color:inherit}button:disabled{cursor:default;opacity:.5}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #6cafa2;outline-offset:3px}button{border:0;background:none}
+h1,h2,h3,p{margin:0}h1{font-size:30px;line-height:1.35;letter-spacing:-.5px}h2{font-size:21px;line-height:1.5}h3{font-size:16px}a{color:var(--accent)}.muted{color:var(--muted)}.small{font-size:12px}.mono{font:11px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace}
+.shell{display:grid;grid-template-columns:218px minmax(0,1fr);min-height:100vh}
+.sidebar{background:#fff;border-right:1px solid var(--line);padding:30px 18px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column}
+.brand{display:flex;gap:10px;align-items:center;padding:0 10px;margin-bottom:38px;font-size:14px;font-weight:700;letter-spacing:0;white-space:nowrap}
+.brand-mark{flex-shrink:0;width:31px;height:31px;background:var(--accent);border-radius:9px;display:grid;place-items:center;color:white;font-size:18px;letter-spacing:0}
+.side-caption{font-size:10px;letter-spacing:2px;color:#8c9693;padding:0 13px;margin:18px 0 9px}.nav-btn{width:100%;display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:9px;text-align:left;margin:4px 0;color:#687471;font-weight:500}.nav-btn:hover{background:#f3f7f4}.nav-btn.active{background:var(--accent-bg);color:var(--accent);font-weight:650}.nav-icon{width:19px;text-align:center;font-size:16px}.nav-count{margin-left:auto;font-size:11px;padding:0 7px;border-radius:5px;background:#edf1ee}.nav-btn.active .nav-count{background:#d2e8db}.side-bottom{margin-top:auto;border-top:1px solid var(--line);padding:18px 11px 0}.saved-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#6a9d82;margin-right:6px}.side-bottom p{font-size:11px;color:#89948f;margin-top:6px;line-height:1.8}
+.workspace{min-width:0}.topbar{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 36px;background:#fafbf9;gap:16px}.breadcrumb{font-size:12px;color:#7c8882}.breadcrumb strong{color:#3f4d46;font-weight:500}.actions{display:flex;gap:10px;align-items:center}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:8px 14px;border-radius:8px;border:1px solid #d7e0d9;background:#fff;font-size:12px;font-weight:550;white-space:nowrap}.btn:hover{background:#f3f7f3}.btn.primary{background:var(--accent);color:white;border-color:var(--accent)}.btn.primary:hover{background:#125544}
+.main{padding:34px 36px 50px;max-width:1560px;margin:0 auto}.page-heading{display:flex;align-items:start;justify-content:space-between;gap:18px;margin-bottom:25px}.eyebrow{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--accent);margin-bottom:9px}.page-heading p{color:var(--muted);font-size:13px;margin-top:9px;max-width:800px}.badge{display:inline-flex;align-items:center;font-size:10px;line-height:1.7;padding:3px 8px;border-radius:5px;background:#edf1ee;color:#68786d;white-space:nowrap}.badge.green{background:var(--accent-bg);color:var(--accent)}.badge.amber{background:var(--amber-bg);color:var(--amber)}.badge.red{background:var(--red-bg);color:var(--red)}.heading-badge{padding:5px 11px;margin-top:6px}
+.hero{background:#e9f0ea;border:1px solid #d8e3da;border-radius:var(--radius);padding:27px 30px;display:grid;grid-template-columns:1fr 265px;gap:36px;margin-bottom:22px;position:relative;overflow:hidden}.hero h2{font-size:23px;line-height:1.6;max-width:700px;font-weight:650}.hero p{color:#5b6d60;font-size:12px;margin-top:13px}.hero-side{border-left:1px solid #cbdccf;padding-left:27px;display:flex;flex-direction:column;justify-content:center}.hero-side strong{font-size:13px;color:#466252;margin-bottom:8px}.hero-side p{margin:0;line-height:1.95;font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:28px}.stat{background:white;padding:18px 21px;border:1px solid var(--line);border-radius:11px;text-align:left}.stat small{font-size:11px;color:var(--muted)}.stat strong{font-size:29px;font-weight:550;line-height:1.6;display:block;letter-spacing:-.7px}.stat span{font-size:10px;color:#8b968f}.stat:hover{border-color:#9abfac}
+.overview-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(280px,1fr);gap:22px}.section-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.section-heading h2{font-size:15px}.text-btn{color:var(--accent);font-size:11px;padding:3px}.flow-row{background:white;border:1px solid var(--line);border-radius:10px;padding:17px 18px;margin-bottom:10px;display:flex;gap:16px;align-items:flex-start;text-align:left;width:100%}.flow-row:hover{border-color:#94b6a6;box-shadow:0 3px 10px #173e2a05}.step-num{font-size:11px;min-width:28px;height:28px;display:grid;place-items:center;border:1px solid #d9e5dc;color:#6a8a75;border-radius:7px;margin-top:1px}.flow-row h3{font-size:13px;margin:0 0 4px}.flow-row p{font-size:11px;color:var(--muted);line-height:1.8}.row-arrow{margin-left:auto;color:#8ca596;padding:3px}.question-box{background:#fffdf7;border:1px solid #eae1c9;border-radius:12px;overflow:hidden}.question-row{padding:16px 19px;border-bottom:1px solid #eee8d9;width:100%;text-align:left}.question-row:last-child{border-bottom:0}.question-row h3{font-size:12px;font-weight:550}.question-row p{color:#8a806c;font-size:11px;margin-top:5px}.question-row:hover{background:#fcf8eb}.overview-foot{margin-top:20px;padding:17px 20px;border-radius:10px;background:#edf1ef;font-size:11px;color:#6a7c71;line-height:1.9}
+.toolbar{display:flex;gap:12px;margin-bottom:20px}.search{flex:1;display:flex;align-items:center;gap:10px;background:white;border:1px solid var(--line);padding:8px 14px;border-radius:8px}.search span{color:#8b9690;font-size:17px}.search input{background:none;border:0;width:100%;outline:none;font-size:12px;min-width:0}.toolbar select{background:white;border:1px solid var(--line);border-radius:8px;padding:7px 11px;font-size:12px;color:#607166;max-width:180px}.result-count{font-size:11px;color:#8a958e;margin-bottom:12px}
+.review-layout{display:grid;grid-template-columns:minmax(240px,.93fr) minmax(340px,1.25fr);gap:22px;align-items:start}.item-list{display:flex;flex-direction:column;gap:11px}.item-card{padding:18px 19px;text-align:left;background:white;border:1px solid var(--line);border-radius:11px;width:100%;position:relative}.item-card:hover{border-color:#9fbcaa}.item-card.selected{border-color:#508b6e;background:#f7fbf7;box-shadow:inset 3px 0 #39805c}.card-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.item-card h3{font-size:14px;line-height:1.7;margin-bottom:8px}.item-card p{font-size:12px;color:var(--muted);line-height:1.85}.card-footer{font-size:10px;color:#9aa39d;margin-top:13px;display:flex;justify-content:space-between}.detail{background:white;border:1px solid var(--line);border-radius:13px;overflow:hidden;position:sticky;top:20px}.detail-head{padding:23px 25px 20px;border-bottom:1px solid #edf0ec}.detail-head h2{font-size:19px;margin:11px 0 10px}.detail-head p{font-size:12px;line-height:1.95;color:#7a8780}.detail-body{padding:4px 25px 22px}.field{margin-top:19px}.field h3{font-size:11px;font-weight:600;color:#728678;margin-bottom:6px}.field p{font-size:12px;line-height:1.95;white-space:pre-wrap}.ref-list{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.ref{font:10px/1.8 ui-monospace,Consolas,monospace;padding:3px 8px;background:#f0f5f1;color:var(--accent);border:1px solid #dce8df;border-radius:5px}.ref:hover{background:#e1eee4}.review-box{background:#fafbf8;border-top:1px solid #e8ede6;padding:21px 25px}.review-box h3{font-size:12px;margin-bottom:10px}.status-buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}.status-btn{font-size:11px;border:1px solid #dce3db;background:white;border-radius:6px;padding:7px 2px}.status-btn.active{background:#e5eee6;border-color:#78a284;color:#275f3c}.status-btn[data-status=revise].active{background:var(--red-bg);border-color:#d99883;color:var(--red)}.status-btn[data-status=discuss].active{background:var(--amber-bg);border-color:#d9bd83;color:var(--amber)}.review-box textarea{width:100%;resize:vertical;min-height:91px;border:1px solid var(--line);padding:10px;border-radius:8px;margin-top:12px;font-size:12px;background:white;line-height:1.8}.review-box label{font-size:11px;color:#76877a;display:block;margin-top:12px}.review-box .hint{margin-top:9px;color:#8c998e;font-size:10px;line-height:1.8}.empty{background:#fff;border:1px dashed #ccd9cf;border-radius:12px;text-align:center;padding:44px 22px;color:#8a978c;font-size:13px}.empty h3{color:#4b6352;margin-bottom:6px}.view-note{background:#eaf0e9;border-left:3px solid #8faa93;padding:11px 15px;font-size:11px;color:#61735f;line-height:1.9;margin-bottom:18px}
+dialog{border:1px solid var(--line);border-radius:15px;max-width:840px;width:calc(100vw - 42px);max-height:85vh;padding:0;box-shadow:0 22px 80px #162e2330;color:var(--ink)}dialog::backdrop{background:#10201865;backdrop-filter:blur(3px)}.dialog-head{padding:21px 25px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;position:sticky;top:0;background:#fff;z-index:2}.dialog-head h2{font-size:18px}.close-btn{width:30px;height:30px;border-radius:7px;background:#f0f4ef;font-size:20px;line-height:1}.dialog-body{padding:24px 26px 30px}.document-section{margin-bottom:24px}.document-section h3{font-size:15px;margin-bottom:9px}.source-text{font-size:13px;line-height:2;white-space:pre-wrap;overflow-wrap:anywhere}.doc-actions{display:flex;gap:10px;align-items:center;margin-bottom:22px;flex-wrap:wrap}.document-list{display:grid;gap:10px}.document-btn{border:1px solid var(--line);border-radius:9px;padding:15px 18px;text-align:left;background:#fafcf9;display:flex;justify-content:space-between;gap:12px;align-items:center}.document-btn strong{font-size:13px;font-weight:550}.document-btn small{font-size:11px;color:var(--muted)}
+.export-preview{background:#f4f6f2;border:1px solid var(--line);border-radius:9px;padding:17px;margin-top:18px;font-size:12px;line-height:1.9;white-space:pre-wrap;max-height:390px;overflow:auto}.export-actions{display:flex;gap:9px;flex-wrap:wrap}.toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%,15px);background:#233d2b;color:white;padding:10px 19px;border-radius:8px;font-size:12px;opacity:0;pointer-events:none;z-index:10;transition:.2s;max-width:90vw}.toast.show{opacity:1;transform:translate(-50%,0)}#save-message.warning{color:var(--red)}
+.thread-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin-bottom:22px}.thread-tab{padding:12px 13px;background:#fff;border:1px solid var(--line);border-radius:9px;text-align:left;min-width:0}.thread-tab strong{display:block;font-size:12px;line-height:1.75;margin:5px 0 7px}.thread-tab.active{border-color:var(--accent);background:#edf6ef;box-shadow:inset 0 3px var(--accent)}.thread-tab .mono{color:#87998b;font-size:10px}.thread-context{display:flex;justify-content:space-between;gap:16px;align-items:center;margin:0 0 17px;font-size:11px;color:#738278}.thread-context strong{color:#43664d}.thread-map{display:grid;grid-template-columns:minmax(200px,.92fr) minmax(280px,1.3fr) minmax(240px,1.06fr);gap:33px;align-items:start}.thread-column{position:relative;min-width:0}.thread-column h2,.thread-section h2{font-size:14px;margin-bottom:13px;display:flex;gap:10px;align-items:center}.thread-column.sources:after{content:"依據 →";position:absolute;right:-32px;top:104px;font-size:9px;color:#78a187}.thread-column.rules:before{content:"← 約束";position:absolute;left:-32px;top:104px;font-size:9px;color:#b09764}.thread-source-file{border:1px solid var(--line);background:#fff;border-radius:9px;padding:12px 14px;margin-bottom:9px}.file-button{font-size:12px;line-height:1.75;font-weight:550;text-align:left;padding:7px 0 5px;display:block;width:100%;overflow-wrap:anywhere}.file-button:hover{color:var(--accent)}.source-line{font-size:10px;color:#89978f;display:flex;justify-content:space-between;gap:8px}.source-line button{color:var(--accent);font-size:10px;padding:0}.requirement-node{background:#edf5ee;border:1px solid #a2c5ab;border-radius:13px;padding:21px}.requirement-node h3{font-size:20px;line-height:1.65;margin:12px 0 10px}.requirement-node>p{font-size:12px;color:#627865;line-height:1.9}.requirement-node .field{padding-top:14px;border-top:1px solid #d8e6da}.requirement-node .field h3{font-size:11px;margin:0 0 6px}.requirement-node .field p{font-size:12px}.requirement-node .btn{width:100%;margin-top:21px}.thread-lower{display:grid;grid-template-columns:1.25fr 1fr;gap:22px;margin-top:28px;padding-top:23px;border-top:1px solid var(--line)}.relation-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:15px 16px;margin-bottom:10px}.rules .relation-card{background:#fffdf7;border-color:#e7dfca}.relation-card-head{display:flex;justify-content:space-between;align-items:start;gap:7px}.relation-title{font-size:12px;font-weight:600;text-align:left;padding:0;line-height:1.8}.relation-title:hover{color:var(--accent)}.relation-reason{font-size:11px;line-height:1.95;color:#748074;margin-top:8px}.relation-date{color:#9b9f93;font-size:10px;display:block;margin-bottom:4px}.relation-card .ref-list{margin-top:10px}.relation-card .ref{font-size:9px}.thread-materials{margin-top:21px}.material-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.thread-empty{padding:19px;font-size:12px;color:#8a978d;background:#f9fbf8;border:1px dashed #d1ddd2;border-radius:9px}.related-threads{padding:12px 0 4px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}.related-threads>span{font-size:11px;color:#7c8b7e}.thread-link{font-size:11px;padding:4px 9px;border:1px solid #d2e2d5;background:#f0f7f0;border-radius:6px;color:#326444;text-align:left}.thread-link:hover{background:#dfedde}.thread-entry{margin-top:15px}.thread-proof{font-size:10px;color:#8e998f;margin-top:18px;line-height:1.8}#thread-item-content{padding:0}#thread-item-content .detail-head{border-top:0}#thread-item-content .related-threads{margin-top:16px}#thread-source-relations{margin-bottom:18px}
+@media(min-width:1600px){.main{padding-top:40px}.hero{padding:34px}.overview-grid{gap:28px}}
+@media(max-width:1250px){.thread-map{grid-template-columns:minmax(190px,.85fr) minmax(250px,1.25fr);gap:20px}.thread-column.rules{grid-column:1/-1}.thread-column.rules>.rules-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.thread-column.sources:after,.thread-column.rules:before{display:none}.thread-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}.thread-lower{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.thread-tabs{display:flex;overflow-x:auto;padding-bottom:6px}.thread-tab{min-width:164px}.thread-context{display:block;line-height:1.9}.thread-context>span{display:block}.thread-map{display:flex;flex-direction:column;gap:22px}.thread-column{width:100%}.thread-column.focus{order:-1}.thread-column.rules>.rules-list,.thread-lower,.material-links{display:block}.thread-column h2,.thread-section h2{margin-bottom:10px}.requirement-node{padding:19px}.requirement-node h3{font-size:19px}.related-threads{align-items:start}}
+@media(max-width:1100px){.shell{grid-template-columns:186px minmax(0,1fr)}.sidebar{padding:24px 11px}.main{padding:26px 24px}.topbar{padding:0 24px}.hero{grid-template-columns:1fr;gap:18px}.hero-side{border-left:0;border-top:1px solid #cbdccf;padding:15px 0 0}.overview-grid{grid-template-columns:1fr}.review-layout{grid-template-columns:1fr}.detail{position:static}.item-list{display:grid;grid-template-columns:1fr 1fr}.stats{gap:10px}.stat{padding:15px}}
+@media(max-width:720px){.shell{display:block}.sidebar{position:static;height:auto;padding:17px 16px 8px;border-right:0;border-bottom:1px solid var(--line)}.brand{margin:0 0 13px;padding:0;font-size:15px}.brand-mark{width:26px;height:26px}.side-caption,.side-bottom{display:none}.sidebar nav{display:flex;overflow-x:auto;gap:5px;padding-bottom:7px}.nav-btn{width:auto;white-space:nowrap;padding:8px 12px;font-size:12px;margin:0}.nav-icon{display:none}.nav-count{margin-left:3px}.topbar{height:auto;min-height:61px;padding:13px 17px;flex-wrap:wrap;gap:9px}.actions{gap:7px}.btn{padding:7px 10px;font-size:11px}.main{padding:24px 17px}.page-heading{display:block;margin-bottom:19px}.heading-badge{margin-top:13px}h1{font-size:24px}.page-heading p{font-size:12px}.hero{padding:21px}.hero h2{font-size:19px}.stats{grid-template-columns:1fr 1fr}.stat strong{font-size:25px}.toolbar{gap:8px}.toolbar select{max-width:120px;font-size:11px}.item-list{grid-template-columns:1fr}.detail-head,.detail-body,.review-box{padding-left:19px;padding-right:19px}.dialog-head{padding:18px}.dialog-body{padding:20px}.document-btn{display:block}.document-btn small{display:block;margin-top:5px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+<div class="brand"><span class="brand-mark">≋</span>需求對齊工作臺</div>
+<div class="side-caption">項目審閱</div><nav id="navigation" aria-label="審閱分類"></nav>
+<div class="side-bottom"><span class="small"><span class="saved-dot"></span><span id="save-message" role="status">本機審閱記錄</span></span><p>審閱意見保存在當前瀏覽器。<br>可導出分享，不等同業務批准。</p></div>
+</aside>
+<div class="workspace">
+<header class="topbar"><div class="breadcrumb">項目資料 <span style="margin:0 10px">/</span> <strong id="breadcrumb">需求審閱</strong></div><div class="actions"><button class="btn" id="sources-button">查看來源文檔</button><button class="btn primary" id="export-button">導出審閱記錄 <span aria-hidden="true">↗</span></button></div></header>
+<main id="main" class="main"></main>
+</div>
+</div>
+<dialog id="source-dialog" aria-labelledby="source-title"><div class="dialog-head"><div><h2 id="source-title">來源文檔</h2><p id="source-subtitle" class="muted small"></p></div><button class="close-btn" data-close="source-dialog" aria-label="關閉來源">×</button></div><div id="source-content" class="dialog-body"></div></dialog>
+<dialog id="thread-item-dialog" aria-labelledby="thread-item-title"><div class="dialog-head"><div><h2 id="thread-item-title">關聯事項</h2><p id="thread-item-context" class="muted small"></p></div><button class="close-btn" data-close="thread-item-dialog" aria-label="返回需求關聯">×</button></div><div id="thread-item-content"></div></dialog>
+<dialog id="export-dialog" aria-labelledby="export-title"><div class="dialog-head"><div><h2 id="export-title">導出審閱記錄</h2><p class="muted small">將當前資料版本下的人工意見交給下一次溝通或文檔修訂。</p></div><button class="close-btn" data-close="export-dialog" aria-label="關閉導出">×</button></div><div class="dialog-body"><div class="export-actions"><button class="btn primary" id="download-md">下載 Markdown</button><button class="btn" id="download-json">下載 JSON</button><button class="btn" id="copy-feedback">複製修訂意見</button></div><pre id="export-preview" class="export-preview"></pre></div></dialog>
+<div id="toast" class="toast" role="status"></div>
+<script type="application/json" id="review-data">__REVIEW_DATA__</script>
+<script>
+"use strict";
+const DATA=JSON.parse(document.getElementById("review-data").textContent);
+const CATEGORIES={
+threads:{title:"需求關聯",icon:"⎇",description:"沿一條需求，查看對應文件、業務約定、溝通進展與待確認事項。"},
+overview:{title:"項目概覽",icon:"◈",description:"把客戶要什麼、業務怎樣約定、溝通到了哪裡放在一起看。"},
+requirements:{title:"客戶需求",icon:"▤",description:"從客戶訴求理解擬提供的能力、完成標準和適用邊界。"},
+agreements:{title:"業務約定",icon:"◇",description:"核對業務口徑、適用條件和決策責任，保留每項約定的限制。"},
+communications:{title:"溝通進展",icon:"◷",description:"按訪談與補充時間查看已有記錄、崗位意見和仍待核對的事項。"},
+materials:{title:"資料現狀",icon:"▦",description:"瞭解溝通記錄中描述的資料分佈、更新方式和已知缺口。"},
+questions:{title:"待確認事項",icon:"⊙",description:"把尚未明確的問題帶到下一次溝通，逐項補齊依據。"}
+};
+const STATUSES={unreviewed:"未審閱",aligned:"已對齊",revise:"需修改",discuss:"待討論"};
+const $=id=>document.getElementById(id);
+const esc=x=>String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const byId=new Map(DATA.items.map(i=>[i.id,i]));
+const byRef=new Map(DATA.documents.flatMap(d=>d.sections.map(s=>[s.id,{document:d,section:s}])));
+const storageKey="requirements-review:"+DATA.project.id+":"+DATA.revision;
+const RELATIONSHIPS=DATA.relationships||[];
+const requirements=DATA.items.filter(i=>i.category==="requirements");
+const state={view:"threads",threadId:requirements[0]?.id||null,query:"",filter:"all",selected:null,reviews:{},storageAvailable:true};
+let toastTimer;
+function notify(message){$("toast").textContent=message;$("toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("toast").classList.remove("show"),2800)}
+try{
+ const raw=localStorage.getItem(storageKey), saved=raw?JSON.parse(raw):null;
+ if(saved&&saved.revision===DATA.revision&&saved.project===DATA.project.id){
+  for(const [id,r] of Object.entries(saved.reviews||{})){
+   if(byId.has(id)&&r&&Object.hasOwn(STATUSES,r.status)&&typeof r.comment==="string"){
+    state.reviews[id]={status:r.status,comment:r.comment.slice(0,5000),updated_at:typeof r.updated_at==="string"?r.updated_at:""};
+   }
+  }
+ }
+}catch{state.storageAvailable=false}
+function saveReviews(){
+ try{localStorage.setItem(storageKey,JSON.stringify({project:DATA.project.id,revision:DATA.revision,reviews:state.reviews}));state.storageAvailable=true}
+ catch{state.storageAvailable=false}
+ $("save-message").textContent=state.storageAvailable?"已保存到本機":"無法保存，請導出意見";
+ $("save-message").classList.toggle("warning",!state.storageAvailable);
+}
+function currentReview(id){return state.reviews[id]||{status:"unreviewed",comment:"",updated_at:""}}
+function statusColor(status){return status==="aligned"?"green":status==="revise"?"red":status==="discuss"?"amber":""}
+function statusBadge(id){const r=currentReview(id);return '<span class="badge '+statusColor(r.status)+'">'+STATUSES[r.status]+'</span>'}
+function originBadge(item){return '<span class="badge '+(item.origin==="整理建議，待確認"?"amber":"")+'">'+esc(item.origin)+'</span>'}
+function count(category){return DATA.items.filter(i=>i.category===(category==="threads"?"requirements":category)).length}
+function renderNavigation(){
+ $("navigation").innerHTML=Object.entries(CATEGORIES).map(([key,value])=>'<button class="nav-btn '+(state.view===key?"active":"")+'" data-view="'+key+'" '+(state.view===key?'aria-current="page"':"")+'><span class="nav-icon" aria-hidden="true">'+value.icon+'</span>'+value.title+(key==="overview"?"":'<span class="nav-count">'+count(key)+'</span>')+'</button>').join("");
+ $("breadcrumb").textContent=CATEGORIES[state.view].title;
+}
+function heading(title,description,tag){
+ return '<div class="page-heading"><div><div class="eyebrow">需求與業務約定 · 審閱版</div><h1>'+esc(title)+'</h1><p>'+esc(description)+'</p></div><span class="badge green heading-badge">'+esc(tag)+'</span></div>';
+}
+function edgesFor(id,category=null){
+ return RELATIONSHIPS.filter(e=>e.requirement===id&&(!category||byId.get(e.target).category===category));
+}
+function relatedRequirements(itemId){
+ const ids=new Set(RELATIONSHIPS.filter(e=>e.target===itemId).map(e=>e.requirement));
+ if(byId.get(itemId)?.category==="requirements")ids.add(itemId);
+ return requirements.filter(r=>ids.has(r.id));
+}
+function threadDocuments(id){
+ const item=byId.get(id);if(!item)return [];
+ const refs=new Set([...item.references,...edgesFor(id).flatMap(e=>e.references)]);
+ return DATA.documents.map(d=>({document:d,sections:d.sections.filter(s=>refs.has(s.id))})).filter(group=>group.sections.length);
+}
+function threadLinks(items,label="相關需求"){
+ if(!items.length)return '<div class="related-threads"><span>尚未建立與具體需求的關聯。</span></div>';
+ return '<div class="related-threads"><span>'+esc(label)+'</span>'+items.map(i=>'<button class="thread-link" data-thread="'+i.id+'">'+esc(i.title)+' ↗</button>').join("")+'</div>';
+}
+function relationCard(edge){
+ const item=byId.get(edge.target);
+ return '<div class="relation-card" data-related-item="'+item.id+'">'+(item.date?'<time class="relation-date">'+esc(item.date)+'</time>':"")+'<div class="relation-card-head"><button class="relation-title" data-thread-item="'+item.id+'">'+esc(item.title)+' ↗</button>'+statusBadge(item.id)+'</div><p class="relation-reason">'+esc(edge.reason)+'</p><div class="ref-list">'+edge.references.map(ref=>'<button class="ref" data-ref="'+esc(ref)+'" title="查看關聯依據">'+esc(ref)+'</button>').join("")+'</div></div>';
+}
+function relationGroup(id,category,empty){
+ let edges=edgesFor(id,category);
+ if(category==="communications")edges=edges.slice().sort((a,b)=>(byId.get(a.target).date||"").localeCompare(byId.get(b.target).date||""));
+ return edges.length?edges.map(relationCard).join(""):'<div class="thread-empty">'+esc(empty)+'</div>';
+}
+function renderThread(){
+ const req=byId.get(state.threadId);
+ if(!req){$("main").innerHTML=heading("需求關聯",CATEGORIES.threads.description,"暫無需求")+'<div class="empty">當前資料尚未提煉可關聯的需求。</div>';return}
+ const groups=threadDocuments(req.id),edges=edgesFor(req.id);
+ const scope=[req,...edges.map(e=>byId.get(e.target))],reviewed=scope.filter(i=>currentReview(i.id).status!=="unreviewed").length;
+ $("main").innerHTML=heading("圍繞一條需求，把事情串起來",DATA.project.title+" · 文件說明來由，約定限定邊界，溝通與問題接著往下看。","資料截止 "+DATA.project.as_of)+
+ '<div class="thread-tabs" aria-label="選擇需求">'+requirements.map((i,n)=>'<button class="thread-tab '+(i.id===req.id?"active":"")+'" data-thread="'+i.id+'" aria-pressed="'+(i.id===req.id)+'"><span class="mono">需求 '+String(n+1).padStart(2,"0")+'</span><strong>'+esc(i.title)+'</strong>'+statusBadge(i.id)+'</button>').join("")+'</div>'+
+ '<div class="thread-context"><strong id="active-thread-name">當前需求：'+esc(req.title)+'</strong><span>'+groups.length+' 份對應文件 · '+edges.length+' 個關聯事項 · 已審閱 '+reviewed+' / '+scope.length+' 項</span></div>'+
+ '<div class="thread-map"><section class="thread-column sources"><h2>對應文件 <span class="badge">'+groups.length+'</span></h2>'+
+ groups.map(g=>'<div class="thread-source-file"><span class="badge">'+esc(g.document.type)+'</span><button class="file-button" data-thread-doc="'+esc(g.document.id)+'">'+esc(g.document.filename||g.document.title)+'</button><div class="source-line"><span>'+g.sections.length+' 個關聯條目</span><button data-thread-doc="'+esc(g.document.id)+'">查看依據 ↗</button></div></div>').join("")+
+ '</section><section class="thread-column focus"><h2>這條需求要做到什麼</h2><div class="requirement-node"><div class="card-meta">'+originBadge(req)+statusBadge(req.id)+'</div><h3 id="active-thread-title">'+esc(req.title)+'</h3><p>'+esc(req.summary)+'</p>'+req.fields.slice(0,3).map(f=>'<div class="field"><h3>'+esc(f.label)+'</h3><p>'+esc(f.value)+'</p></div>').join("")+'<button class="btn primary" data-thread-item="'+req.id+'">審閱這條需求 · 查看完整說明</button></div></section>'+
+ '<section class="thread-column rules"><h2>適用的業務約定 <span class="badge amber">'+edgesFor(req.id,"agreements").length+'</span></h2><div class="rules-list">'+relationGroup(req.id,"agreements","尚未建立適用約定的關聯，需要核對。")+'</div></section></div>'+
+ '<div class="thread-lower"><section class="thread-section"><h2>圍繞這條需求的溝通 <span class="badge">'+edgesFor(req.id,"communications").length+'</span></h2>'+relationGroup(req.id,"communications","尚未建立溝通記錄關聯。")+'</section><section class="thread-section"><h2>還需要對齊什麼 <span class="badge amber">'+edgesFor(req.id,"questions").length+'</span></h2>'+relationGroup(req.id,"questions","本次尚未列出關聯的待確認事項。")+'</section></div>'+
+ '<section class="thread-section thread-materials"><h2>涉及的資料現狀 <span class="badge">'+edgesFor(req.id,"materials").length+'</span></h2><div class="material-links">'+relationGroup(req.id,"materials","本次尚未列出相關資料現狀。")+'</div></section><p class="thread-proof">關聯說明依據資料內容整理，可點擊編號核對依據。審閱一條需求不會自動確認它關聯的約定和待確認事項。</p>';
+}
+function showThreadItem(id){
+ const item=byId.get(id);if(!item)return;
+ $("thread-item-title").textContent=CATEGORIES[item.category].title;
+ $("thread-item-context").textContent="當前需求："+(byId.get(state.threadId)?.title||"未選擇");
+ const edge=edgesFor(state.threadId).find(e=>e.target===id);
+ $("thread-item-content").dataset.itemId=id;
+ $("thread-item-content").innerHTML=(edge?'<p class="view-note" style="margin:20px 25px 0">關聯原因：'+esc(edge.reason)+'</p>':"")+detailMarkup(item,"thread-review-comment");
+ bindReviewComment($("thread-item-content"),id);
+ showDialog("thread-item-dialog");
+}
+function showThreadDocument(id){
+ const group=threadDocuments(state.threadId).find(g=>g.document.id===id);if(!group)return;
+ showSource(group.sections[0].id);
+ $("source-subtitle").textContent="當前需求："+byId.get(state.threadId).title+" · "+group.sections.length+" 個關聯條目";
+ $("source-content").innerHTML='<div class="doc-actions"><span class="badge">'+esc(group.document.filename)+'</span><button class="btn" data-doc="'+esc(id)+'">查看本文全部條目</button></div>'+
+ '<div id="thread-source-relations">'+threadLinks(requirements.filter(r=>threadDocuments(r.id).some(g=>g.document.id===id)),"這份文件還關聯")+'</div>'+group.sections.map(sectionHtml).join("");
+}
+function overview(){
+ const reqs=DATA.items.filter(i=>i.category==="requirements");
+ const questions=DATA.items.filter(i=>i.category==="questions");
+ const commDocs=DATA.documents.filter(d=>d.type==="溝通記錄");
+ const reviewed=DATA.items.filter(i=>currentReview(i.id).status!=="unreviewed").length;
+ const tiles=[["來源文檔",DATA.documents.length,"需求 · 約定 · 溝通記錄","sources"],["功能提煉",reqs.length,"供業務人員逐項審閱","requirements"],["業務約定",count("agreements"),"保留條件與責任邊界","agreements"],["溝通文檔",commDocs.length,"按已提供的文檔計數","communications"]];
+ $("main").innerHTML=heading(DATA.project.title,DATA.project.subtitle,"資料截止 "+DATA.project.as_of)+
+ '<section class="hero"><div><div class="eyebrow">共同對齊的目標</div><h2>'+esc(DATA.project.summary)+'</h2><p>'+esc(DATA.project.scope)+'</p></div><div class="hero-side"><strong>先看清，再逐項確認</strong><p>'+esc(DATA.project.review_note)+'</p></div></section>'+
+ '<div class="stats">'+tiles.map(t=>'<button class="stat" data-stat="'+t[3]+'"><small>'+t[0]+'</small><strong>'+t[1]+'</strong><span>'+t[2]+'</span></button>').join("")+'</div>'+
+ '<div class="overview-grid"><section><div class="section-heading"><h2>客戶希望先做到什麼</h2><button class="text-btn" data-view="requirements">查看全部 →</button></div>'+
+ (reqs.length?reqs.map((item,n)=>'<button class="flow-row" data-open="'+item.id+'"><span class="step-num">'+String(n+1).padStart(2,"0")+'</span><span><h3>'+esc(item.title)+'</h3><p>'+esc(item.summary)+'</p></span><span class="row-arrow">↗</span></button>').join(""):'<div class="empty">本次資料尚未提煉客戶需求。</div>')+
+ '</section><section><div class="section-heading"><h2>下一次需要對齊</h2><span class="badge amber">'+questions.length+' 項待確認</span></div><div class="question-box">'+(questions.length?questions.slice(0,4).map(i=>'<button class="question-row" data-open="'+i.id+'"><h3>'+esc(i.title)+'</h3><p>'+esc(i.summary)+'</p></button>').join(""):'<div class="question-row">本次資料未列出待確認事項。</div>')+'</div><button class="text-btn" data-view="questions" style="margin-top:10px">查看全部待確認事項 →</button>'+
+ '<div class="overview-foot"><strong>本機審閱進度：<span id="overview-reviewed">'+reviewed+'</span> / '+DATA.items.length+' 項</strong><br>資料已記錄的事實與本次審閱意見分別保存。此計數表示閱讀與對齊情況，不表示業務事項已完成。</div></section></div>';
+}
+function filteredItems(){
+ const query=state.query.toLocaleLowerCase();
+ let items=DATA.items.filter(i=>i.category===state.view);
+ if(state.view==="communications")items=items.slice().sort((a,b)=>(a.date||"").localeCompare(b.date||""));
+ return items.filter(i=>(state.filter==="all"||currentReview(i.id).status===state.filter)&&(!query||[i.title,i.summary,i.id,i.origin,...i.fields.map(f=>f.value),...i.references].join(" ").toLocaleLowerCase().includes(query)));
+}
+function reviewView(){
+ const category=CATEGORIES[state.view];
+ $("main").innerHTML=heading(category.title,category.description,count(state.view)+" 個審閱事項")+
+ (state.view==="materials"?'<p class="view-note">以下現狀來自需求與溝通記錄中的描述，尚未通過連接系統或讀取原始業務數據核實。</p>':state.view==="communications"?'<p class="view-note">訪談記錄與後補案例分別列示。記錄中的業務狀態保留原意，面板右側狀態僅表示本次人工審閱意見。</p>':state.view==="requirements"?'<p class="view-note">功能與完成標準是依據需求的提煉，供本次對齊使用；具體量化指標尚待現狀核實後共同確定。</p>':"")+
+ '<div class="toolbar"><label class="search"><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="搜索事項、內容或來源編號" aria-label="搜索審閱事項" value="'+esc(state.query)+'"></label><select id="status-filter" aria-label="篩選審閱狀態"><option value="all">全部審閱狀態</option>'+Object.entries(STATUSES).map(([key,value])=>'<option value="'+key+'" '+(state.filter===key?"selected":"")+'>'+value+'</option>').join("")+'</select></div><p class="result-count" id="result-count" aria-live="polite"></p><div class="review-layout"><div id="item-list" class="item-list"></div><article id="detail" class="detail" aria-label="事項詳情"></article></div>';
+ renderList();
+ $("search-input").addEventListener("input",e=>{state.query=e.target.value;renderList()});
+ $("status-filter").addEventListener("change",e=>{state.filter=e.target.value;renderList()});
+}
+function renderList(){
+ const items=filteredItems();
+ if(!items.some(i=>i.id===state.selected))state.selected=items[0]?.id||null;
+ $("result-count").textContent="顯示 "+items.length+" / "+count(state.view)+" 項";
+ $("item-list").innerHTML=items.length?items.map(i=>'<button class="item-card '+(i.id===state.selected?"selected":"")+'" data-select="'+i.id+'" aria-pressed="'+(i.id===state.selected)+'"><div class="card-meta">'+originBadge(i)+statusBadge(i.id)+'</div><h3>'+esc(i.title)+'</h3><p>'+esc(i.summary)+'</p><div class="card-footer"><span>'+(i.date?esc(i.date):i.references.length+" 個來源條目")+'</span><span>'+(currentReview(i.id).comment?"已有評論 · ":"")+"查看詳情 →"+'</span></div></button>').join(""):'<div class="empty"><h3>沒有匹配的事項</h3><p>換個關鍵詞或調整審閱狀態篩選。</p><button class="text-btn" id="clear-filters" style="margin-top:12px">清除篩選</button></div>';
+ renderDetail();
+}
+function renderDetail(){
+ const i=byId.get(state.selected);
+ if(!i){$("detail").innerHTML='<div class="empty"><h3>選擇一個事項開始審閱</h3><p>查看內容、核對來源，再留下你的意見。</p></div>';return}
+ $("detail").innerHTML=detailMarkup(i,"review-comment");
+ bindReviewComment($("detail"),i.id);
+}
+function detailMarkup(i,commentId){
+ const r=currentReview(i.id);
+ return '<div data-review-id="'+i.id+'"><div class="detail-head"><div class="card-meta">'+originBadge(i)+'<span class="mono muted">'+esc(i.id)+'</span></div><h2>'+esc(i.title)+'</h2><p>'+esc(i.summary)+'</p>'+threadLinks(relatedRequirements(i.id),i.category==="requirements"?"查看這條需求的關聯":"關聯到這些需求")+'</div><div class="detail-body">'+i.fields.map(f=>'<section class="field"><h3>'+esc(f.label)+'</h3><p>'+esc(f.value)+'</p></section>').join("")+
+ '<section class="field"><h3>依據與來源 · 點擊查看原文</h3><div class="ref-list">'+i.references.map(ref=>'<button class="ref" data-ref="'+esc(ref)+'">'+esc(ref)+' ↗</button>').join("")+'</div></section></div>'+
+ '<div class="review-box"><h3>我的審閱意見</h3><div class="status-buttons" role="group" aria-label="設置審閱狀態">'+Object.entries(STATUSES).map(([key,value])=>'<button class="status-btn '+(key===r.status?"active":"")+'" data-status="'+key+'" aria-pressed="'+(key===r.status)+'">'+value+'</button>').join("")+'</div><label for="'+commentId+'">補充說明或需要修改的地方</label><textarea id="'+commentId+'" data-review-comment maxlength="5000" placeholder="例如：請明確適用範圍，或補充完成標準……">'+esc(r.comment)+'</textarea><p class="hint">自動保存到本機瀏覽器，可導出分享。這裡的“已對齊”不代替業務審批。</p></div></div>';
+}
+function bindReviewComment(container,id){
+ container.querySelector('[data-review-comment]').addEventListener("input",e=>{writeReview(id,{comment:e.target.value});const card=document.querySelector('[data-select="'+id+'"] .card-footer span:last-child');if(card)card.textContent=(e.target.value?"已有評論 · ":"")+"查看詳情 →"});
+}
+function writeReview(id,patch){
+ const next={...currentReview(id),...patch,updated_at:new Date().toISOString()};
+ if(next.status==="unreviewed"&&!next.comment.trim())delete state.reviews[id];else state.reviews[id]=next;
+ saveReviews();
+}
+function navigate(view,id=null){
+ if(!Object.hasOwn(CATEGORIES,view))return;
+ if(view==="threads"){
+  if(byId.get(id)?.category==="requirements")state.threadId=id;
+  history.replaceState(null,"","#thread="+encodeURIComponent(state.threadId||""));
+ }else history.replaceState(null,"",location.pathname+location.search);
+ state.view=view;state.selected=id;state.query="";state.filter="all";renderNavigation();
+ if(view==="threads")renderThread();else if(view==="overview")overview();else reviewView();
+ window.scrollTo({top:0,behavior:"instant"});
+}
+function showDialog(id){if(!$(id).open)$(id).showModal()}
+function showSources(){
+ $("source-title").textContent="本次審閱的來源文檔";$("source-subtitle").textContent=DATA.documents.length+" 份規範化資料 · 點擊文檔查看已嵌入的完整條目";
+ $("source-content").innerHTML='<div class="document-list">'+DATA.documents.map(d=>'<button class="document-btn" data-doc="'+esc(d.id)+'"><strong>'+esc(d.title)+'</strong><small>'+esc(d.type)+' · '+esc(d.date||"日期未標註")+'</small></button>').join("")+'</div>';
+ showDialog("source-dialog");
+}
+function sectionHtml(s){return '<section class="document-section"><h3>'+esc(s.id+" "+s.title)+'</h3><div class="source-text">'+esc(s.text)+'</div></section>'}
+function showSource(ref,full=false){
+ const value=byRef.get(ref);if(!value)return;
+ const d=value.document;$("source-title").textContent=d.title;$("source-subtitle").textContent=d.type+" · 原記錄日期 "+(d.date||"未標註");
+ $("source-content").innerHTML='<div class="doc-actions"><button class="btn" data-sources>全部文檔</button>'+(!full?'<button class="btn" data-doc="'+esc(d.id)+'">查看本文全部條目</button>':"")+'<span class="muted small">保持來源中的日期、條件和確認狀態</span></div>'+(full?d.sections:[value.section]).map(sectionHtml).join("");
+ $("source-content").insertAdjacentHTML("afterbegin",'<div id="thread-source-relations">'+threadLinks(requirements.filter(r=>threadDocuments(r.id).some(g=>g.document.id===d.id)),"這份文件關聯")+'</div>');
+ $("source-dialog").scrollTop=0;showDialog("source-dialog");
+}
+function exportRecords(){
+ return DATA.items.filter(i=>currentReview(i.id).status!=="unreviewed"||currentReview(i.id).comment.trim()).map(i=>({id:i.id,title:i.title,category:CATEGORIES[i.category].title,origin:i.origin,references:i.references,
+  related_requirements:relatedRequirements(i.id).map(r=>({id:r.id,title:r.title})),
+  documents:(i.category==="requirements"?threadDocuments(i.id).map(g=>g.document):DATA.documents.filter(d=>d.sections.some(s=>i.references.includes(s.id)))).map(d=>({id:d.id,filename:d.filename||d.title})),
+  related_agreements:edgesFor(i.id,"agreements").map(e=>({id:e.target,title:byId.get(e.target).title,reason:e.reason,references:e.references})),
+  ...currentReview(i.id),status_label:STATUSES[currentReview(i.id).status]}));
+}
+function exportPayload(){const reviews=exportRecords(),ids=new Set(reviews.map(r=>r.id));return {schema_version:1,project:DATA.project.id,title:DATA.project.title,revision:DATA.revision,relationship_revision:DATA.relationship_revision,as_of:DATA.project.as_of,exported_at:new Date().toISOString(),notice:"人工審閱意見；不修改來源中的業務批准或事實狀態。關聯說明為依據資料的整理，不因事項已對齊而自動獲得確認。",sources:DATA.documents.map(d=>({id:d.id,filename:d.filename,sha256:d.sha256})),relationships:RELATIONSHIPS.filter(e=>ids.has(e.requirement)||ids.has(e.target)),reviews}}
+function markdownFeedback(){
+ const records=exportRecords();
+ let text="# "+DATA.project.title+" · 審閱意見\n\n資料截止："+DATA.project.as_of+"\n資料版本："+DATA.revision+"\n\n請根據以下人工意見核對並修訂相關需求資料。保留來源、適用條件和業務確認狀態；審閱意見不代替業務批准。\n";
+ if(!records.length)return text+"\n尚未填寫審閱意見。\n";
+ records.forEach(r=>{text+="\n## "+r.id+" "+r.title+"\n\n- 分類："+r.category+"\n- 審閱狀態："+r.status_label+"\n- 內容性質："+r.origin+"\n- 相關需求："+(r.related_requirements.map(x=>x.id+" "+x.title).join("；")||"尚未建立關聯")+"\n- 對應文件："+r.documents.map(d=>d.filename).join("；")+"\n- 來源："+r.references.join("、")+"\n- 記錄時間："+r.updated_at+"\n\n"+(r.comment||"未填寫補充說明。")+"\n";if(r.related_agreements.length)text+="\n關聯約定（按資料整理）：\n"+r.related_agreements.map(a=>"- "+a.title+"："+a.reason+"（"+a.references.join("、")+"）").join("\n")+"\n"});
+ return text;
+}
+function showExport(){$("export-preview").textContent=markdownFeedback();showDialog("export-dialog")}
+function download(format){
+ const payload=exportPayload(), name=DATA.project.id+"-review-"+new Date().toISOString().slice(0,10);
+ const text=format==="json"?JSON.stringify(payload,null,2):markdownFeedback();
+ const blob=new Blob([text],{type:format==="json"?"application/json;charset=utf-8":"text/markdown;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download=name+"."+(format==="json"?"json":"md");document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);notify("已導出 "+payload.reviews.length+" 項審閱記錄");
+}
+async function copyFeedback(){
+ const text=markdownFeedback();
+ try{
+  if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(text)}
+  else {const area=document.createElement("textarea");area.value=text;area.style.position="fixed";area.style.opacity="0";$("export-dialog").appendChild(area);area.select();const copied=document.execCommand("copy");area.remove();if(!copied)throw new Error("copy")}
+  notify("修訂意見已複製");
+ }catch{notify("複製未成功，請下載 Markdown 文件")}
+}
+document.addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ if(b.dataset.view){navigate(b.dataset.view)}
+ else if(b.dataset.thread){for(const id of ["source-dialog","thread-item-dialog"])if($(id).open)$(id).close();navigate("threads",b.dataset.thread)}
+ else if(b.dataset.threadItem){showThreadItem(b.dataset.threadItem)}
+ else if(b.dataset.threadDoc){showThreadDocument(b.dataset.threadDoc)}
+ else if(b.dataset.stat){b.dataset.stat==="sources"?showSources():navigate(b.dataset.stat)}
+ else if(b.dataset.open){const i=byId.get(b.dataset.open);navigate(i.category==="requirements"?"threads":i.category,i.id)}
+ else if(b.dataset.select){state.selected=b.dataset.select;renderList();if(window.innerWidth<1100)$("detail").scrollIntoView({behavior:"smooth",block:"start"})}
+ else if(b.dataset.status){const id=b.closest('[data-review-id]')?.dataset.reviewId;if(id){writeReview(id,{status:b.dataset.status});if(state.view==="threads"){renderThread();showThreadItem(id)}else renderList()}}
+ else if(b.dataset.ref){showSource(b.dataset.ref)}
+ else if(b.dataset.doc){const d=DATA.documents.find(d=>d.id===b.dataset.doc);if(d)showSource(d.sections[0].id,true)}
+ else if(b.hasAttribute("data-sources")){showSources()}
+ else if(b.dataset.close){$(b.dataset.close).close()}
+ else if(b.id==="clear-filters"){state.query="";state.filter="all";reviewView()}
+});
+$("sources-button").addEventListener("click",showSources);
+$("export-button").addEventListener("click",showExport);
+$("download-md").addEventListener("click",()=>download("md"));
+$("download-json").addEventListener("click",()=>download("json"));
+$("copy-feedback").addEventListener("click",copyFeedback);
+if(!state.storageAvailable){$("save-message").textContent="無法讀取保存，請導出意見";$("save-message").classList.add("warning")}
+function openThreadFromLocation(){const id=new URLSearchParams(location.hash.slice(1)).get("thread");if(byId.get(id)?.category==="requirements")state.threadId=id;navigate("threads",state.threadId)}
+window.addEventListener("hashchange",openThreadFromLocation);
+openThreadFromLocation();
+</script>
+</body>
+</html>

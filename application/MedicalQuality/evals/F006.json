@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "scope": "F006",
+  "sources": [
+    "docs/PRD.md",
+    "docs/specs/product-spec.md",
+    "docs/specs/F006-quality-evidence-review/spec.md"
+  ],
+  "cases": [
+    {
+      "id": "EV-F006-001",
+      "title": "運行固定適用範圍與完整版本",
+      "source_ac": [
+        "AC-F006-001"
+      ],
+      "given": "同病例有舊/新上下文，規則有候選/生效版本，授權只允許當前範圍的一部分。",
+      "when": "發起指定用途的質控運行。",
+      "expected": [
+        "固定實際允許的病例/文書/規則/知識/語義/模型配置；不適用或未授權部分明確拒絕，不從最新視圖暗中換輸入。",
+        "證據應包括：運行清單、允許/拒絕範圍；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F006-implementation-acceptance"
+    },
+    {
+      "id": "EV-F006-002",
+      "title": "確定性規則條件與臨床結論分開",
+      "source_ac": [
+        "AC-F006-002"
+      ],
+      "given": "8 條規則的必要輸入中部分完整，部分缺清單、身份或可比較時間。",
+      "when": "執行已配置的確定性檢查。",
+      "expected": [
+        "逐項輸出條件成立、不成立或無法判斷及證據範圍；不從無檢索命中推斷臨床缺失，不生成診斷或病歷修改。",
+        "證據應包括：逐規則輸入、輸出與無法判斷原因；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F006-implementation-acceptance"
+    },
+    {
+      "id": "EV-F006-003",
+      "title": "跨段模型輸出保持候選性質",
+      "source_ac": [
+        "AC-F006-003"
+      ],
+      "given": "同病例片段含過敏、診斷描述、用藥文本的否定/時間差異及相關參考依據。 輸入包含主體/否定/時間/條件差異，並模擬必要證據被上下文預算截斷。",
+      "when": "執行允許的跨段語義比較。",
+      "expected": [
+        "模型只返回有來源的疑點與待確認建議，保留否定/時間/例外和不能判斷原因，不自填專家結論、真實診斷或處方指令。",
+        "證據應包括：模型配置、候選與證據對應記錄；固定輸入與真實運行結果分開，未執行不能宣稱通過。",
+        "缺失必要證據或語境不能確認時保留無法判斷，不把歷史/家屬主張當患者當前結論。"
+      ],
+      "check_ref": "F006-implementation-acceptance"
+    },
+    {
+      "id": "EV-F006-004",
+      "title": "單條問題呈現完整分層證據",
+      "source_ac": [
+        "AC-F006-004"
+      ],
+      "given": "候選問題有病例原文、規則/知識版本和建議嚴重度；另有錯誤引用和只到頁級的定位。",
+      "when": "查看問題詳情與依據。",
+      "expected": [
+        "類型、建議/確認值區別、理由、建議、產生環節和版本可見；四層信息分開，實際定位粒度與失效明確，不能把鏈接存在視為支持主張。",
+        "證據應包括：問題字段、原文回放和失效反饋；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F006-implementation-acceptance"
+    },
+    {
+      "id": "EV-F006-005",
+      "title": "失敗與部分覆蓋禁止自動通過",
+      "source_ac": [
+        "AC-F006-005"
+      ],
+      "given": "同運行有有效證據、定位失效、未解析文書和模型失敗；另有範圍衝突。",
+      "when": "彙總質控或嘗試自動推進。",
+      "expected": [
+        "保留未判斷/未執行分母、阻斷原因及受影響範圍；不能以其他項成功判整份通過，授權人工仍可查看與補充材料。",
+        "證據應包括：檢查覆蓋、blockers 與允許人工入口；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F006-implementation-acceptance"
+    },
+    {
+      "id": "EV-F006-006",
+      "title": "風險分流不替代專業確認",
+      "source_ac": [
+        "AC-F006-006"
+      ],
+      "given": "規則/模型產生原生分數，部分沒有校準記錄或適用範圍不匹配。",
+      "when": "展示疑點與分流信號。",
+      "expected": [
+        "未校準/範圍不符明確表示，不轉成虛假可信百分比；任何分數不能繞過證據缺口、人工複核或高風險爭議。",
+        "證據應包括：校準狀態與推進約束斷言；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F006-implementation-acceptance"
+    },
+    {
+      "id": "EV-F006-007",
+      "title": "整改版本、配置變化與重試可追溯",
+      "source_ac": [
+        "AC-F006-007"
+      ],
+      "given": "舊運行已存在，F007 提交新文書，或規則/模型配置改變；相同請求可重複到達。 在節點結果已提交但執行進度未保存時注入進程中斷，另有恢復時授權已失效的請求。",
+      "when": "跨進程恢復、重試同一請求並對變化範圍重新核驗。",
+      "expected": [
+        "變化產生新運行鏈，舊依據不漂移；同一有效請求不重複生成結果，影響不明則核查聲明全範圍，機器通過不等於人工確認或繼承舊簽字。",
+        "證據應包括：新舊運行、依賴清單及重複結果斷言；固定輸入與真實運行結果分開，未執行不能宣稱通過。",
+        "節點重放不重複發佈有效問題；取消執行不撤銷業務待辦，權限/版本失效或狀態不兼容受控停止，保留嘗試和真實覆蓋。"
+      ],
+      "check_ref": "F006-implementation-acceptance"
+    },
+    {
+      "id": "EV-F006-008",
+      "title": "人工與專業評測消費同一結果",
+      "source_ac": [
+        "AC-F006-008"
+      ],
+      "given": "固定運行包含候選問題、未判斷項和局部條件結果，F007/F008 為合同消費者。",
+      "when": "交接結果並投影到工作臺。",
+      "expected": [
+        "各消費者取得相同版本、證據、覆蓋和阻斷；F006 不代寫複核/仲裁/簽字，未判斷不因交接從評測分母消失。",
+        "證據應包括：QualityRun 與消費者收到的版本/覆蓋；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F006-implementation-acceptance"
+    },
+    {
+      "id": "EV-F006-009",
+      "title": "模型故障、惡意正文與假引用受限",
+      "source_ac": [
+        "AC-F006-009"
+      ],
+      "given": "正文含要求越權的指令，模型可返回不存在引用或失效版本，本地服務可能失敗。",
+      "when": "構造模型輸入並處理輸出/重試。",
+      "expected": [
+        "正文作為數據，模型無改庫/簽字/任意工具權限；未授權外發拒絕，假引用不得發佈為有依據問題，錯誤日誌不復制不必要正文。",
+        "證據應包括：工具/網絡探針與拒絕/日誌記錄；固定輸入與真實運行結果分開，未執行不能宣稱通過。"
+      ],
+      "check_ref": "F006-implementation-acceptance"
+    },
+    {
+      "id": "EV-F006-010",
+      "title": "形狀通過與完整性/臨床通過分開",
+      "source_ac": [
+        "AC-F006-010",
+        "AC-F006-002",
+        "AC-F006-005"
+      ],
+      "given": "空實例圖或 unknown 屬性通過基礎形狀檢查，但有未接入文書/截斷證據/無映射，另有一項獨立規則證據完整。",
+      "when": "彙總形狀、語義、覆蓋和逐規則結果。",
+      "expected": [
+        "分別報告形狀檢查範圍、資料覆蓋與業務三值判斷，空目標/unknown 不視為檢查完整或病例無問題。",
+        "限制依賴缺口的規則，同時保留獨立允許結果；不從 top-k 無命中推出臨床未實施。"
+      ],
+      "check_ref": "F006-implementation-acceptance"
+    },
+    {
+      "id": "EV-F006-011",
+      "title": "運行語義工具只讀且事件流最小化",
+      "source_ac": [
+        "AC-F006-009",
+        "AC-F006-010"
+      ],
+      "given": "模型或正文要求調用 configure/save/publish/evolve、任意 SQL/路徑；內部圖狀態含不應外發字段，用戶只可見一病例。",
+      "when": "嘗試工具調用、父上下文讀取或把事件發送瀏覽器。",
+      "expected": [
+        "僅綁定批准的只讀語義/證據工具，服務端範圍不能被模型參數覆蓋；構建/演化/發佈動作拒絕。",
+        "SSE 由允許字段和對象範圍投影，不能直接轉發 private/full state 或跨病例緩存；正文不升級為系統指令。"
+      ],
+      "check_ref": "F006-implementation-acceptance"
+    },
+    {
+      "id": "EV-F006-012",
+      "title": "語義版本故障與節點重放有界恢復",
+      "source_ac": [
+        "AC-F006-001",
+        "AC-F006-007",
+        "AC-F006-010"
+      ],
+      "given": "運行凍結 SemanticRelease/shape/mapping，語義服務超時或返回不同版本；節點結果提交後進程中斷，原生 active 又變化。",
+      "when": "按同一輸入恢復或發起新版本檢查。",
+      "expected": [
+        "不匹配/無能力返回明確限制，不能用 latest 或無本體路線裝作完成；合法原文/人工路徑仍保留。",
+        "已提交同節點/輸入/配置結果核對後複用，舊 Worker 不能覆寫新嘗試；當前權限重驗，不重複有效問題，變更另建運行。"
+      ],
+      "check_ref": "F006-implementation-acceptance"
+    }
+  ],
+  "checks": [
+    {
+      "id": "F006-implementation-acceptance",
+      "method": "manual",
+      "inputs": [
+        "backend/medical_quality/quality.py",
+        "backend/medical_quality/worker.py",
+        "backend/medical_quality/ontology.py",
+        "frontend/src/App.tsx",
+        "frontend/src/pages/CasePage.tsx",
+        "frontend/src/pages/OperationsPages.tsx",
+        "backend/tests/test_workflow_graph.py",
+        "backend/tests/test_retrieval_inputs.py",
+        "backend/tests/test_data_semantics.py",
+        "backend/tests/test_recovery_permissions.py",
+        "frontend/e2e",
+        "docs/verification/F006-implementation.md",
+        "backend/uv.lock",
+        "frontend/package-lock.json"
+      ],
+      "procedure": "按 docs/verification/F006-implementation.md 的逐用例臺賬核對實際斷言與範圍；工程命令/報告複用 development-report.md 的同輸入結果。對 not_run 項按原 given/when 補足獨立場景；對 blocked 項只在真實資料/身份/責任前置到位後執行，不能用重複工程測試充當專業驗收。",
+      "evidence": "docs/verification/F006-implementation.md 與 docs/verification/development-report.md；原生收據在 artifacts/verification/，綁定本身不代表全部通過。"
+    }
+  ]
+}
