@@ -1,0 +1,33 @@
+{
+  "bytes": 25053095,
+  "sha256": "69c67c59d17f6109805a75c8eaaeb7db011c803a140be0be6f2135448bebf096",
+  "embedded_videos": [
+    {
+      "mode": "motion",
+      "bytes": 7679742,
+      "sha256": "cf255e92e2df5dc94909a5a4db68fff1fc711c6825430ddf2f3bfa2edbbc93e0",
+      "chapters": 8
+    },
+    {
+      "mode": "general",
+      "bytes": 4321786,
+      "sha256": "6ce9394ba777e908529db14469748b37bdd4072b6ef7cb447c0d9c4d4bf491a0",
+      "chapters": 12
+    },
+    {
+      "mode": "animation",
+      "bytes": 5158017,
+      "sha256": "90a64a33514f0d9ab6573c1e98006a52f586c029b2e29bf46328566ffdce13bf",
+      "chapters": 12
+    }
+  ],
+  "duplicate_ids": false,
+  "anchors_valid": true,
+  "all_runtime_resources_embedded": true,
+  "executable_scripts": 2,
+  "javascript_syntax": "pass",
+  "chapter_total": 32,
+  "steps": 10,
+  "sync_maps_ordered": true,
+  "shared_entry_points_identical": true
+}

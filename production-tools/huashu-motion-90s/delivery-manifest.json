@@ -1,0 +1,44 @@
+{
+  "file": "每個疑點都有來處_90秒完整版_Kore.mp4",
+  "sha256": "cf255e92e2df5dc94909a5a4db68fff1fc711c6825430ddf2f3bfa2edbbc93e0",
+  "media": {
+    "programs": [],
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1"
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "sample_rate": "48000",
+        "channels": 2,
+        "r_frame_rate": "0/0"
+      }
+    ],
+    "format": {
+      "duration": "90.000000",
+      "size": "7679742"
+    }
+  },
+  "voice": {
+    "model": "gemini-3.8-flash-lite-tts",
+    "name": "Kore"
+  },
+  "sceneStarts": [
+    0,
+    6,
+    18,
+    33,
+    47,
+    61,
+    76,
+    86
+  ],
+  "narrationEnd": 85.37,
+  "subtitleTiming": "Phrase-level interpolation inside measured audio clips; not word-level forced alignment.",
+  "mastering": "FFmpeg loudnorm target -16 LUFS, -1.5 dBTP, LRA 11; H.264 video stream copied."
+}

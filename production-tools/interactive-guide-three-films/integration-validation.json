@@ -1,0 +1,163 @@
+{
+  "date": "2026-10-31",
+  "scope": "Add existing 90-second Kore film to existing portable guide; synchronize all three timelines and shared entries.",
+  "html": {
+    "bytes": 25053095,
+    "sha256": "69c67c59d17f6109805a75c8eaaeb7db011c803a140be0be6f2135448bebf096",
+    "embedded_videos": [
+      {
+        "mode": "motion",
+        "bytes": 7679742,
+        "sha256": "cf255e92e2df5dc94909a5a4db68fff1fc711c6825430ddf2f3bfa2edbbc93e0",
+        "chapters": 8
+      },
+      {
+        "mode": "general",
+        "bytes": 4321786,
+        "sha256": "6ce9394ba777e908529db14469748b37bdd4072b6ef7cb447c0d9c4d4bf491a0",
+        "chapters": 12
+      },
+      {
+        "mode": "animation",
+        "bytes": 5158017,
+        "sha256": "90a64a33514f0d9ab6573c1e98006a52f586c029b2e29bf46328566ffdce13bf",
+        "chapters": 12
+      }
+    ],
+    "duplicate_ids": false,
+    "anchors_valid": true,
+    "all_runtime_resources_embedded": true,
+    "executable_scripts": 2,
+    "javascript_syntax": "pass",
+    "chapter_total": 32,
+    "steps": 10,
+    "sync_maps_ordered": true,
+    "shared_entry_points_identical": true
+  },
+  "browser": {
+    "status": "passed",
+    "checks": [
+      {
+        "name": "default motion, ordered tabs, public API and sync contract",
+        "passed": true
+      },
+      {
+        "name": "three embedded videos, 32 chapter seeks and highlights, actual playback",
+        "passed": true
+      },
+      {
+        "name": "independent per-film time memory and rapid switching recovery",
+        "passed": true
+      },
+      {
+        "name": "three-tab keyboard wrap in both directions",
+        "passed": true
+      },
+      {
+        "name": "10 screenshot steps, all hotspots, zoom and step keyboard navigation",
+        "passed": true
+      },
+      {
+        "name": "all step film bridges and disabled uncovered motion steps",
+        "passed": true
+      },
+      {
+        "name": "opt-in follow on/off and forward/reverse timeline seeking for every film",
+        "passed": true
+      },
+      {
+        "name": "retained architecture and evidence interactions plus film bridge",
+        "passed": true
+      },
+      {
+        "name": "1440/390/360 responsive layout and desktop/mobile screenshots",
+        "passed": true
+      },
+      {
+        "name": "single-file dependency audit and zero JavaScript/console errors",
+        "passed": true
+      }
+    ],
+    "films": [
+      {
+        "mode": "motion",
+        "chapters": 8,
+        "duration": 90,
+        "width": 1920,
+        "height": 1080,
+        "actual": {
+          "duration": 90,
+          "width": 1920,
+          "height": 1080,
+          "src": "blob"
+        }
+      },
+      {
+        "mode": "general",
+        "chapters": 12,
+        "duration": 137.15,
+        "width": 1280,
+        "height": 720,
+        "actual": {
+          "duration": 137.15,
+          "width": 1280,
+          "height": 720,
+          "src": "blob"
+        }
+      },
+      {
+        "mode": "animation",
+        "chapters": 12,
+        "duration": 217.866667,
+        "width": 1280,
+        "height": 720,
+        "actual": {
+          "duration": 217.866667,
+          "width": 1280,
+          "height": 720,
+          "src": "blob"
+        }
+      }
+    ],
+    "chapter_seeks": 32,
+    "forward_reverse_sync_checks": 128,
+    "viewports": [
+      {
+        "width": 1440,
+        "client": 1440,
+        "scroll": 1440,
+        "bodyOverflow": false
+      },
+      {
+        "width": 390,
+        "client": 390,
+        "scroll": 390,
+        "bodyOverflow": false
+      },
+      {
+        "width": 360,
+        "client": 360,
+        "scroll": 360,
+        "bodyOverflow": false
+      }
+    ],
+    "motionBridges": {
+      "enabled": 6,
+      "disabled": 4
+    },
+    "javascriptErrors": [],
+    "consoleErrors": [],
+    "externalRequests": [],
+    "resourceAudit": {
+      "externalResources": [],
+      "remoteReferences": [],
+      "brokenImages": []
+    }
+  },
+  "requestAbortNote": "Native Blob media range requests were cancelled during intentional seeks and film switches (net::ERR_ABORTED); video readiness, actual playback and all chapter seeks passed.",
+  "limitations": [
+    "No new application execution, model calls, clinical validation or full human listening review.",
+    "Concept-film links are related explanations, not real operation recordings.",
+    "Four tour features not covered in the short film are explicitly disabled."
+  ]
+}

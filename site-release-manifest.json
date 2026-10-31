@@ -1,0 +1,156 @@
+{
+  "date": "2026-10-31",
+  "scope": "Three-film static interactive guide and new 90-second animation sources",
+  "films": 3,
+  "chapters": 32,
+  "sourceHTMLSHA256": "69c67c59d17f6109805a75c8eaaeb7db011c803a140be0be6f2135448bebf096",
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 25053095,
+      "sha256": "69c67c59d17f6109805a75c8eaaeb7db011c803a140be0be6f2135448bebf096"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/delivery-manifest.json",
+      "bytes": 1019,
+      "sha256": "808bbdea44642f0b9f4f6fec3ba7d579a9bd864d04759744cff8f8ac3580073a"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/film.json",
+      "bytes": 1791,
+      "sha256": "0fc6b29c76290a1651aad6c2672de8e716c529a1e9f0cdf7c81bbdba6353f504"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/index.html",
+      "bytes": 41358,
+      "sha256": "e8c6938b7e75c23f4a585f6aeb8a0f83700e21fcafefcd0cce24ae9014fa169b"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/materials/rules.json",
+      "bytes": 655,
+      "sha256": "d268f99b652820bb394c62a5e6de07a695e3a9fd13f58cfdc044c23d31b765cf"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/materials.md",
+      "bytes": 1301,
+      "sha256": "eb93f4d3eb3d4fd9e7eef0154fc14080f04e15eba817852a99894d84381c8331"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/narration.txt",
+      "bytes": 934,
+      "sha256": "5ce7528a0e95d6b147f2ad9701897bc7e3b0440739e24de233841483c1183974"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/README.md",
+      "bytes": 1015,
+      "sha256": "9d15b86e63dd16aeeb0a6e4230c14215b4e865fb7afc4fc94ba7e4c4ad6c3dae"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/script.md",
+      "bytes": 1570,
+      "sha256": "8ec8b777501062cfa741ea5892c7e6eb53df94cdd1a7238600f3347d979a4304"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/subtitles.srt",
+      "bytes": 1691,
+      "sha256": "89583e4265ff021f12018acbb69177037778a8dfb24792ce72d1f473509a6530"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/timeline.json",
+      "bytes": 7603,
+      "sha256": "edb340011e0deb3d7d7d5d5351e99aafe2a38a85dbb4d106759923599b1a98df"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/tools/build.py",
+      "bytes": 23931,
+      "sha256": "9e5e08921f42330b98ccc26b493b664e3faf96afd295fcf85ba9f053e1cba263"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/tools/check_narration.py",
+      "bytes": 1746,
+      "sha256": "dc6028760cfeb4ce962eef48235363189a55b346e531fe0cd203b3865030d25a"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/tools/deliver.py",
+      "bytes": 6507,
+      "sha256": "d2e819a7510135e0088320ea89c0c6ccd273095b9eb41729f1eb7a16cb834865"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/tools/prepare.py",
+      "bytes": 2808,
+      "sha256": "d3c1009b27ef3703198152e9275d82cea7b4037c4978f9740b5a58b5fe6be7ca"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/tools/rebuild.py",
+      "bytes": 596,
+      "sha256": "3db9961dd149d0a33ec55a0ca7ec10100d1beb4102a89ab731407b91012de0c7"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/tools/synthesize.py",
+      "bytes": 2890,
+      "sha256": "0a37eb9eca5cc69d33cf9f8770a51818bd56419b7ad3cb7219464f923c59e172"
+    },
+    {
+      "path": "production-tools/huashu-motion-90s/treatment.md",
+      "bytes": 1598,
+      "sha256": "72bf91cd3835740d4039922841b2e7bbf8413dd12f492eabad7910fdc8d0bd84"
+    },
+    {
+      "path": "production-tools/interactive-guide-three-films/build_guide.py",
+      "bytes": 40440,
+      "sha256": "5eb430ff81a5ef66fa05e95e5f9dce65cdd31d682e3e243a6a4820cd068b6f61"
+    },
+    {
+      "path": "production-tools/interactive-guide-three-films/extract_assets.py",
+      "bytes": 1474,
+      "sha256": "cad0ce5648e6376d63177c4468bb12b7d2084f94a8c46bbc7e96984e98748f0a"
+    },
+    {
+      "path": "production-tools/interactive-guide-three-films/integration-validation.json",
+      "bytes": 4607,
+      "sha256": "36d812221514aaeb38bdcbf3ba9352a2547c5155529b9b918df64462a1f9fb9b"
+    },
+    {
+      "path": "production-tools/interactive-guide-three-films/media-manifest.json",
+      "bytes": 2159,
+      "sha256": "e0853aa6eaf54fb072404b5865a9844dcc86f677b7e9b3c159b5fb803ccaf089"
+    },
+    {
+      "path": "production-tools/interactive-guide-three-films/README.md",
+      "bytes": 964,
+      "sha256": "b6b7d1b53ba3a285846f8de6293484a85f16dfc0ed88823a1a74e47838b40d6e"
+    },
+    {
+      "path": "production-tools/interactive-guide-three-films/static-validation.json",
+      "bytes": 922,
+      "sha256": "6262822aa74760c1d1046d88a2e5639f85e31bfe41332d3a5840c0ac033de977"
+    },
+    {
+      "path": "production-tools/interactive-guide-three-films/tour-data.json",
+      "bytes": 19840,
+      "sha256": "e2d233bd2106ef328610a0c29770499c994479fb2296eecb33c71a6144e94dfb"
+    },
+    {
+      "path": "production-tools/interactive-guide-three-films/upgrade_builder.py",
+      "bytes": 14307,
+      "sha256": "d50e4ef57e4d4bb887d058228c80b717179eae38e20b10e55bcfa9df34e41ad0"
+    },
+    {
+      "path": "production-tools/interactive-guide-three-films/verify_guide.cjs",
+      "bytes": 23397,
+      "sha256": "ae61be5f82fd15810ed936c3abd37c185ee769c1e9bac0cd2b8cc46d6af53e3c"
+    },
+    {
+      "path": "production-tools/interactive-guide-three-films/verify_guide.py",
+      "bytes": 4131,
+      "sha256": "ede97e19161f20f4fa38380b02dc89cbf88be69e9d19ee37f1c68e4e846d295f"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2276,
+      "sha256": "8b7eb716f52d98ff6853bf1aae5d2ce8f5dc23fcb41ca46e6562cf85d49c5fac"
+    }
+  ],
+  "credential_scan": "No credential-value patterns in selected authoring sources; no env files or API receipts included.",
+  "validation": "32 chapters, 128 forward/reverse sync checks; desktop/mobile and isolated single-file validation passed."
+}

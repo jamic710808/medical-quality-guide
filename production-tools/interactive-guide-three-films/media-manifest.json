@@ -1,0 +1,77 @@
+[
+  {
+    "kind": "motion",
+    "source": "C:\\Users\\jamic\\.codex\\visualizations\\2026\\10\\31\\01a18fc0-0876-7220-b07f-83c457684060\\evidence-film-90s\\out\\每個疑點都有來處_90秒完整版_Kore.mp4",
+    "sha256": "cf255e92e2df5dc94909a5a4db68fff1fc711c6825430ddf2f3bfa2edbbc93e0",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1920,
+          "height": 1080,
+          "avg_frame_rate": "30/1"
+        },
+        {
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0"
+        }
+      ],
+      "format": {
+        "duration": "90.000000",
+        "size": "7679742"
+      }
+    },
+    "embedded_file": "motion-embed.mp4"
+  },
+  {
+    "kind": "general",
+    "source": "D:\\CODEX\\MedicalQualityCase-Windows\\MedicalQuality\\artifacts\\film-v2-20261031\\醫療病歷質控_全功能路演_Kore.mp4",
+    "sha256": "6cd1ac7c6357168c67aad37a652c9a58f25b39ec5ac4c6f1c58e9f2a32a1b110",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1920,
+          "height": 1080,
+          "avg_frame_rate": "60/1"
+        },
+        {
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0"
+        }
+      ],
+      "format": {
+        "duration": "137.150000",
+        "size": "17363744"
+      }
+    },
+    "embedded_file": "general-embed.mp4"
+  },
+  {
+    "kind": "animation",
+    "source": "C:\\Users\\jamic\\.codex\\visualizations\\2026\\10\\31\\01a18f5d-7c8e-79b1-8a4f-61dd0291ace2\\ff-medical-film\\final.mp4",
+    "sha256": "9aa5090a209fcb192d01a8994068770825b11485792f4c666895fe20ee3e2cc0",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1920,
+          "height": 1080,
+          "avg_frame_rate": "30/1"
+        },
+        {
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0"
+        }
+      ],
+      "format": {
+        "duration": "217.866667",
+        "size": "12243655"
+      }
+    },
+    "embedded_file": "animation-embed.mp4"
+  }
+]
