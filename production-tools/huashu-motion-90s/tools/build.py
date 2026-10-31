@@ -83,4 +83,3 @@ if cuefile.exists():
     out=out.replace('</head>','<script type="application/json" id="om-cues">'+json.dumps(cues,ensure_ascii=False,separators=(',',':'))+'</script></head>',1)
 (ROOT/'index.html').write_text(out,encoding='utf-8')
 print('Built eight scenes,',len(film['captions']),'captions; 90 seconds / 2700 frames')
-

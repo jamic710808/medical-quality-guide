@@ -15,4 +15,3 @@ result['method']='Audio-only Gemini 3.8 Flash transcription, expected text withh
 (root/'assets/narration/transcription-review.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
 print('Audio transcription similarity:',result['similarity'])
 print('Reported audible issues:',len(result.get('audible_issues',[])))
-
