@@ -2,24 +2,14 @@
   "source": "Windows engineering workspace with sanitized learner requirements",
   "files": [
     {
-      "path": ".gitignore",
-      "bytes": 768,
-      "sha256": "9d961dd9a7f950655ec540f4e3f94b30ee84f79d057e0af26d08e43a933bdc4f"
-    },
-    {
-      "path": "AGENTS.md",
-      "bytes": 7121,
-      "sha256": "eac4a948aef5c2ec3baded66d22dda3ea2c80b9f532b18c21f909ed76ff6d32d"
+      "path": ".agents/README.md",
+      "bytes": 4331,
+      "sha256": "6bea0066a8e90770345f4510f268ffe2c4504321af2929b62ec7255c0946cddc"
     },
     {
       "path": ".agents/evoontology-installation.md",
       "bytes": 2864,
       "sha256": "047d32f0d4f698e37f5a4c1b85713602e3040db29a2b2e720497c3eb676fb55d"
-    },
-    {
-      "path": ".agents/README.md",
-      "bytes": 4331,
-      "sha256": "6bea0066a8e90770345f4510f268ffe2c4504321af2929b62ec7255c0946cddc"
     },
     {
       "path": ".agents/skills/build-fde-project/SKILL.md",
@@ -37,14 +27,14 @@
       "sha256": "c771a2e16aef6b227f9b3c930a096495cee8114f5e073e7a1105c1bb6c2f0376"
     },
     {
-      "path": ".agents/skills/build-fde-project/assets/architecture.template.md",
-      "bytes": 616,
-      "sha256": "4de4472646a7f696b1ea8666d86102c0751b25db053c63c25d8a1f99bd112284"
-    },
-    {
       "path": ".agents/skills/build-fde-project/assets/README.template.md",
       "bytes": 817,
       "sha256": "9faf9378e4a8a9c358e4e51002d9fd976550b170c18ef39806b481a396219c64"
+    },
+    {
+      "path": ".agents/skills/build-fde-project/assets/architecture.template.md",
+      "bytes": 616,
+      "sha256": "4de4472646a7f696b1ea8666d86102c0751b25db053c63c25d8a1f99bd112284"
     },
     {
       "path": ".agents/skills/build-fde-project/assets/brand/ff-logo.png",
@@ -87,6 +77,11 @@
       "sha256": "1d610ae76f3688e8167fa5cb299a238b0730d460468ac49d89d16487b857913b"
     },
     {
+      "path": ".agents/skills/build-frontend-prototype/references/LICENSE.emil-design-eng.txt",
+      "bytes": 1070,
+      "sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b"
+    },
+    {
       "path": ".agents/skills/build-frontend-prototype/references/design-template.md",
       "bytes": 8942,
       "sha256": "1c86b6509a5a3f1b6d7e778026834c6f72ac2e191f0c92bbb371272b82c709b9"
@@ -95,11 +90,6 @@
       "path": ".agents/skills/build-frontend-prototype/references/emil-design-eng.md",
       "bytes": 27226,
       "sha256": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7"
-    },
-    {
-      "path": ".agents/skills/build-frontend-prototype/references/LICENSE.emil-design-eng.txt",
-      "bytes": 1070,
-      "sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b"
     },
     {
       "path": ".agents/skills/build-frontend-prototype/references/output-contract.md",
@@ -372,14 +362,14 @@
       "sha256": "03ab72fe6de533bd3889eaa92f98138a2dd10599c1464b549827cd9d6afe0bb3"
     },
     {
-      "path": ".agents/skills/feature-spec-planning/scripts/validate_feature_specs.py",
-      "bytes": 30851,
-      "sha256": "0f580d3fea6b25a6d488f30405b79608406a6eb20d6c4078025805c852bbefca"
-    },
-    {
       "path": ".agents/skills/feature-spec-planning/scripts/tests/test_validate_feature_specs.py",
       "bytes": 15151,
       "sha256": "00ff4044b95b27a5dffac87a31be8f2440e00ca39593e9e451401401768c8347"
+    },
+    {
+      "path": ".agents/skills/feature-spec-planning/scripts/validate_feature_specs.py",
+      "bytes": 30851,
+      "sha256": "0f580d3fea6b25a6d488f30405b79608406a6eb20d6c4078025805c852bbefca"
     },
     {
       "path": ".agents/skills/langextract-usage/README.md",
@@ -617,11 +607,6 @@
       "sha256": "5b4bb231ef4eb1c2d9ea452cba068f4ffac64b3f9798cf47d32022fb9087f66f"
     },
     {
-      "path": ".agents/skills/prepare-business-data/scripts/validate_evidence.py",
-      "bytes": 6509,
-      "sha256": "9af9cdabd6d0893afbd96b84c977c217a55fe7abba96bc537a654508ae5aa29f"
-    },
-    {
       "path": ".agents/skills/prepare-business-data/scripts/tests/test_inspect_inputs.py",
       "bytes": 4220,
       "sha256": "1819d9850cb4c439257356d4c8278181613e748b60869598523cbafcaa834916"
@@ -630,6 +615,11 @@
       "path": ".agents/skills/prepare-business-data/scripts/tests/test_validate_evidence.py",
       "bytes": 3160,
       "sha256": "801a7aabff3eca8166c2f5e5abc072bdf45a798e9db46514ced943d2bbefab98"
+    },
+    {
+      "path": ".agents/skills/prepare-business-data/scripts/validate_evidence.py",
+      "bytes": 6509,
+      "sha256": "9af9cdabd6d0893afbd96b84c977c217a55fe7abba96bc537a654508ae5aa29f"
     },
     {
       "path": ".agents/skills/prepare-requirement-materials/SKILL.md",
@@ -662,14 +652,14 @@
       "sha256": "3e25d5c663d91886a9f92fdc899d3634542a02401fca7e8e3fa95b7464e1b3c4"
     },
     {
-      "path": ".agents/skills/product-prd/scripts/validate_prd.py",
-      "bytes": 8221,
-      "sha256": "6534801b5f68c6251eb202933b15fcaf926b0accf5a4f8f21f1f9427072de2d8"
-    },
-    {
       "path": ".agents/skills/product-prd/scripts/tests/test_validate_prd.py",
       "bytes": 10587,
       "sha256": "37d7b8f65406554eddc689411a9a32423bd9eae76f94345b4287316957680f9f"
+    },
+    {
+      "path": ".agents/skills/product-prd/scripts/validate_prd.py",
+      "bytes": 8221,
+      "sha256": "6534801b5f68c6251eb202933b15fcaf926b0accf5a4f8f21f1f9427072de2d8"
     },
     {
       "path": ".agents/skills/product-spec/SKILL.md",
@@ -687,14 +677,14 @@
       "sha256": "11f0d405aa0e8df66625c400ea48c469f89d9998578fbf6042a2c031c7bfc3d9"
     },
     {
-      "path": ".agents/skills/product-spec/scripts/validate_product_spec.py",
-      "bytes": 9493,
-      "sha256": "653c9b0970a76ceffd297fd0f042b7f905b98765e7644a86be9cabecaacc1df9"
-    },
-    {
       "path": ".agents/skills/product-spec/scripts/tests/test_validate_product_spec.py",
       "bytes": 6206,
       "sha256": "b78a321b49409d6026bd2e48bc42711452160f9ba65c262f10a673a7af0d8785"
+    },
+    {
+      "path": ".agents/skills/product-spec/scripts/validate_product_spec.py",
+      "bytes": 9493,
+      "sha256": "653c9b0970a76ceffd297fd0f042b7f905b98765e7644a86be9cabecaacc1df9"
     },
     {
       "path": ".agents/skills/project-evals/SKILL.md",
@@ -717,14 +707,14 @@
       "sha256": "9445181b1a5688507359b4731e892ebdaa1e83ea8c32ef2ac8faba3a702324b4"
     },
     {
-      "path": ".agents/skills/project-evals/scripts/validate_evals.py",
-      "bytes": 11895,
-      "sha256": "1a0fadd79bc7f75c0bb91f658db674de3305370f8cdabac0a707801ef186ef9f"
-    },
-    {
       "path": ".agents/skills/project-evals/scripts/tests/test_project_evals.py",
       "bytes": 12373,
       "sha256": "ba1c2b1dbf4f20b0de4de7bbb564464bd1a1d9299a2da0074b55731158fd6b5f"
+    },
+    {
+      "path": ".agents/skills/project-evals/scripts/validate_evals.py",
+      "bytes": 11895,
+      "sha256": "1a0fadd79bc7f75c0bb91f658db674de3305370f8cdabac0a707801ef186ef9f"
     },
     {
       "path": ".agents/skills/read-session-context/SKILL.md",
@@ -770,16 +760,6 @@
       "path": ".agents/skills/review-project-requirements/assets/board.html",
       "bytes": 19235,
       "sha256": "3210190367a0ffc42d053c5148d2dff884bc175989588d0040e476114f571890"
-    },
-    {
-      "path": ".agents/skills/review-project-requirements/assets/panel.html",
-      "bytes": 47568,
-      "sha256": "5b229bbad7d989acd11e5e2bf1f0b232280a6fad50c392f784693dff687bc45c"
-    },
-    {
-      "path": ".agents/skills/review-project-requirements/assets/reading-controls.html",
-      "bytes": 2055,
-      "sha256": "05279753663272d319db99fb5809d6cf71ea6f72269379d951bb4fb341c2e61c"
     },
     {
       "path": ".agents/skills/review-project-requirements/assets/illustrations/column-chart.png",
@@ -840,6 +820,16 @@
       "path": ".agents/skills/review-project-requirements/assets/illustrations/pain-direction.png",
       "bytes": 7262,
       "sha256": "f3d7cb04d06a46429daabbf2dc9aa9ac7399ff236ce6c4b6a8408925181ce087"
+    },
+    {
+      "path": ".agents/skills/review-project-requirements/assets/panel.html",
+      "bytes": 47568,
+      "sha256": "5b229bbad7d989acd11e5e2bf1f0b232280a6fad50c392f784693dff687bc45c"
+    },
+    {
+      "path": ".agents/skills/review-project-requirements/assets/reading-controls.html",
+      "bytes": 2055,
+      "sha256": "05279753663272d319db99fb5809d6cf71ea6f72269379d951bb4fb341c2e61c"
     },
     {
       "path": ".agents/skills/review-project-requirements/references/board-data.md",
@@ -952,24 +942,14 @@
       "sha256": "140ba67c27276d23ccb07533d1604629f000ae350e2ba75190618bb8f3c9e38e"
     },
     {
-      "path": ".agents/vendor/evoontology/evoontology/validate.py",
-      "bytes": 6535,
-      "sha256": "1d24e39f45d15d355f8740aafbff462f98a140ad0b1fcd1697241d9a775af8b6"
-    },
-    {
-      "path": ".agents/vendor/evoontology/evoontology/workflow.py",
-      "bytes": 19952,
-      "sha256": "a6162119899e81754787cc448cca6ed33e67c204cea6fcc0a981fdcaad66a3db"
-    },
-    {
-      "path": ".agents/vendor/evoontology/evoontology/workspace.py",
-      "bytes": 7284,
-      "sha256": "dfba098b5de56f38af72e47376aa2d413a0924fd7e8aefa5ad83ac25463701a5"
-    },
-    {
       "path": ".agents/vendor/evoontology/evoontology/__init__.py",
       "bytes": 2139,
       "sha256": "56d575341b1f34e4e27ddb523bbc04e02c6be71d64359aa17c8359a09de6ba30"
+    },
+    {
+      "path": ".agents/vendor/evoontology/evoontology/evaluation/__init__.py",
+      "bytes": 120,
+      "sha256": "603c5034c23c5f9a58b7f53714f22355151e29cf105b52099b6109b81435094d"
     },
     {
       "path": ".agents/vendor/evoontology/evoontology/evaluation/evaluation.py",
@@ -977,9 +957,9 @@
       "sha256": "028d6f23d498a40a9a0c822579e36991b293f3c91cede8af915ecf8b00d3abaa"
     },
     {
-      "path": ".agents/vendor/evoontology/evoontology/evaluation/__init__.py",
-      "bytes": 120,
-      "sha256": "603c5034c23c5f9a58b7f53714f22355151e29cf105b52099b6109b81435094d"
+      "path": ".agents/vendor/evoontology/evoontology/evolution/__init__.py",
+      "bytes": 565,
+      "sha256": "195de836b4edeaf54fdffe9ca60a9d3fd4b4affcc7ae975ac3d8fdae469d5e6b"
     },
     {
       "path": ".agents/vendor/evoontology/evoontology/evolution/adapter.py",
@@ -992,9 +972,9 @@
       "sha256": "849d847f4e75541f3a71268523e9760f7f757fc841f596cb406dd3f3cf0e551c"
     },
     {
-      "path": ".agents/vendor/evoontology/evoontology/evolution/__init__.py",
-      "bytes": 565,
-      "sha256": "195de836b4edeaf54fdffe9ca60a9d3fd4b4affcc7ae975ac3d8fdae469d5e6b"
+      "path": ".agents/vendor/evoontology/evoontology/ontology/__init__.py",
+      "bytes": 263,
+      "sha256": "52e62cd2af4479f9913f2f42df8b0392a7024abb9088953d137b3d13352cc223"
     },
     {
       "path": ".agents/vendor/evoontology/evoontology/ontology/models.py",
@@ -1007,9 +987,9 @@
       "sha256": "9e9d46bd89995cbdac4e8339a14d232160f0e09735002798224e53d9584b03cc"
     },
     {
-      "path": ".agents/vendor/evoontology/evoontology/ontology/__init__.py",
-      "bytes": 263,
-      "sha256": "52e62cd2af4479f9913f2f42df8b0392a7024abb9088953d137b3d13352cc223"
+      "path": ".agents/vendor/evoontology/evoontology/runtime/__init__.py",
+      "bytes": 134,
+      "sha256": "0c6f39a514ee3e53f68bd3ceca38806fefacdafa91bc158520392b69815f8f56"
     },
     {
       "path": ".agents/vendor/evoontology/evoontology/runtime/mcp_server.py",
@@ -1032,9 +1012,9 @@
       "sha256": "e002afa64114deb1d5bf4c338fe14c76185ee60818bf4804cef452091106074c"
     },
     {
-      "path": ".agents/vendor/evoontology/evoontology/runtime/__init__.py",
-      "bytes": 134,
-      "sha256": "0c6f39a514ee3e53f68bd3ceca38806fefacdafa91bc158520392b69815f8f56"
+      "path": ".agents/vendor/evoontology/evoontology/trajectory/__init__.py",
+      "bytes": 219,
+      "sha256": "261bcbe7537f1b13bfa294135ff0f76b18e02908cd7a2eacf09146a08fa140df"
     },
     {
       "path": ".agents/vendor/evoontology/evoontology/trajectory/trajectory.py",
@@ -1042,9 +1022,9 @@
       "sha256": "207b6c1480eab10d8cf102c2e860c52d74788c8a72226d8235b7580f211a0567"
     },
     {
-      "path": ".agents/vendor/evoontology/evoontology/trajectory/__init__.py",
-      "bytes": 219,
-      "sha256": "261bcbe7537f1b13bfa294135ff0f76b18e02908cd7a2eacf09146a08fa140df"
+      "path": ".agents/vendor/evoontology/evoontology/trigger/__init__.py",
+      "bytes": 96,
+      "sha256": "f884e96aa2bb4745dc3a90fae89ac1517f0ec316111f5708b55a310bd77bd630"
     },
     {
       "path": ".agents/vendor/evoontology/evoontology/trigger/trigger.py",
@@ -1052,9 +1032,19 @@
       "sha256": "a809e79b4285f28b738652b3dd54eaee89d23f3571b237283b36f4d96bb2479d"
     },
     {
-      "path": ".agents/vendor/evoontology/evoontology/trigger/__init__.py",
-      "bytes": 96,
-      "sha256": "f884e96aa2bb4745dc3a90fae89ac1517f0ec316111f5708b55a310bd77bd630"
+      "path": ".agents/vendor/evoontology/evoontology/validate.py",
+      "bytes": 6535,
+      "sha256": "1d24e39f45d15d355f8740aafbff462f98a140ad0b1fcd1697241d9a775af8b6"
+    },
+    {
+      "path": ".agents/vendor/evoontology/evoontology/visualization/__init__.py",
+      "bytes": 781,
+      "sha256": "a48895e6a6cad5fe25d1b8678b81d62529afdb2cc52c4ea6cd1ea35b7a446372"
+    },
+    {
+      "path": ".agents/vendor/evoontology/evoontology/visualization/__main__.py",
+      "bytes": 1201,
+      "sha256": "a4706cda58ac2315676593980d56eeab32b06fc2fb339dfadef1fa169e9f9b13"
     },
     {
       "path": ".agents/vendor/evoontology/evoontology/visualization/preview.py",
@@ -1072,14 +1062,9 @@
       "sha256": "6dd2eff5c2b9cb27d81b0ce9e6aa832d59bbfb3902f16d80472fc133ec65edc2"
     },
     {
-      "path": ".agents/vendor/evoontology/evoontology/visualization/__init__.py",
-      "bytes": 781,
-      "sha256": "a48895e6a6cad5fe25d1b8678b81d62529afdb2cc52c4ea6cd1ea35b7a446372"
-    },
-    {
-      "path": ".agents/vendor/evoontology/evoontology/visualization/__main__.py",
-      "bytes": 1201,
-      "sha256": "a4706cda58ac2315676593980d56eeab32b06fc2fb339dfadef1fa169e9f9b13"
+      "path": ".agents/vendor/evoontology/evoontology/visualization/vendor/LICENSE.cytoscape.txt",
+      "bytes": 1082,
+      "sha256": "a29c0d78a54de204b78357976c3d272a573b8592d0478b9db07af3f1da31a65a"
     },
     {
       "path": ".agents/vendor/evoontology/evoontology/visualization/vendor/cytoscape.min.js",
@@ -1087,9 +1072,14 @@
       "sha256": "83e8c54a6bec655bfd81df07df605649c268af69aeca67a5ea2da54ea42dac81"
     },
     {
-      "path": ".agents/vendor/evoontology/evoontology/visualization/vendor/LICENSE.cytoscape.txt",
-      "bytes": 1082,
-      "sha256": "a29c0d78a54de204b78357976c3d272a573b8592d0478b9db07af3f1da31a65a"
+      "path": ".agents/vendor/evoontology/evoontology/workflow.py",
+      "bytes": 19952,
+      "sha256": "a6162119899e81754787cc448cca6ed33e67c204cea6fcc0a981fdcaad66a3db"
+    },
+    {
+      "path": ".agents/vendor/evoontology/evoontology/workspace.py",
+      "bytes": 7284,
+      "sha256": "dfba098b5de56f38af72e47376aa2d413a0924fd7e8aefa5ad83ac25463701a5"
     },
     {
       "path": ".agents/vendor/evoontology/scripts/launch_evo_semantic_mcp",
@@ -1100,6 +1090,16 @@
       "path": ".agents/vendor/evoontology/scripts/launch_evo_semantic_mcp.cmd",
       "bytes": 1557,
       "sha256": "430d1815f302d401688440f1bb9dc774a22db6063c07039141f4e70add3727fb"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 852,
+      "sha256": "e8707153eb3c2179e9c0b9c179eb7aeeed7eb619dde13f293df7743a3ca9b1de"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 7121,
+      "sha256": "eac4a948aef5c2ec3baded66d22dda3ea2c80b9f532b18c21f909ed76ff6d32d"
     },
     {
       "path": "Data/醫療病歷質控/README.md",
@@ -1127,34 +1127,9 @@
       "sha256": "89874191b7a350483d6d143ccb39400f231b98c957c7cb1142ae600479c4ab46"
     },
     {
-      "path": "MedicalQuality/start.bat",
-      "bytes": 173,
-      "sha256": "66d012108ab3069fb7bdc4cf850c9af6a1eab18cd8e185e5325724a4f4b3bfd1"
-    },
-    {
-      "path": "MedicalQuality/stop.bat",
-      "bytes": 102,
-      "sha256": "e1a68cac6ea4813a421f4f15958787cf817565bba8194e6991438d4f45261c99"
-    },
-    {
       "path": "MedicalQuality/Windows啟動與驗證說明.md",
       "bytes": 3286,
       "sha256": "8aeccd4bc925761c65288e103732a02b6084416bc95d5460dfe7b77546dcc60e"
-    },
-    {
-      "path": "MedicalQuality/停止工作臺.cmd",
-      "bytes": 84,
-      "sha256": "6f82ee5ac197827a3237332686f64d86e1b1e958d4f166ecd3e23169dc4e9d55"
-    },
-    {
-      "path": "MedicalQuality/啟動工作臺.cmd",
-      "bytes": 133,
-      "sha256": "115af405c5638ce1088506e35c897a15629403658b270ced9d98cd884af15958"
-    },
-    {
-      "path": "MedicalQuality/平台架構互動導覽.html",
-      "bytes": 4799,
-      "sha256": "97646a12c8e5240ebf9e22048e0a689a2eb43e3a58253ec4ebe9e0245948a070"
     },
     {
       "path": "MedicalQuality/backend/alembic.ini",
@@ -1162,19 +1137,14 @@
       "sha256": "ebfad8a9c8f352d2381e48df599dd04dad764ca95b03f0dc9949d0691c6d2517"
     },
     {
-      "path": "MedicalQuality/backend/pyproject.toml",
-      "bytes": 1358,
-      "sha256": "0efdc51be888b688ff3e07e696094a11439fc2067a4af957a14215fe40d46c81"
-    },
-    {
-      "path": "MedicalQuality/backend/uv.lock",
-      "bytes": 576954,
-      "sha256": "64a79b485a8d876ed0dd67d90e94d7d444edea20142b17e464fcfdbb7c1c5626"
-    },
-    {
       "path": "MedicalQuality/backend/fixtures/prototype-synthetic.json",
       "bytes": 8395,
       "sha256": "7aef10ef7184a62b9ef166986fbe062b8c6ece926a74ebb96607e381eb668822"
+    },
+    {
+      "path": "MedicalQuality/backend/medical_quality/__init__.py",
+      "bytes": 35,
+      "sha256": "0038ce0f22ca2fc8701a9406dd04764c9718a6934f22d41673fb11b22beb93a9"
     },
     {
       "path": "MedicalQuality/backend/medical_quality/access.py",
@@ -1185,6 +1155,46 @@
       "path": "MedicalQuality/backend/medical_quality/app.py",
       "bytes": 45711,
       "sha256": "e3cc6d36c655fe913705cc9a484af133dd11ef60a3f1b1e097e5d7e84003581c"
+    },
+    {
+      "path": "MedicalQuality/backend/medical_quality/clinical_context/__init__.py",
+      "bytes": 56,
+      "sha256": "57e89793d963362250d89fe3aeb5ab82d2c0b6927a518d2c298cae10a9d709a8"
+    },
+    {
+      "path": "MedicalQuality/backend/medical_quality/clinical_context/context.py",
+      "bytes": 9340,
+      "sha256": "4e653053b93ef454c20d80b7f0927b86ddd05f49a6f4371792e06b6f5321c65e"
+    },
+    {
+      "path": "MedicalQuality/backend/medical_quality/clinical_context/ontology/bindings.json",
+      "bytes": 727,
+      "sha256": "357769916f414d6126316f41a23efe9a52b922261d98658f2b1ad9525d651fb6"
+    },
+    {
+      "path": "MedicalQuality/backend/medical_quality/clinical_context/ontology/core.ttl",
+      "bytes": 11931,
+      "sha256": "5b9e03619c2518bb90ec737ea8a0477201ef309f1c2684a36cf2c553fe55e9d7"
+    },
+    {
+      "path": "MedicalQuality/backend/medical_quality/clinical_context/ontology/imports.json",
+      "bytes": 180,
+      "sha256": "5943e48b4f6c3978d1c40d77f205de207a6abf31485d70137cffaa823b96824b"
+    },
+    {
+      "path": "MedicalQuality/backend/medical_quality/clinical_context/ontology/mappings.sssom.tsv",
+      "bytes": 106,
+      "sha256": "42485ccd7e0164e7b8a3df95f5c78c3b3278b64777f0a0c4e8ac6433ace07fd3"
+    },
+    {
+      "path": "MedicalQuality/backend/medical_quality/clinical_context/ontology/shapes.ttl",
+      "bytes": 1003,
+      "sha256": "72a3793c9b564966ed40f4bcd34168b0f9b6e3f334b5b5117e2334ce999742ec"
+    },
+    {
+      "path": "MedicalQuality/backend/medical_quality/clinical_context/query_catalog.py",
+      "bytes": 6036,
+      "sha256": "44159ed09895c205d71076f96357c8c0231445e6714dabb646577e368c750ee7"
     },
     {
       "path": "MedicalQuality/backend/medical_quality/common.py",
@@ -1267,6 +1277,11 @@
       "sha256": "66f09777bc23be210514e4949fa1923c4fd338cfbe829f80d39eb34a2eb60fcc"
     },
     {
+      "path": "MedicalQuality/backend/medical_quality/schemas/evidence-item.schema.json",
+      "bytes": 17553,
+      "sha256": "6d679d040ce4b26ea409d544d68b2f0fcddc066895e1502f2fe7b8d123aeb0bb"
+    },
+    {
       "path": "MedicalQuality/backend/medical_quality/seed.py",
       "bytes": 14945,
       "sha256": "6925c5fdabc9a0c261771b31e968d42a667ac57bb025097c0b51b309ca62d208"
@@ -1282,56 +1297,6 @@
       "sha256": "394acd7d4906abd3f11914198c75fe404d521064e3a769462732e7ae27a1d158"
     },
     {
-      "path": "MedicalQuality/backend/medical_quality/__init__.py",
-      "bytes": 35,
-      "sha256": "0038ce0f22ca2fc8701a9406dd04764c9718a6934f22d41673fb11b22beb93a9"
-    },
-    {
-      "path": "MedicalQuality/backend/medical_quality/clinical_context/context.py",
-      "bytes": 9340,
-      "sha256": "4e653053b93ef454c20d80b7f0927b86ddd05f49a6f4371792e06b6f5321c65e"
-    },
-    {
-      "path": "MedicalQuality/backend/medical_quality/clinical_context/query_catalog.py",
-      "bytes": 6036,
-      "sha256": "44159ed09895c205d71076f96357c8c0231445e6714dabb646577e368c750ee7"
-    },
-    {
-      "path": "MedicalQuality/backend/medical_quality/clinical_context/__init__.py",
-      "bytes": 56,
-      "sha256": "57e89793d963362250d89fe3aeb5ab82d2c0b6927a518d2c298cae10a9d709a8"
-    },
-    {
-      "path": "MedicalQuality/backend/medical_quality/clinical_context/ontology/bindings.json",
-      "bytes": 727,
-      "sha256": "357769916f414d6126316f41a23efe9a52b922261d98658f2b1ad9525d651fb6"
-    },
-    {
-      "path": "MedicalQuality/backend/medical_quality/clinical_context/ontology/core.ttl",
-      "bytes": 11931,
-      "sha256": "5b9e03619c2518bb90ec737ea8a0477201ef309f1c2684a36cf2c553fe55e9d7"
-    },
-    {
-      "path": "MedicalQuality/backend/medical_quality/clinical_context/ontology/imports.json",
-      "bytes": 180,
-      "sha256": "5943e48b4f6c3978d1c40d77f205de207a6abf31485d70137cffaa823b96824b"
-    },
-    {
-      "path": "MedicalQuality/backend/medical_quality/clinical_context/ontology/mappings.sssom.tsv",
-      "bytes": 106,
-      "sha256": "42485ccd7e0164e7b8a3df95f5c78c3b3278b64777f0a0c4e8ac6433ace07fd3"
-    },
-    {
-      "path": "MedicalQuality/backend/medical_quality/clinical_context/ontology/shapes.ttl",
-      "bytes": 1003,
-      "sha256": "72a3793c9b564966ed40f4bcd34168b0f9b6e3f334b5b5117e2334ce999742ec"
-    },
-    {
-      "path": "MedicalQuality/backend/medical_quality/schemas/evidence-item.schema.json",
-      "bytes": 17553,
-      "sha256": "6d679d040ce4b26ea409d544d68b2f0fcddc066895e1502f2fe7b8d123aeb0bb"
-    },
-    {
       "path": "MedicalQuality/backend/migrations/env.py",
       "bytes": 355,
       "sha256": "9f8e8d752e37cd0c902e8a2c9fbecfd42c1637925dd2bb623d21aedc50b95aaf"
@@ -1345,6 +1310,11 @@
       "path": "MedicalQuality/backend/migrations/versions/002_index_policy.py",
       "bytes": 741,
       "sha256": "2ba28fb2365c9f6143931bc3cdde59f83be8c97ee75348a717493b5fc56a9700"
+    },
+    {
+      "path": "MedicalQuality/backend/pyproject.toml",
+      "bytes": 1358,
+      "sha256": "0efdc51be888b688ff3e07e696094a11439fc2067a4af957a14215fe40d46c81"
     },
     {
       "path": "MedicalQuality/backend/tests/conftest.py",
@@ -1417,19 +1387,9 @@
       "sha256": "b6f62b4a8d159985bf42207532d1668b7aaab4834b192138a6df7c6d5e30e491"
     },
     {
-      "path": "MedicalQuality/docs/development-runbook.md",
-      "bytes": 8274,
-      "sha256": "e125f7c8112aed0be4808fa0d0cac7b1b9120514eac5296a7a17c472795cba2a"
-    },
-    {
-      "path": "MedicalQuality/docs/evaluation-plan.md",
-      "bytes": 24649,
-      "sha256": "f5097df3ad2aac3c1cb51935310b0bd6e508074d8441b7929702a39f8325ca76"
-    },
-    {
-      "path": "MedicalQuality/docs/PRD.md",
-      "bytes": 51374,
-      "sha256": "ee9051d55284be762c70befd215d2e5bf013c19ce217888b430601bd525f67a4"
+      "path": "MedicalQuality/backend/uv.lock",
+      "bytes": 576954,
+      "sha256": "64a79b485a8d876ed0dd67d90e94d7d444edea20142b17e464fcfdbb7c1c5626"
     },
     {
       "path": "MedicalQuality/docs/01_normalize-project-requirements/index.md",
@@ -1462,11 +1422,6 @@
       "sha256": "3b4c1645166d4a9c0bab433b5ecb0e8dfe3063816ae30880e4f334dfe93a36e6"
     },
     {
-      "path": "MedicalQuality/docs/02_requirement-playground/index.html",
-      "bytes": 196799,
-      "sha256": "8ff6fd38a8d767aeede2ba7381634c5500114c72b418cd3128a2fa027a52a7ae"
-    },
-    {
       "path": "MedicalQuality/docs/03_prototype-design/design.md",
       "bytes": 21490,
       "sha256": "494463fd198925741db2107808d9fa1442b7ccf2a0ab483cd6deed8dbdd909dc"
@@ -1477,34 +1432,9 @@
       "sha256": "3c64cdc099857cc9ec5f4754cb21d6c224628581b3c4a96a135ace8bcde003d7"
     },
     {
-      "path": "MedicalQuality/docs/04_frontend-prototype/case.html",
-      "bytes": 660,
-      "sha256": "bda8a482c487f2f9d72482606dee5caa1c6dfba65170914dc7883b1f3a63948b"
-    },
-    {
-      "path": "MedicalQuality/docs/04_frontend-prototype/governance.html",
-      "bytes": 669,
-      "sha256": "bc24ddedcff7e7a3be183c491e0ac88311ca58400454b489a6ede808f17afb76"
-    },
-    {
-      "path": "MedicalQuality/docs/04_frontend-prototype/index.html",
-      "bytes": 664,
-      "sha256": "34c2b149a8024c73cd388836653f0b77f358b566b65f448f8bee25b9a2d836ef"
-    },
-    {
       "path": "MedicalQuality/docs/04_frontend-prototype/README.md",
       "bytes": 4661,
       "sha256": "282220f76e2079189ccc754e63021542b8ca716eb0e2f474f295df9a1fa95c6e"
-    },
-    {
-      "path": "MedicalQuality/docs/04_frontend-prototype/rules.html",
-      "bytes": 664,
-      "sha256": "4984523e1c6e7de076ca3329dce6957ad2d82f61e0899cd809e100845d147675"
-    },
-    {
-      "path": "MedicalQuality/docs/04_frontend-prototype/validation.html",
-      "bytes": 669,
-      "sha256": "3e6e11cc94bdc050dfa4948ac289f47309a86a6885d94994fc0609c4e8484d73"
     },
     {
       "path": "MedicalQuality/docs/04_frontend-prototype/assets/app.js",
@@ -1525,6 +1455,36 @@
       "path": "MedicalQuality/docs/04_frontend-prototype/assets/styles.css",
       "bytes": 23583,
       "sha256": "6f77db62309439e4c5f0024a859dcf06ac60c54cacbd4f40363fd7b885fde886"
+    },
+    {
+      "path": "MedicalQuality/docs/04_frontend-prototype/case.html",
+      "bytes": 660,
+      "sha256": "bda8a482c487f2f9d72482606dee5caa1c6dfba65170914dc7883b1f3a63948b"
+    },
+    {
+      "path": "MedicalQuality/docs/04_frontend-prototype/governance.html",
+      "bytes": 669,
+      "sha256": "bc24ddedcff7e7a3be183c491e0ac88311ca58400454b489a6ede808f17afb76"
+    },
+    {
+      "path": "MedicalQuality/docs/04_frontend-prototype/index.html",
+      "bytes": 664,
+      "sha256": "34c2b149a8024c73cd388836653f0b77f358b566b65f448f8bee25b9a2d836ef"
+    },
+    {
+      "path": "MedicalQuality/docs/04_frontend-prototype/rules.html",
+      "bytes": 664,
+      "sha256": "4984523e1c6e7de076ca3329dce6957ad2d82f61e0899cd809e100845d147675"
+    },
+    {
+      "path": "MedicalQuality/docs/04_frontend-prototype/validation.html",
+      "bytes": 669,
+      "sha256": "3e6e11cc94bdc050dfa4948ac289f47309a86a6885d94994fc0609c4e8484d73"
+    },
+    {
+      "path": "MedicalQuality/docs/PRD.md",
+      "bytes": 51374,
+      "sha256": "ee9051d55284be762c70befd215d2e5bf013c19ce217888b430601bd525f67a4"
     },
     {
       "path": "MedicalQuality/docs/architecture/agent-runtime.md",
@@ -1592,6 +1552,16 @@
       "sha256": "014c992dfd9ca10eb21e1ff9261b3e5d97d8391866fba6cc563f0a946b946788"
     },
     {
+      "path": "MedicalQuality/docs/development-runbook.md",
+      "bytes": 8274,
+      "sha256": "e125f7c8112aed0be4808fa0d0cac7b1b9120514eac5296a7a17c472795cba2a"
+    },
+    {
+      "path": "MedicalQuality/docs/evaluation-plan.md",
+      "bytes": 24649,
+      "sha256": "f5097df3ad2aac3c1cb51935310b0bd6e508074d8441b7929702a39f8325ca76"
+    },
+    {
       "path": "MedicalQuality/docs/research/medical-quality-architecture-evidence.md",
       "bytes": 11466,
       "sha256": "10a740bceb079eac23fd4450b9792843941fa38ea6280e4a0db50b17293fd444"
@@ -1600,16 +1570,6 @@
       "path": "MedicalQuality/docs/research/rag-selection-skill-exploration.md",
       "bytes": 28748,
       "sha256": "8cd8a90696fcd69877d5004ec2e9e1c7482691dbc6fd4e91410bf96c60604422"
-    },
-    {
-      "path": "MedicalQuality/docs/specs/feature-map.md",
-      "bytes": 34823,
-      "sha256": "fd8121b7f0b772c69b9a8d574b04d1d04483d86661d98fffb6fe9cccb9143bbd"
-    },
-    {
-      "path": "MedicalQuality/docs/specs/product-spec.md",
-      "bytes": 31576,
-      "sha256": "f00d00c75a61249e8dadca908061d79d017e007c388dd54e93f9515894e746b6"
     },
     {
       "path": "MedicalQuality/docs/specs/F001-access-audit/plan.md",
@@ -1777,24 +1737,14 @@
       "sha256": "0babbff7c67dd8bf42682751349701f407cd46ce481782ab0f2f79714c712734"
     },
     {
-      "path": "MedicalQuality/docs/verification/agent-selection-planning.md",
-      "bytes": 5466,
-      "sha256": "66dd153823794bc6639c2e0af5137a4e66b34d02adb8ec547050d4099090047e"
+      "path": "MedicalQuality/docs/specs/feature-map.md",
+      "bytes": 34823,
+      "sha256": "fd8121b7f0b772c69b9a8d574b04d1d04483d86661d98fffb6fe9cccb9143bbd"
     },
     {
-      "path": "MedicalQuality/docs/verification/agents-sync.md",
-      "bytes": 6505,
-      "sha256": "b3c0d5c60e60c3dbc399ef7f54ce32dbb72eb609d93579eae43f94299490aaaa"
-    },
-    {
-      "path": "MedicalQuality/docs/verification/development-execution.md",
-      "bytes": 7648,
-      "sha256": "e5b9d5267c71726e8a85da99a29c8de14a614618a72b3ec34f82fbaa1018a9a2"
-    },
-    {
-      "path": "MedicalQuality/docs/verification/development-report.md",
-      "bytes": 17417,
-      "sha256": "ba2b03b6c719cdbc55602184a362c1825c902192663b71c783c241a9f7c17a52"
+      "path": "MedicalQuality/docs/specs/product-spec.md",
+      "bytes": 31576,
+      "sha256": "f00d00c75a61249e8dadca908061d79d017e007c388dd54e93f9515894e746b6"
     },
     {
       "path": "MedicalQuality/docs/verification/F001-implementation.md",
@@ -1855,6 +1805,26 @@
       "path": "MedicalQuality/docs/verification/F011-implementation.md",
       "bytes": 6098,
       "sha256": "5675866e3cd59939e26f26874ea5df466b13b1d46fe8840a4bfb7c01b8f27d3b"
+    },
+    {
+      "path": "MedicalQuality/docs/verification/agent-selection-planning.md",
+      "bytes": 5466,
+      "sha256": "66dd153823794bc6639c2e0af5137a4e66b34d02adb8ec547050d4099090047e"
+    },
+    {
+      "path": "MedicalQuality/docs/verification/agents-sync.md",
+      "bytes": 6505,
+      "sha256": "b3c0d5c60e60c3dbc399ef7f54ce32dbb72eb609d93579eae43f94299490aaaa"
+    },
+    {
+      "path": "MedicalQuality/docs/verification/development-execution.md",
+      "bytes": 7648,
+      "sha256": "e5b9d5267c71726e8a85da99a29c8de14a614618a72b3ec34f82fbaa1018a9a2"
+    },
+    {
+      "path": "MedicalQuality/docs/verification/development-report.md",
+      "bytes": 17417,
+      "sha256": "ba2b03b6c719cdbc55602184a362c1825c902192663b71c783c241a9f7c17a52"
     },
     {
       "path": "MedicalQuality/docs/verification/foundation-architecture-review.md",
@@ -1977,6 +1947,26 @@
       "sha256": "a08d826abef6abad49539517db7ac380c24fa3b94997f189f79ecbc7dca2d602"
     },
     {
+      "path": "MedicalQuality/frontend/THIRD_PARTY_NOTICES.md",
+      "bytes": 1569,
+      "sha256": "857749bd739c324b47cbe92a5d33b94258652caf9eea129234c645f156a08df5"
+    },
+    {
+      "path": "MedicalQuality/frontend/e2e/application.spec.ts",
+      "bytes": 13035,
+      "sha256": "442766df773869c754c1431008a1f3d68539ac4cd274edfcee8d57c7d487de3e"
+    },
+    {
+      "path": "MedicalQuality/frontend/e2e/operations.spec.ts",
+      "bytes": 9322,
+      "sha256": "01998bed22710281b341e2157b396465618787b576aa47cef726b268571338a6"
+    },
+    {
+      "path": "MedicalQuality/frontend/e2e/product-layout.spec.ts",
+      "bytes": 8936,
+      "sha256": "7be5b250cae72e9deedb7d6e3e13f7f4a0ede61de2a9bddd1867b92743fc8476"
+    },
+    {
       "path": "MedicalQuality/frontend/index.html",
       "bytes": 319,
       "sha256": "ca587fff56d162c011dce9913d101040fd03d9ccf0a6ded2409b44987ff89687"
@@ -1997,49 +1987,14 @@
       "sha256": "23fc8600e97925741d0733fa6f2c7cd59fb810a713c9c91e9b88864c04f1d3ad"
     },
     {
-      "path": "MedicalQuality/frontend/THIRD_PARTY_NOTICES.md",
-      "bytes": 1569,
-      "sha256": "857749bd739c324b47cbe92a5d33b94258652caf9eea129234c645f156a08df5"
-    },
-    {
-      "path": "MedicalQuality/frontend/tsconfig.json",
-      "bytes": 460,
-      "sha256": "06141684b0d3790aab78fbb30cde3b4b3790aec51b62673ff3b7eb52832f1c70"
-    },
-    {
-      "path": "MedicalQuality/frontend/tsconfig.tsbuildinfo",
-      "bytes": 4001,
-      "sha256": "9c73dec578c2c41013ca0acc3e82e2a04d8c504312cb269fdb110142571004fc"
-    },
-    {
-      "path": "MedicalQuality/frontend/vite.config.ts",
-      "bytes": 247,
-      "sha256": "614464cd7b451c75be8cb013772ae75ded1053ecf116f018f32e629773c58390"
-    },
-    {
-      "path": "MedicalQuality/frontend/vitest.config.ts",
-      "bytes": 408,
-      "sha256": "a9fce90fa144b93aa992ec94b2d564dee8ef89879f60cbaaa9e53c649b899e91"
-    },
-    {
-      "path": "MedicalQuality/frontend/e2e/application.spec.ts",
-      "bytes": 13035,
-      "sha256": "442766df773869c754c1431008a1f3d68539ac4cd274edfcee8d57c7d487de3e"
-    },
-    {
-      "path": "MedicalQuality/frontend/e2e/operations.spec.ts",
-      "bytes": 9322,
-      "sha256": "01998bed22710281b341e2157b396465618787b576aa47cef726b268571338a6"
-    },
-    {
-      "path": "MedicalQuality/frontend/e2e/product-layout.spec.ts",
-      "bytes": 8936,
-      "sha256": "7be5b250cae72e9deedb7d6e3e13f7f4a0ede61de2a9bddd1867b92743fc8476"
-    },
-    {
       "path": "MedicalQuality/frontend/public/brand/ff-logo.png",
       "bytes": 17497,
       "sha256": "522944bbaee48d98190c8c5a0a0ac80f05b71b1975838807742a782e2aeceedc"
+    },
+    {
+      "path": "MedicalQuality/frontend/public/licenses/Ontology-Playground.txt",
+      "bytes": 1074,
+      "sha256": "7df20dcdf9197e9945c14858d41c60f11b52b93e5b69e2b63416b874d598d322"
     },
     {
       "path": "MedicalQuality/frontend/public/licenses/cytoscape-fcose.txt",
@@ -2062,11 +2017,6 @@
       "sha256": "668dcc52803480e0a026b31140a4cae668772663cd764e5991d252eef03f98db"
     },
     {
-      "path": "MedicalQuality/frontend/public/licenses/Ontology-Playground.txt",
-      "bytes": 1074,
-      "sha256": "7df20dcdf9197e9945c14858d41c60f11b52b93e5b69e2b63416b874d598d322"
-    },
-    {
       "path": "MedicalQuality/frontend/public/licenses/react-dom.txt",
       "bytes": 1088,
       "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
@@ -2087,6 +2037,11 @@
       "sha256": "c1e6e266563517467b1bf874817d23e426f3149252bd7d42758cd697514b8417"
     },
     {
+      "path": "MedicalQuality/frontend/public/ontology-playground/embed/samples.html",
+      "bytes": 16257,
+      "sha256": "d6c671f635da11602967a9c26de1beaa6977ad09fa31344246900a21b23d1c17"
+    },
+    {
       "path": "MedicalQuality/frontend/public/ontology-playground/learn.json",
       "bytes": 311367,
       "sha256": "22a23c943951be9a33d18f6ce87b71b004200030b3a993928eb66355ed550157"
@@ -2102,9 +2057,9 @@
       "sha256": "4a748afd443918bb16591c834c401dae33e87861ab5dbad0811c3a3b4a9214fb"
     },
     {
-      "path": "MedicalQuality/frontend/public/ontology-playground/embed/samples.html",
-      "bytes": 16257,
-      "sha256": "d6c671f635da11602967a9c26de1beaa6977ad09fa31344246900a21b23d1c17"
+      "path": "MedicalQuality/frontend/src/App.tsx",
+      "bytes": 24711,
+      "sha256": "c6301e860495506ebd5abd91779ca5b034c06f2e1cd6e3607a17e36af026b568"
     },
     {
       "path": "MedicalQuality/frontend/src/api.ts",
@@ -2112,29 +2067,14 @@
       "sha256": "45b5aede0b59e2cdc67e07a4aca9b303b56b5ba8f687a44572a617cfb8faddf1"
     },
     {
-      "path": "MedicalQuality/frontend/src/App.tsx",
-      "bytes": 24711,
-      "sha256": "c6301e860495506ebd5abd91779ca5b034c06f2e1cd6e3607a17e36af026b568"
+      "path": "MedicalQuality/frontend/src/features/knowledge-graph/medical-contract.test.ts",
+      "bytes": 2318,
+      "sha256": "a43e7c1b504de439c37a1ae8d7b1efd2e556e8cda9528ec6d1eeea7c4c8de391"
     },
     {
       "path": "MedicalQuality/frontend/src/main.tsx",
       "bytes": 238,
       "sha256": "9199bfba8182fe6921f500d9a9eb35618abb637bd2b6fa2829539a0dc5af554c"
-    },
-    {
-      "path": "MedicalQuality/frontend/src/styles.css",
-      "bytes": 64559,
-      "sha256": "deef7d4ae595159b1df4a6a3fc81a4bd2a4f40543da81473b03055f8934fa0e8"
-    },
-    {
-      "path": "MedicalQuality/frontend/src/ui.tsx",
-      "bytes": 8772,
-      "sha256": "aaf0fce03790b113d4ccc6f599b8c060c07ae15e3179a3f61e5dff80759adaee"
-    },
-    {
-      "path": "MedicalQuality/frontend/src/features/knowledge-graph/medical-contract.test.ts",
-      "bytes": 2318,
-      "sha256": "a43e7c1b504de439c37a1ae8d7b1efd2e556e8cda9528ec6d1eeea7c4c8de391"
     },
     {
       "path": "MedicalQuality/frontend/src/pages/CasePage.tsx",
@@ -2152,6 +2092,16 @@
       "sha256": "ce62949ed4b02dff7db67234778e00416d98c9eb3588abec0f2d0922142ce5cc"
     },
     {
+      "path": "MedicalQuality/frontend/src/styles.css",
+      "bytes": 64559,
+      "sha256": "deef7d4ae595159b1df4a6a3fc81a4bd2a4f40543da81473b03055f8934fa0e8"
+    },
+    {
+      "path": "MedicalQuality/frontend/src/ui.tsx",
+      "bytes": 8772,
+      "sha256": "aaf0fce03790b113d4ccc6f599b8c060c07ae15e3179a3f61e5dff80759adaee"
+    },
+    {
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/App.css",
       "bytes": 606,
       "sha256": "a0715e0a09edbd0fbde65816a75e0fa0fc8b314c5260c0768c19bf3aac22621a"
@@ -2162,21 +2112,6 @@
       "sha256": "801918d7f9beef831761e81d7a1ad171ca7dbd1fe9eed4f0c6c1cbfe8e944854"
     },
     {
-      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/embed.tsx",
-      "bytes": 1847,
-      "sha256": "595f26482e0b89c63bf8e23ba796a5d155d4437ae6f81d0af84959ca08e296c3"
-    },
-    {
-      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/index.css",
-      "bytes": 1154,
-      "sha256": "bdba2919116e9b72ac06558f88371dc4c80fb0196da6403d239e0fb085250892"
-    },
-    {
-      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/main.tsx",
-      "bytes": 308,
-      "sha256": "1fb0a6557f1a6e99b38ca335be5eb198b3210159feeb49a0f84b0b722aaa5552"
-    },
-    {
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/README.md",
       "bytes": 2799,
       "sha256": "0a690aaae937b65ed5112a30e882106fb34cfd131eacfa0dcf41ddffbb060380"
@@ -2185,11 +2120,6 @@
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/UPSTREAM-LICENSE",
       "bytes": 1074,
       "sha256": "7df20dcdf9197e9945c14858d41c60f11b52b93e5b69e2b63416b874d598d322"
-    },
-    {
-      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/upstream-manifest.json",
-      "bytes": 26572,
-      "sha256": "b1d7f89d57bcfddddb4a4aa72e9878eb8192467099a69ab50d2a916d452d3da7"
     },
     {
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/UPSTREAM-package-lock.json",
@@ -2205,11 +2135,6 @@
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/UPSTREAM-vitest.config.ts",
       "bytes": 305,
       "sha256": "9cdd69b27bae4d905b8157231ea6dc6f72d0fb63509b3b25c3851fdc4d8841ac"
-    },
-    {
-      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/vite-env.d.ts",
-      "bytes": 417,
-      "sha256": "b856329aa34668fad5cc8f5beb18b3207db7fbb03d41dd09fee78d79aeb3b00d"
     },
     {
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/a11y/contrast.ts",
@@ -2300,11 +2225,6 @@
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/components/ImportExportModal.tsx",
       "bytes": 19932,
       "sha256": "b3290ef4ae44960e7d526f693d26aab07ae6ed16b1065aa4df8848cb10b62fb9"
-    },
-    {
-      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/components/index.ts",
-      "bytes": 1280,
-      "sha256": "a3603baab0b9802a26c1bc12b4115f8dc7443bfea1c36af2e8ae97bc6a1480ec"
     },
     {
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/components/InspectorPanel.test.tsx",
@@ -2417,11 +2337,6 @@
       "sha256": "59fd099dbf6bfbb86daf6991c5cf278469dea44f1034f21e4fb4e254e0cd92e3"
     },
     {
-      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/components/designer/index.ts",
-      "bytes": 275,
-      "sha256": "13069737d52d5f87290a6c1f67fe721f0a0047577d19bde26fd36015815f3062"
-    },
-    {
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/components/designer/RelationshipForm.test.tsx",
       "bytes": 2468,
       "sha256": "6eb73e35f8dd15642332e13b717dc755591026c0dff72ab7efdee5c757ea6f30"
@@ -2440,6 +2355,16 @@
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/components/designer/TemplatePicker.tsx",
       "bytes": 943,
       "sha256": "1d32b9ad9687a3a6d624a890c6114520d31b26295c04dbb610348c4e1197d50e"
+    },
+    {
+      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/components/designer/index.ts",
+      "bytes": 275,
+      "sha256": "13069737d52d5f87290a6c1f67fe721f0a0047577d19bde26fd36015815f3062"
+    },
+    {
+      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/components/index.ts",
+      "bytes": 1280,
+      "sha256": "a3603baab0b9802a26c1bc12b4115f8dc7443bfea1c36af2e8ae97bc6a1480ec"
     },
     {
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/data/designerTemplates.ts",
@@ -2492,9 +2417,19 @@
       "sha256": "495ada77dcf1012e050fc1822b37914379bd9c294f04182ddc2d5632f024258d"
     },
     {
+      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/embed.tsx",
+      "bytes": 1847,
+      "sha256": "595f26482e0b89c63bf8e23ba796a5d155d4437ae6f81d0af84959ca08e296c3"
+    },
+    {
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/hooks/useRoute.ts",
       "bytes": 470,
       "sha256": "0e850be33255d4ce1be9a285c263baa1154f8e19b1813056e36df8dbbc979129"
+    },
+    {
+      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/index.css",
+      "bytes": 1154,
+      "sha256": "bdba2919116e9b72ac06558f88371dc4c80fb0196da6403d239e0fb085250892"
     },
     {
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/lib/contentSafety.test.ts",
@@ -2527,6 +2462,11 @@
       "sha256": "32094736f0f94fe4c7b3af6a4d799268861389ce005c2204c7113c740e773d98"
     },
     {
+      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/lib/learn/sanitizeHtml.ts",
+      "bytes": 979,
+      "sha256": "474c03d302032e2cd22152145bc2bdfe20791dfd23abb584939c2ffa20624d15"
+    },
+    {
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/lib/ontologyScale.test.ts",
       "bytes": 1048,
       "sha256": "aeaaa213baeb06f1ae0be054fd8d636a39b554addf9012e7c5043109e8befced"
@@ -2545,31 +2485,6 @@
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/lib/pathFinder.ts",
       "bytes": 1294,
       "sha256": "7d349129bbfc47a7a1d11c2e09e5a6269d8545cfd500072da95671615664f5c7"
-    },
-    {
-      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/lib/router.test.ts",
-      "bytes": 11210,
-      "sha256": "af10d7f0ed371fee419f6421064becd1d2447e7d633fd5460d6f82339b03f5a9"
-    },
-    {
-      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/lib/router.ts",
-      "bytes": 6678,
-      "sha256": "2687362bf1c43db94851894e52eabd43c5d2a60d7e02b7644ecdfb3aafd9f54f"
-    },
-    {
-      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/lib/shareCodec.test.ts",
-      "bytes": 12300,
-      "sha256": "b9f3835fc696055fd190b1a0c3edee5dc0889bc6d716390b642bae620e041c2d"
-    },
-    {
-      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/lib/shareCodec.ts",
-      "bytes": 4144,
-      "sha256": "996e5d811519bf12e6bfa6388da48e864366950a08f5aff394f299c829da5a0a"
-    },
-    {
-      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/lib/learn/sanitizeHtml.ts",
-      "bytes": 979,
-      "sha256": "474c03d302032e2cd22152145bc2bdfe20791dfd23abb584939c2ffa20624d15"
     },
     {
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/lib/rdf/highlighter.ts",
@@ -2605,6 +2520,31 @@
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/lib/rdf/serializer.ts",
       "bytes": 7904,
       "sha256": "7cfce7cabc919900b6c0d66f7ee57688629bdfa32844402b2f68b1ae015f184d"
+    },
+    {
+      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/lib/router.test.ts",
+      "bytes": 11210,
+      "sha256": "af10d7f0ed371fee419f6421064becd1d2447e7d633fd5460d6f82339b03f5a9"
+    },
+    {
+      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/lib/router.ts",
+      "bytes": 6678,
+      "sha256": "2687362bf1c43db94851894e52eabd43c5d2a60d7e02b7644ecdfb3aafd9f54f"
+    },
+    {
+      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/lib/shareCodec.test.ts",
+      "bytes": 12300,
+      "sha256": "b9f3835fc696055fd190b1a0c3edee5dc0889bc6d716390b642bae620e041c2d"
+    },
+    {
+      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/lib/shareCodec.ts",
+      "bytes": 4144,
+      "sha256": "996e5d811519bf12e6bfa6388da48e864366950a08f5aff394f299c829da5a0a"
+    },
+    {
+      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/main.tsx",
+      "bytes": 308,
+      "sha256": "1fb0a6557f1a6e99b38ca335be5eb198b3210159feeb49a0f84b0b722aaa5552"
     },
     {
       "path": "MedicalQuality/frontend/src/vendor/ontology-playground/store/appStore.ts",
@@ -2647,6 +2587,31 @@
       "sha256": "7e31445781a30c6e8ae79f034354dd7ee9beabc5ad5cfeb89bf86eaf37f12a4f"
     },
     {
+      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/upstream-manifest.json",
+      "bytes": 26572,
+      "sha256": "b1d7f89d57bcfddddb4a4aa72e9878eb8192467099a69ab50d2a916d452d3da7"
+    },
+    {
+      "path": "MedicalQuality/frontend/src/vendor/ontology-playground/vite-env.d.ts",
+      "bytes": 417,
+      "sha256": "b856329aa34668fad5cc8f5beb18b3207db7fbb03d41dd09fee78d79aeb3b00d"
+    },
+    {
+      "path": "MedicalQuality/frontend/tsconfig.json",
+      "bytes": 460,
+      "sha256": "06141684b0d3790aab78fbb30cde3b4b3790aec51b62673ff3b7eb52832f1c70"
+    },
+    {
+      "path": "MedicalQuality/frontend/vite.config.ts",
+      "bytes": 247,
+      "sha256": "614464cd7b451c75be8cb013772ae75ded1053ecf116f018f32e629773c58390"
+    },
+    {
+      "path": "MedicalQuality/frontend/vitest.config.ts",
+      "bytes": 408,
+      "sha256": "a9fce90fa144b93aa992ec94b2d564dee8ef89879f60cbaaa9e53c649b899e91"
+    },
+    {
       "path": "MedicalQuality/scripts/build_semantic.py",
       "bytes": 11235,
       "sha256": "eacf262157f4b0ba0efe518b0fb00a5b241e0b1202f985e2f816027213f177c9"
@@ -2687,22 +2652,34 @@
       "sha256": "d22c474bcbe77d9158b1b707a317701ebc39f7f70f9bc44baf97c4170692fd93"
     },
     {
-      "path": "Raw/confirmed-requirements/business-agreements/業務約定.md",
-      "bytes": 19284,
-      "sha256": "ba1170dd521c38c73cec34eb4c08a17ad2c40cb3375d2ecbad3d1263488f3360"
+      "path": "MedicalQuality/start.bat",
+      "bytes": 173,
+      "sha256": "66d012108ab3069fb7bdc4cf850c9af6a1eab18cd8e185e5325724a4f4b3bfd1"
     },
     {
-      "path": "Raw/confirmed-requirements/communication-records/需求溝通與範圍決定.md",
-      "bytes": 3784,
-      "sha256": "c0a5f44756491304035c8bd838183e0a9d3252146ff16615935d481acfb9f8bf"
+      "path": "MedicalQuality/stop.bat",
+      "bytes": 102,
+      "sha256": "e1a68cac6ea4813a421f4f15958787cf817565bba8194e6991438d4f45261c99"
     },
     {
-      "path": "Raw/confirmed-requirements/customer-requirements/客戶需求.md",
-      "bytes": 12617,
-      "sha256": "4c708b27bed972112446fa51cab1df29600cf98c9944901fce4eb0b3200c7366"
+      "path": "MedicalQuality/停止工作臺.cmd",
+      "bytes": 84,
+      "sha256": "6f82ee5ac197827a3237332686f64d86e1b1e958d4f166ecd3e23169dc4e9d55"
+    },
+    {
+      "path": "MedicalQuality/啟動工作臺.cmd",
+      "bytes": 133,
+      "sha256": "115af405c5638ce1088506e35c897a15629403658b270ced9d98cd884af15958"
+    },
+    {
+      "path": "MedicalQuality/平台架構互動導覽.html",
+      "bytes": 4799,
+      "sha256": "97646a12c8e5240ebf9e22048e0a689a2eb43e3a58253ec4ebe9e0245948a070"
     }
   ],
   "python_syntax_files": 102,
   "secret_pattern_findings": [],
-  "exclusions": "runtime, credentials, source medical datasets, models, dependencies, generated artifacts"
+  "exclusions": "runtime, credentials, source medical datasets, models, dependencies, generated artifacts",
+  "published_application_file_count": 535,
+  "note": "Manifest follows tracked source files; original gitignore excludes Raw and generated requirement-board output."
 }

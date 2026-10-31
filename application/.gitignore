@@ -27,3 +27,6 @@ __pycache__/
 # 需求看板由数据、Skill 模板与项目生成脚本重建
 /MedicalQuality/docs/02_requirement-playground/index.html
 /.codex/maintenance/
+
+# TypeScript incremental build cache
+*.tsbuildinfo
